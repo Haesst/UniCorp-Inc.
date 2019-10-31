@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FGEngine", "FGEngine\FGEngine.vcxproj", "{D8844DA9-CB26-4DBC-B6E0-914929563115}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MyGame", "MyGame\MyGame.vcxproj", "{6B49CF9F-BD4A-4AE0-B3A3-C8086F64F612}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8844DA9-CB26-4DBC-B6E0-914929563115}.Debug|x64.ActiveCfg = Debug|x64
+		{D8844DA9-CB26-4DBC-B6E0-914929563115}.Debug|x64.Build.0 = Debug|x64
+		{D8844DA9-CB26-4DBC-B6E0-914929563115}.Release|x64.ActiveCfg = Release|x64
+		{D8844DA9-CB26-4DBC-B6E0-914929563115}.Release|x64.Build.0 = Release|x64
+		{6B49CF9F-BD4A-4AE0-B3A3-C8086F64F612}.Debug|x64.ActiveCfg = Debug|x64
+		{6B49CF9F-BD4A-4AE0-B3A3-C8086F64F612}.Debug|x64.Build.0 = Debug|x64
+		{6B49CF9F-BD4A-4AE0-B3A3-C8086F64F612}.Release|x64.ActiveCfg = Release|x64
+		{6B49CF9F-BD4A-4AE0-B3A3-C8086F64F612}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {30AC1662-03CE-49AD-AB08-66F977577A1F}
+	EndGlobalSection
+EndGlobal
