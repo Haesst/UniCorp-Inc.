@@ -14,4 +14,6 @@ namespace FG
 	};
 
 	Application* CreateApplication();
+
+	class Test {};
 }
