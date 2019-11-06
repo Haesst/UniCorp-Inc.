@@ -5,10 +5,10 @@
 #include <InputManager.h>
 #include <Camera.h>
 #include <EntityManager.h>
+#include <SpriteManager.h>
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SpriteManager.h>
 
 bool GameApplication::Initialize()
 {

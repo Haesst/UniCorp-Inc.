@@ -27,6 +27,6 @@ namespace FG
 
 	protected:
 		Window* ownerWindow = nullptr;
-		SDL_Renderer* renderer;
+		SDL_Renderer* renderer = nullptr;
 	};
 }
