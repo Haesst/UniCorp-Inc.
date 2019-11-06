@@ -4,6 +4,8 @@
 #include <Window.h>
 
 #include <SDL.h>
+#include <SDL_image.h>
+#include <SpriteManager.h>
 
 bool GameApplication::Initialize()
 {
@@ -13,10 +15,21 @@ bool GameApplication::Initialize()
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
 	}
+	if (IMG_Init(IMG_INIT_PNG) == 0)
+	{
+		FG::Logger::Log(IMG_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
+		return false;
+	}
 
 	// Create a window
 	window = new FG::Window();
 	if (!window->Initialize("My Game", 1024, 768))
+	{
+		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
+		return false;
+	}
+	spriteManager = new FG::SpriteManager();
+	if (!spriteManager->Initialize(window->GetInternalWindow()))
 	{
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
@@ -53,6 +66,13 @@ void GameApplication::Shutdown()
 		delete window;
 		window = nullptr;
 	}
-
+	if (spriteManager)
+	{
+		spriteManager->Shutdown();
+		delete spriteManager;
+		spriteManager = nullptr;
+	}
 	SDL_Quit();
+
+	IMG_Quit();
 }

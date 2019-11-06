@@ -4,6 +4,7 @@
 
 namespace FG
 {
+	class SpriteManager;
 	class Window;
 }
 
@@ -15,6 +16,7 @@ public:
 	virtual void Shutdown() override;
 private:
 	FG::Window* window = nullptr;
+	FG::SpriteManager* spriteManager = nullptr;
 };
 
 FG::Application* FG::CreateApplication()
