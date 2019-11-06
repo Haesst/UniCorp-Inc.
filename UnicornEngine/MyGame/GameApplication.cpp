@@ -2,6 +2,9 @@
 
 #include <Logger.h>
 #include <Window.h>
+#include <InputManager.h>
+#include <Camera.h>
+#include <EntityManager.h>
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -23,7 +26,7 @@ bool GameApplication::Initialize()
 
 	// Create a window
 	window = new FG::Window();
-	if (!window->Initialize("My Game", 1024, 768))
+	if (!window->Initialize("UniCorp, Inc.", 1024, 768))
 	{
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
@@ -35,6 +38,17 @@ bool GameApplication::Initialize()
 		return false;
 	}
 
+	camera = new FG::Camera();
+	if (!camera->Initialize(window))
+	{
+		return false;
+	}
+
+	inputManager = new FG::InputManager();
+	inputManager->Initialize();
+
+	entityManager = new FG::EntityManager();
+
 	return true;
 }
 
@@ -43,23 +57,46 @@ void GameApplication::Run()
 	bool quit = false;
 	while (!quit)
 	{
-		SDL_Event event;
-		while (SDL_PollEvent(&event) > 0)
-		{
-			switch (event.type)
-			{
-			case SDL_QUIT:
-				quit = true;
-			default:
-				break;
-			}
-		}
+		// Start the timer
+		time.StartFrame();
+		// Update input
+		inputManager->Update(quit);
+
+		//Update entities
+		entityManager->Update(time.DeltaTime());
+		// Tell camera to start render frame
+		camera->StartRenderFrame();
+		// Render every entity
+		entityManager->Render(camera);
+		// Tell camera to end render frame
+		camera->EndRenderFrame();
+		// End the timer
+		time.EndFrame();
 	}
 }
 
 void GameApplication::Shutdown()
 {
 	// Reverse order
+	if (entityManager)
+	{
+		delete entityManager;
+		entityManager = nullptr;
+	}
+
+	if (camera)
+	{
+		camera->Shutdown();
+		delete camera;
+		camera = nullptr;
+	}
+
+	if (inputManager)
+	{
+		delete inputManager;
+		inputManager = nullptr;
+	}
+
 	if (window)
 	{
 		window->Shutdown();
