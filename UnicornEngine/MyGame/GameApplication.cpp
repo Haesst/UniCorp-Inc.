@@ -31,18 +31,14 @@ bool GameApplication::Initialize()
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
 	}
-	spriteManager = new FG::SpriteManager();
-	if (!spriteManager->Initialize(window->GetInternalWindow()))
-	{
-		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
-		return false;
-	}
 
 	camera = new FG::Camera();
 	if (!camera->Initialize(window))
 	{
 		return false;
 	}
+	spriteManager = new FG::SpriteManager();
+	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
@@ -105,7 +101,7 @@ void GameApplication::Shutdown()
 	}
 	if (spriteManager)
 	{
-		spriteManager->Shutdown();
+		//spriteManager->Shutdown();
 		delete spriteManager;
 		spriteManager = nullptr;
 	}

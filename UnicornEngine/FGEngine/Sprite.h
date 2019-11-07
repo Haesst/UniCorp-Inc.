@@ -10,7 +10,7 @@ namespace FG
 		~Sprite();
 		SDL_Rect GetSource();
 		SDL_Texture* GetTexture();
-		void SetSource();
+		void SetSource(int x, int y, int h, int w);
 
 	protected:
 		Sprite();
