@@ -36,6 +36,9 @@ bool GameApplication::Initialize()
 
 	entityManager = new FG::EntityManager();
 
+	player = new Player(inputManager, camera);
+	entityManager->AddEntity(player);
+
 	return true;
 }
 
@@ -64,6 +67,11 @@ void GameApplication::Run()
 
 void GameApplication::Shutdown()
 {
+	if (player)
+	{
+		delete player;
+		player = nullptr;
+	}
 	// Reverse order
 	if (entityManager)
 	{

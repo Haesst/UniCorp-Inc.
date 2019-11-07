@@ -3,6 +3,8 @@
 #include <Application.h>
 #include <Time.h>
 
+#include "Player.h"
+
 namespace FG
 {
 	class Window;
@@ -24,6 +26,8 @@ private:
 	FG::EntityManager* entityManager = nullptr;
 
 	FG::Time time;
+
+	Player* player = nullptr;
 };
 
 FG::Application* FG::CreateApplication()
