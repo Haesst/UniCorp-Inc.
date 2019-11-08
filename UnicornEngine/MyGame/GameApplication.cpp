@@ -18,7 +18,7 @@ bool GameApplication::Initialize()
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
 	}
-	if (IMG_Init(IMG_INIT_PNG) == 0)
+	if (IMG_Init(IMG_INIT_PNG) < 0)
 	{
 		FG::Logger::Log(IMG_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
