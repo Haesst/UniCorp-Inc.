@@ -11,6 +11,7 @@ namespace FG
 	class InputManager;
 	class Camera;
 	class EntityManager;
+	class SpriteManager;
 }
 
 class GameApplication : public FG::Application
@@ -24,6 +25,7 @@ private:
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
 	FG::EntityManager* entityManager = nullptr;
+	FG::SpriteManager* spriteManager = nullptr;
 
 	FG::Time time;
 
