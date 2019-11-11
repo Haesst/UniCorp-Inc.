@@ -1,4 +1,5 @@
 #pragma once
+#include <SDL.h>
 
 #include <string>
 
@@ -21,5 +22,6 @@ namespace FG
 
 	protected:
 		SDL_Window* window = nullptr;
+		SDL_Renderer* renderer = nullptr;
 	};
 }

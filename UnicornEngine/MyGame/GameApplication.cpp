@@ -5,8 +5,10 @@
 #include <InputManager.h>
 #include <Camera.h>
 #include <EntityManager.h>
+#include <SpriteManager.h>
 
 #include <SDL.h>
+#include <SDL_image.h>
 
 bool GameApplication::Initialize()
 {
@@ -14,6 +16,11 @@ bool GameApplication::Initialize()
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
+		return false;
+	}
+	if (IMG_Init(IMG_INIT_PNG) < 0)
+	{
+		FG::Logger::Log(IMG_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
 	}
 
@@ -30,11 +37,16 @@ bool GameApplication::Initialize()
 	{
 		return false;
 	}
+	spriteManager = new FG::SpriteManager();
+	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
 
 	entityManager = new FG::EntityManager();
+
+	player = new Player(inputManager, camera);
+	entityManager->AddEntity(player);
 
 	return true;
 }
@@ -64,6 +76,11 @@ void GameApplication::Run()
 
 void GameApplication::Shutdown()
 {
+	if (player)
+	{
+		delete player;
+		player = nullptr;
+	}
 	// Reverse order
 	if (entityManager)
 	{
@@ -90,6 +107,13 @@ void GameApplication::Shutdown()
 		delete window;
 		window = nullptr;
 	}
-
+	if (spriteManager)
+	{
+		//spriteManager->Shutdown();
+		delete spriteManager;
+		spriteManager = nullptr;
+	}
 	SDL_Quit();
+
+	IMG_Quit();
 }
