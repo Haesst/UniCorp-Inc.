@@ -1,21 +1,25 @@
 #include "Player.h"
+#include <SpriteManager.h>
 
 #include <InputManager.h>
 #include <Camera.h>
 
 #include <SDL_render.h>
 
-Player::Player(FG::InputManager* inputManager, FG::Camera* camera) : inputManager(inputManager), camera(camera)
-{}
+Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
+{
+	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
+}
 
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
+	rect = {(int)position.x, (int)position.y, 900, 800 };
 }
 
 void Player::Render(FG::Camera* const camera)
 {
-	SDL_Color oldDrawColor;
+	/*SDL_Color oldDrawColor;
 	SDL_Color color{ 0, 0, 255, 255 };
 
 	SDL_GetRenderDrawColor(camera->GetInternalRenderer(), &oldDrawColor.r, &oldDrawColor.g, &oldDrawColor.b, &oldDrawColor.a);
@@ -24,7 +28,9 @@ void Player::Render(FG::Camera* const camera)
 	SDL_Rect finalRect{ (int)position.x, (int)position.y, 50,50 };
 	SDL_RenderFillRect(camera->GetInternalRenderer(), &finalRect);
 
-	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);
+	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
+
+	spriteManager->Draw(sprite, rect);
 }
 
 void Player::MovePlayer(float deltaTime)
@@ -35,7 +41,7 @@ void Player::MovePlayer(float deltaTime)
 	{
 		movement.x -= 1.0f;
 	}
-	if (inputManager->IsKeyDown(SDL_SCANCODE_D))
+	else if (inputManager->IsKeyDown(SDL_SCANCODE_D))
 	{
 		movement.x += 1.0f;
 	}
@@ -44,7 +50,7 @@ void Player::MovePlayer(float deltaTime)
 	{
 		movement.y -= 1.0f;
 	}
-	if (inputManager->IsKeyDown(SDL_SCANCODE_S))
+	else if (inputManager->IsKeyDown(SDL_SCANCODE_S))
 	{
 		movement.y += 1.0f;
 	}

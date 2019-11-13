@@ -15,7 +15,7 @@ namespace FG
 		bool Initialize(SDL_Window* windowRef, SDL_Renderer* rendererRef);
 	
 		void Shutdown();
-		Sprite* CreateSprite(std::string file, int x, int y, int w, int h);
+		Sprite* CreateSprite(const char* file, int x, int y, int w, int h);
 		SpriteManager() {}
 		~SpriteManager() {}
 		void Clear();

@@ -11,5 +11,6 @@ namespace FG
 
 		virtual void Update(float deltaTime) {}
 		virtual void Render(Camera* const camera) {}
+
 	};
 }

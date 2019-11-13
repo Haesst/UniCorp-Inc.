@@ -4,7 +4,7 @@
 #include <iostream>
 #include "SpriteManager.h"
 #include "Sprite.h"
-
+#include <cassert>
 #include <SDL_image.h>
 
 bool FG::SpriteManager::Initialize(SDL_Window* windowRef, SDL_Renderer* rendererRef)
@@ -21,14 +21,18 @@ void FG::SpriteManager::Shutdown()
 	renderer = nullptr;
 }
 
-FG::Sprite* FG::SpriteManager::CreateSprite(std::string file, int x, int y, int w, int h)
+FG::Sprite* FG::SpriteManager::CreateSprite(const char* file, int x, int y, int w, int h)
 {
 	auto it = textures.find(file);
 	if (it == textures.end())
 	{
-		SDL_Surface* surface = IMG_Load(file.c_str());
+		SDL_Surface* surface = IMG_Load(file);
+		//SDL_Surface* surface = SDL_LoadBMP(file.c_str());
+
+		assert(surface);
 		SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
 		SDL_FreeSurface(surface);
+		assert(texture);
 		textures.insert(std::pair<std::string, SDL_Texture*>(file, texture));
 		it = textures.find(file);
 	}

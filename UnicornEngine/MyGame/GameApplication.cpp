@@ -45,7 +45,7 @@ bool GameApplication::Initialize()
 
 	entityManager = new FG::EntityManager();
 
-	player = new Player(inputManager, camera);
+	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player);
 
 	return true;
@@ -87,33 +87,32 @@ void GameApplication::Shutdown()
 		delete entityManager;
 		entityManager = nullptr;
 	}
-
-	if (camera)
-	{
-		camera->Shutdown();
-		delete camera;
-		camera = nullptr;
-	}
-
+	
 	if (inputManager)
 	{
 		delete inputManager;
 		inputManager = nullptr;
 	}
 
+	if (spriteManager)
+	{
+		spriteManager->Shutdown();
+		delete spriteManager;
+		spriteManager = nullptr;
+	}
+	if (camera)
+	{
+		camera->Shutdown();
+		delete camera;
+		camera = nullptr;
+	}
 	if (window)
 	{
 		window->Shutdown();
 		delete window;
 		window = nullptr;
 	}
-	if (spriteManager)
-	{
-		//spriteManager->Shutdown();
-		delete spriteManager;
-		spriteManager = nullptr;
-	}
-	SDL_Quit();
-
 	IMG_Quit();
+	
+	SDL_Quit();
 }

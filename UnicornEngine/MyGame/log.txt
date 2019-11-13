@@ -1,1 +1,5 @@
-C:\Users\robin\Documents\C++ projects\UniCorp-Inc\UnicornEngine\MyGame (23)	
+ (0)	
+
+Assertion failure at SDL_RenderCopyF_REAL (C:\Users\Krister\Downloads\SDL2-2.0.10\src\render\SDL_render.c:2933), triggered 1 time:
+  'texture && texture->magic == &texture_magic'
+
