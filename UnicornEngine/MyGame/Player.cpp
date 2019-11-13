@@ -6,9 +6,13 @@
 
 #include <SDL_render.h>
 
+#include <Collider.h>
+
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
 	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
+	myCollider->square.w = 900;
+	myCollider->square.h = 800;
 }
 
 void Player::Update(float deltaTime)

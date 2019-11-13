@@ -1,10 +1,14 @@
 #pragma once
 
+#include "Sprite.h"
+#include "ICollidable.h"
+
 namespace FG
 {
 	class Camera;
-
-	class Entity
+	class Sprite;
+	class Collidable;
+	class Entity: public Sprite, public Collidable
 	{
 	public:
 		virtual ~Entity() {}

@@ -2,17 +2,15 @@
 
 #include <Entity.h>
 #include <Vector2D.h>
-#include <Sprite.h>
 
 namespace FG
 {
 	class InputManager;
 	class Camera;
-	class Sprite;
 	class SpriteManager;
 }
 
-class Player : public FG::Entity, public FG::Sprite
+class Player : public FG::Entity
 {
 public:
 	Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef);

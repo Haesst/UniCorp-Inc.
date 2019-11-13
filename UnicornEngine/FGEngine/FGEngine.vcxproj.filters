@@ -25,6 +25,9 @@
     <Filter Include="Source Files\System">
       <UniqueIdentifier>{e955ed34-a2b6-4f84-902b-9c79eb773c27}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\System\Managers">
+      <UniqueIdentifier>{62f11fe3-7e08-45df-a4c9-17da15eb6cda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -57,6 +60,15 @@
     <ClCompile Include="SpriteManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ICollidable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Logger.h">
@@ -71,9 +83,6 @@
     <ClInclude Include="Vector2D.h">
       <Filter>Header Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="InputManager.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
@@ -83,13 +92,25 @@
     <ClInclude Include="Camera.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
-    <ClInclude Include="EntityManager.h">
-      <Filter>Header Files\System</Filter>
-    </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
     <ClInclude Include="SpriteManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ICollidable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
