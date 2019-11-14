@@ -1,23 +1,39 @@
 #include "Player.h"
 #include <SpriteManager.h>
-
 #include <InputManager.h>
+#include <EntityManager.h>
+
+#include <Projectile.h>
+
 #include <Camera.h>
-
 #include <SDL_render.h>
-
 #include <Collider.h>
 
-Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
+// remove \/
+#include <iostream>
+
+Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef, FG::EntityManager* entityManager) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef), entityManager(entityManager)
 {
 	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
 	myCollider->square.w = 900;
 	myCollider->square.h = 800;
+	rect = { (int)position.x, (int)position.y, 900, 800 };
 }
 
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
+
+	if (inputManager->IsKeyReleased(SDL_SCANCODE_SPACE))
+	{
+		std::cout << "Pew pew" << std::endl;
+		Projectile* bullet = new Projectile(FG::Vector2D(250.0f, 270.0f), FG::Vector2D(0.f, -1.0f));
+		if (bullet != nullptr)
+		{
+			entityManager->AddEntity(bullet);
+		}
+	}
+
 	rect = {(int)position.x, (int)position.y, 900, 800 };
 }
 

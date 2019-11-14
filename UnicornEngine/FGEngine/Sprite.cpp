@@ -30,5 +30,5 @@ void FG::Sprite::SetSource(int x, int y, int h, int w)
 }
 
 FG::Sprite::Sprite()
-{
-}
+	: myTexture(nullptr), Source({ 0,0,0,0 })
+{}

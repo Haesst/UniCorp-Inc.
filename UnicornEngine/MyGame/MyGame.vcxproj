@@ -94,10 +94,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\FGEngine\Projectile.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\FGEngine\Projectile.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
