@@ -32,3 +32,17 @@ namespace FG
 		entities.push_back(entity);
 	}
 }
+
+/*
+for(auto& ent1 : entities)
+{
+for(auto& ent2 : entities)
+{
+if(ent2 != ent1 && ent2.active)
+{
+checkCollision() {}
+}
+}
+}
+
+*/

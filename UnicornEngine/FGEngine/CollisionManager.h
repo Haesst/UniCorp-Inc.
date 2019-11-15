@@ -3,6 +3,7 @@
 namespace FG
 {
 	class Collider;
+	class ICollidable;
 
 	class CollisionManager
 	{
@@ -10,7 +11,7 @@ namespace FG
 		CollisionManager();
 		~CollisionManager();
 
-		bool CheckCollision(Collider colRef1, Collider colRef2);
+		bool CheckCollision(FG::Collider* colRef1, FG::Collider* colRef2);
 	};
 
 }

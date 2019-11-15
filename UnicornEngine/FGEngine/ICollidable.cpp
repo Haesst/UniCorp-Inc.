@@ -16,7 +16,3 @@ FG::Collidable::~Collidable()
 	delete myCollider;
 	myCollider = nullptr;
 }
-
-void FG::Collidable::onCollision(Collider* theOtherCollider)
-{
-}

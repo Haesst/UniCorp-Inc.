@@ -10,15 +10,20 @@
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
-	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
-	myCollider->square.w = 900;
-	myCollider->square.h = 800;
+	sprite = spriteManager->CreateSprite("../TestingAssets/FROGGY.png", 1, 1, 92, 98);
+	rect = { 0,0, 92, 98 };
+	myCollider->square.w = rect.w;
+	myCollider->square.h = rect.h;
 }
 
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
-	rect = {(int)position.x, (int)position.y, 900, 800 };
+	rect = {(int)position.x, (int)position.y, 92, 98 };
+	myCollider->square.x = rect.x;
+	myCollider->square.y = rect.y;
+	UpdateCollider();
+	
 }
 
 void Player::Render(FG::Camera* const camera)
@@ -35,6 +40,7 @@ void Player::Render(FG::Camera* const camera)
 	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
 
 	spriteManager->Draw(sprite, rect);
+	spriteManager->DebugDraw(myCollider->square);
 }
 
 void Player::MovePlayer(float deltaTime)
@@ -59,5 +65,9 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	position += movement * playerSpeed * deltaTime;
+	position += movement * movementSpeed * deltaTime;
+}
+
+void Player::onCollision(FG::Collider* theOtherCollider)
+{
 }

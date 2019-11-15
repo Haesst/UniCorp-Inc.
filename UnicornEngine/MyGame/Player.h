@@ -17,21 +17,19 @@ public:
 
 	virtual void Update(float deltaTime) override;
 	virtual void Render(FG::Camera* const camera) override;
-	FG::Sprite* sprite = nullptr;
-	SDL_Rect rect;
-
 
 private:
 	Player() {}
 
 	void MovePlayer(float deltaTime);
-private:
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
 
 	FG::Vector2D position;
 	FG::SpriteManager* spriteManager;
 
-	float playerSpeed = 250.0f;
+
+	// Inherited via Entity
+	virtual void onCollision(FG::Collider* theOtherCollider) override;
 
 };

@@ -1,4 +1,5 @@
 #include "GameApplication.h"
+#include <iostream>
 
 #include <Logger.h>
 #include <Window.h>
@@ -6,9 +7,12 @@
 #include <Camera.h>
 #include <EntityManager.h>
 #include <SpriteManager.h>
-
+#include <CollisionManager.h>
 #include <SDL.h>
 #include <SDL_image.h>
+
+#include "Player.h"
+#include "Enemy.h"
 
 bool GameApplication::Initialize()
 {
@@ -44,9 +48,13 @@ bool GameApplication::Initialize()
 	inputManager->Initialize();
 
 	entityManager = new FG::EntityManager();
-
+	enemy = new Enemy(spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
+
 	entityManager->AddEntity(player);
+	entityManager->AddEntity(enemy);
+
+	collisionManager = new FG::CollisionManager();
 
 	return true;
 }
@@ -60,6 +68,11 @@ void GameApplication::Run()
 		time.StartFrame();
 		// Update input
 		inputManager->Update(quit);
+
+		if (collisionManager->CheckCollision(player->myCollider, enemy->myCollider))
+		{
+			std::cout << "Collision" << std::endl;
+		}
 
 		//Update entities
 		entityManager->Update(time.DeltaTime());
@@ -92,6 +105,12 @@ void GameApplication::Shutdown()
 	{
 		delete inputManager;
 		inputManager = nullptr;
+	}
+
+	if (collisionManager)
+	{
+		delete collisionManager;
+		collisionManager = nullptr;
 	}
 
 	if (spriteManager)

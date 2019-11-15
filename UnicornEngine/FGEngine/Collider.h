@@ -10,7 +10,7 @@ namespace FG
 		Collider();
 		virtual ~Collider();
 
-		SDL_Rect square;
+		SDL_Rect square = { 0,0,0,0 };
 		struct collider // a class that is always public by default
 		{
 			int top = 0;

@@ -3,8 +3,6 @@
 #include <Application.h>
 #include <Time.h>
 
-#include "Player.h"
-
 namespace FG
 {
 	class Window;
@@ -12,7 +10,11 @@ namespace FG
 	class Camera;
 	class EntityManager;
 	class SpriteManager;
+	class CollisionManager;
 }
+
+class Player; //Forward declaration : there is a class but you dont have to know what it does yet
+class Enemy;
 
 class GameApplication : public FG::Application
 {
@@ -26,10 +28,12 @@ private:
 	FG::Camera* camera = nullptr;
 	FG::EntityManager* entityManager = nullptr;
 	FG::SpriteManager* spriteManager = nullptr;
+	FG::CollisionManager* collisionManager = nullptr;
 
 	FG::Time time;
 
 	Player* player = nullptr;
+	Enemy* enemy = nullptr;
 };
 
 FG::Application* FG::CreateApplication()
