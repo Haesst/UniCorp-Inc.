@@ -10,6 +10,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 
+#include <iostream>
+
 bool GameApplication::Initialize()
 {
 	// Initialize SDL
@@ -56,6 +58,7 @@ void GameApplication::Run()
 	bool quit = false;
 	while (!quit)
 	{
+		int startFrame = SDL_GetTicks();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -70,6 +73,15 @@ void GameApplication::Run()
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
 		// End the timer
+
+		int frameTime = SDL_GetTicks() - startFrame;
+
+		if (frameTime < GameApplication::frameDelay)
+		{
+			SDL_Delay(GameApplication::frameDelay - frameTime);
+		}
+
+
 		time.EndFrame();
 	}
 }
