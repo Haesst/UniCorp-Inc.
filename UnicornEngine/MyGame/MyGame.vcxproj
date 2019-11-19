@@ -95,11 +95,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GameApplication.cpp" />
+    <ClCompile Include="IFiniteStateMachine.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApplication.h" />
+    <ClInclude Include="IFiniteStateMachine.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FGEngine\FGEngine.vcxproj">

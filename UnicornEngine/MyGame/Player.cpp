@@ -1,4 +1,6 @@
 #include "Player.h"
+#include "PlayerState.h"
+
 #include <SpriteManager.h>
 
 #include <InputManager.h>
@@ -13,12 +15,16 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
 	myCollider->square.w = 900;
 	myCollider->square.h = 800;
+
+	playerState = new PlayerState();
 }
 
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
 	rect = {(int)position.x, (int)position.y, 900, 800 };
+
+	playerState->Update(this, deltaTime);
 }
 
 void Player::Render(FG::Camera* const camera)
@@ -35,6 +41,16 @@ void Player::Render(FG::Camera* const camera)
 	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
 
 	spriteManager->Draw(sprite, rect);
+}
+
+void Player::SetPosition(FG::Vector2D position)
+{
+	this->position = position;
+}
+
+FG::Vector2D Player::GetPosition()
+{
+	return position;
 }
 
 void Player::MovePlayer(float deltaTime)
