@@ -47,12 +47,22 @@ bool GameApplication::Initialize()
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
 
-	entityManager = new FG::EntityManager();
-	enemy = new Enemy(spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
-
 	entityManager->AddEntity(player);
+
+	int enemy_spawn[4] = {400, 500, 90, 80};
+	entityManager = new FG::EntityManager();
+	enemy = new Enemy(enemy_spawn, "../TestingAssets/FIREBALL.png", spriteManager);
 	entityManager->AddEntity(enemy);
+
+	enemy_spawn[0] = 200, enemy_spawn[1] = 200;
+	enemy = new Enemy(enemy_spawn, "FIREBALL.png", spriteManager);
+	entityManager->AddEntity(enemy);
+	/*
+	Both of the variants above work, where you can either type the full path name or just
+	the name of the sprite. I don't know why. It shouldn't work with the top-most one,
+	since Enemy.cpp appends the filepath in the constructor.
+	*/
 
 	collisionManager = new FG::CollisionManager();
 
