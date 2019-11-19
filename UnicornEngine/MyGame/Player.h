@@ -30,6 +30,6 @@ private:
 
 
 	// Inherited via Entity
-	virtual void onCollision(FG::Collider* theOtherCollider) override;
+	virtual void onCollision(Tag tagau) override;
 
 };

@@ -1,11 +1,18 @@
 #include "Enemy.h"
+#include "Config.h"
 #include <SpriteManager.h>
 #include <Collider.h>
+#include <iostream>
 
-Enemy::Enemy(){}
+Enemy::Enemy() {}
 
-void Enemy::onCollision(FG::Collider* theOtherCollider)
+void Enemy::onCollision(Tag tagau)
 {
+	switch (tagau)
+	{
+		case Tag::Enemyau: std::cout << "Enemy collided" << std::endl ; break;
+		case Tag::Playerau: std::cout << "Player collided" << std::endl; break;
+	}
 }
 
 Enemy::Enemy(FG::SpriteManager* spriteManagerRef) : spriteManager(spriteManagerRef)
@@ -16,6 +23,13 @@ Enemy::Enemy(FG::SpriteManager* spriteManagerRef) : spriteManager(spriteManagerR
 	myCollider->square.h = rect.h;
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+
+	rect = { (int)position.x, (int)position.y, 92, 98 };
+	myCollider->square.x = rect.x;
+	myCollider->square.y = rect.y;
+	//UpdateCollider();
+
+	myTagau = Tag::Enemyau;
 }
 
 Enemy::~Enemy()
@@ -24,6 +38,9 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
+	rect = { (int)position.x, (int)position.y, 92, 98 };
+	myCollider->square.x = rect.x;
+	myCollider->square.y = rect.y;
 	UpdateCollider();
 }
 

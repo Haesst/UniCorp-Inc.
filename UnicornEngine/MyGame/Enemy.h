@@ -3,7 +3,7 @@
 #include <Entity.h>
 #include <Vector2D.h>
 
-namespace FG
+namespace FG //i have identified that these two classes exist in FG/engine.
 {
 	class SpriteManager;
 	class Camera;
@@ -18,12 +18,13 @@ public:
 	virtual void Update(float deltaTime) override; //*?
 	virtual void Render(FG::Camera* const camera) override;
 
+	FG::Vector2D position;
+
 private:
 	Enemy();
 	FG::SpriteManager* spriteManager;
 
-
 	// Inherited via Entity
-	virtual void onCollision(FG::Collider* theOtherCollider) override;
+	virtual void onCollision(Tag tagau) override;
 
 };

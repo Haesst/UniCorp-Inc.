@@ -50,11 +50,13 @@ bool GameApplication::Initialize()
 	entityManager = new FG::EntityManager();
 	enemy = new Enemy(spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
-
-	entityManager->AddEntity(player);
-	entityManager->AddEntity(enemy);
+	entityManager->AddEntity(player, "Player");
+	entityManager->AddEntity(enemy, "Enemy");
 
 	collisionManager = new FG::CollisionManager();
+
+	CreateEnemies();
+
 
 	return true;
 }
@@ -69,11 +71,7 @@ void GameApplication::Run()
 		// Update input
 		inputManager->Update(quit);
 
-		if (collisionManager->CheckCollision(player->myCollider, enemy->myCollider))
-		{
-			std::cout << "Collision" << std::endl;
-		}
-
+		entityManager->CheckEntitiesCollision();
 		//Update entities
 		entityManager->Update(time.DeltaTime());
 		// Tell camera to start render frame
@@ -134,4 +132,14 @@ void GameApplication::Shutdown()
 	IMG_Quit();
 	
 	SDL_Quit();
+}
+
+void GameApplication::CreateEnemies()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		enemy = new Enemy(spriteManager);
+		enemy->position.y = 10.f*i;
+		entityManager->AddEntity(enemy, "Enemy");
+	}
 }

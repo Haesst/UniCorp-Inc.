@@ -22,6 +22,7 @@ public:
 	virtual bool Initialize() override;
 	virtual void Run() override;
 	virtual void Shutdown() override;
+	void CreateEnemies();
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;

@@ -1,6 +1,6 @@
 #include "Player.h"
 #include <SpriteManager.h>
-
+#include <iostream>
 #include <InputManager.h>
 #include <Camera.h>
 
@@ -14,6 +14,8 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 	rect = { 0,0, 92, 98 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
+
+	myTagau = Tag::Playerau;
 }
 
 void Player::Update(float deltaTime)
@@ -68,6 +70,7 @@ void Player::MovePlayer(float deltaTime)
 	position += movement * movementSpeed * deltaTime;
 }
 
-void Player::onCollision(FG::Collider* theOtherCollider)
+void Player::onCollision(Tag tagau)
 {
+	std::cout << "Player Collided" << std::endl;
 }

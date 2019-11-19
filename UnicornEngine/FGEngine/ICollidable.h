@@ -1,4 +1,5 @@
 #pragma once
+#include "Config.h"
 
 namespace FG
 {
@@ -10,7 +11,7 @@ namespace FG
 		Collidable(Collider* collider);
 		virtual ~Collidable(); //i write over sth, override
 
-		virtual void onCollision(FG::Collider* theOtherCollider) = 0;
+		virtual void onCollision(Tag tagau) = 0;
 
 		Collider* myCollider; 
 	};

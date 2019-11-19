@@ -3,13 +3,14 @@
 #include "Sprite.h"
 #include "ICollidable.h"
 #include "Collider.h"
+#include "Config.h"
 
 namespace FG
-{ 
+{
 	class Camera;
 	class Sprite;
 	class Collidable;
-	class Entity: public Sprite, public Collidable
+	class Entity : public Sprite, public Collidable
 	{
 	public:
 		virtual ~Entity() {}
@@ -26,8 +27,14 @@ namespace FG
 		virtual void Render(Camera* const camera) {}
 		Sprite* sprite = nullptr;
 		SDL_Rect rect;
+		Tag myTagau;
+		bool Active = true;
 
 		float movementSpeed = 250.0f;
+
+
+		// Inherited via Collidable
+		virtual void onCollision(Tag tagau) = 0;
 
 	};
 }
