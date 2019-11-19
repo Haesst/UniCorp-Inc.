@@ -45,7 +45,7 @@ bool GameApplication::Initialize()
 
 	entityManager = new FG::EntityManager();
 
-	player = new Player(inputManager, camera, spriteManager, entityManager);
+	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player);
 
 	return true;
