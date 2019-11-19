@@ -35,6 +35,9 @@ private:
 
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
+
+	const int FPS = 120;
+	const int frameDelay = 1000 / FPS;
 };
 
 FG::Application* FG::CreateApplication()
