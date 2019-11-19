@@ -8,6 +8,7 @@
 #include <EntityManager.h>
 #include <SpriteManager.h>
 #include <CollisionManager.h>
+
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -47,11 +48,12 @@ bool GameApplication::Initialize()
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
 
+	entityManager = new FG::EntityManager();
+
 	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player);
 
-	int enemy_spawn[4] = {400, 500, 90, 80};
-	entityManager = new FG::EntityManager();
+	int enemy_spawn[4] = { 400, 500, 90, 80 };
 	enemy = new Enemy(enemy_spawn, "../TestingAssets/FIREBALL.png", spriteManager);
 	entityManager->AddEntity(enemy);
 
@@ -74,6 +76,7 @@ void GameApplication::Run()
 	bool quit = false;
 	while (!quit)
 	{
+		int startFrame = SDL_GetTicks();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -93,6 +96,15 @@ void GameApplication::Run()
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
 		// End the timer
+
+		int frameTime = SDL_GetTicks() - startFrame;
+
+		if (frameTime < GameApplication::frameDelay)
+		{
+			SDL_Delay(GameApplication::frameDelay - frameTime);
+		}
+
+
 		time.EndFrame();
 	}
 }
@@ -115,12 +127,6 @@ void GameApplication::Shutdown()
 	{
 		delete inputManager;
 		inputManager = nullptr;
-	}
-
-	if (collisionManager)
-	{
-		delete collisionManager;
-		collisionManager = nullptr;
 	}
 
 	if (spriteManager)
