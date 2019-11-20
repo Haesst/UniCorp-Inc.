@@ -72,5 +72,11 @@ void Player::MovePlayer(float deltaTime)
 
 void Player::onCollision(Tag tagau)
 {
-	std::cout << "Player Collided" << std::endl;
+		switch (tagau)
+		{
+		case Tag::Playerau: std::cout << "Player collided with Enemy" << std::endl; break;
+		//case Tag::Enemyau: std::cout << "Enemy collided" << std::endl; break;
+		
+		}
+	
 }

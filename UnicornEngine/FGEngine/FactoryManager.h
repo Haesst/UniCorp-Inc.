@@ -11,7 +11,7 @@ namespace FG
 
 	class FactoryManager
 	{
-			
+		
 	};
 
 }

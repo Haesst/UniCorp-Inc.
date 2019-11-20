@@ -49,10 +49,10 @@ bool GameApplication::Initialize()
 
 	entityManager = new FG::EntityManager();
 	int temp[] = { 1,2,3,4 };
-	enemy = new Enemy(temp, "test", spriteManager);
+	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player, "Player");
-	entityManager->AddEntity(enemy, "Enemy");
+	//entityManager->AddEntity(enemy, "Enemy");
 
 	collisionManager = new FG::CollisionManager();
 
