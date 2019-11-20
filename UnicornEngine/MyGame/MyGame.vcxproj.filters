@@ -37,7 +37,7 @@
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
     <ClCompile Include="EnemyState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +60,7 @@
       <Filter>Header Files\FSM</Filter>
     </ClInclude>
     <ClInclude Include="EnemyState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\FSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
