@@ -10,6 +10,8 @@ namespace FG //i have identified that these two classes exist in FG/engine.
 	class Camera;
 }
 
+class EnemyState;
+
 class Enemy : public FG::Entity
 {
 public:
@@ -26,6 +28,7 @@ private:
 	void MoveEnemy(float deltaTime);
 	//FG::Vector2D position;
 	FG::SpriteManager* spriteManager;
+	EnemyState* enemyState = nullptr;
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;

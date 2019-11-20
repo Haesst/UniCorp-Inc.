@@ -1,15 +1,20 @@
 #include "Player.h"
+#include "PlayerState.h"
 #include <SpriteManager.h>
-#include <iostream>
 #include <InputManager.h>
 #include <Camera.h>
+#include <Collider.h>
 
+#include <iostream>
+#include <memory>
 #include <SDL_render.h>
 
-#include <Collider.h>
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
+	playerState = new PlayerState();
+	playerState->Configure(this);
+	playerState->ChangeState(new PlayerState::Idle());
 	sprite = spriteManager->CreateSprite("../TestingAssets/FROGGY.png", 1, 1, 92, 98);
 	rect = { 0,0, 92, 98 };
 	myCollider->square.w = rect.w;
@@ -25,6 +30,7 @@ void Player::Update(float deltaTime)
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	UpdateCollider();
+	playerState->Update();
 	
 }
 

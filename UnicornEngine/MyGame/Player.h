@@ -10,6 +10,8 @@ namespace FG
 	class SpriteManager;
 }
 
+class PlayerState;
+
 class Player : public FG::Entity
 {
 public:
@@ -24,6 +26,7 @@ private:
 	void MovePlayer(float deltaTime);
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
+	PlayerState* playerState = nullptr;
 
 	//FG::Vector2D position;
 	FG::SpriteManager* spriteManager;

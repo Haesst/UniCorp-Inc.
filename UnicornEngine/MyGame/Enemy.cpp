@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Config.h"
+#include "EnemyState.h"
 #include <SpriteManager.h>
 #include <Collider.h>
 #include <iostream>
@@ -28,6 +29,9 @@ Enemy::Enemy(int param[4], const char* filename, FG::SpriteManager* spriteManage
 	rect = { (int)position.x, (int)position.y, 92, 98 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+	enemyState = new EnemyState();
+	enemyState->Configure(this);
+	enemyState->ChangeState(new EnemyState::Idle());
 	//UpdateCollider();
 
 	myTagau = Tag::Enemyau;
@@ -39,6 +43,7 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
+	enemyState->Update();
 	rect = { (int)position.x, (int)position.y, 92, 98 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;

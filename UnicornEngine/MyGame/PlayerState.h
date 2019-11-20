@@ -1,18 +1,28 @@
 #pragma once
 
-#include "IFiniteStateMachine.h"
+#include "FiniteStateMachine.h"
+#include "FSMState.h"
 
-class PlayerState : public IFiniteStateMachine
+class Player;
+
+class PlayerState : public FiniteStateMachine<Player>
 {
 
 public:
-	void Update(FG::Entity* entity, float deltaTime) override;
+	class Idle : public FSMState<Player>
+	{
+	public:
 
 
-	void Entry(FG::Entity* entity) override {};
+		void Enter(Player* entity) override;
 
 
-	void Exit(FG::Entity* entity) override {};
+		void Execute(Player* entity) override;
+
+
+		void Exit(Player* entity) override;
+
+	};
 
 };
 
