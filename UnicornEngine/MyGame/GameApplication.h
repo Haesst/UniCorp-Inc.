@@ -11,6 +11,8 @@ namespace FG
 	class EntityManager;
 	class SpriteManager;
 	class CollisionManager;
+	class EnemyFactory;
+	class FactoryManager;
 }
 
 class Player; //Forward declaration : there is a class but you dont have to know what it does yet
@@ -30,6 +32,9 @@ private:
 	FG::EntityManager* entityManager = nullptr;
 	FG::SpriteManager* spriteManager = nullptr;
 	FG::CollisionManager* collisionManager = nullptr;
+
+	FG::FactoryManager* factoryManager = nullptr;
+	FG::EnemyFactory* enemyFactory = nullptr;
 
 	FG::Time time;
 

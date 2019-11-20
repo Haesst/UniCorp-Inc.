@@ -26,21 +26,24 @@ namespace FG
 	class Entity;
 	class Camera;
 	class CollisionManager;
+	class FactoryManager;
 
 	class EntityManager
 	{
 	public:
 		EntityManager() {}
-		EntityManager(FG::CollisionManager* collisionManagerRef);
+		EntityManager(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef);
 		~EntityManager();
 
 		void Shutdown();
 		void Update(float deltaTime);
 		void Render(Camera* camera);
 		void AddEntity(Entity* entity, const std::string& Tag);
+		void AddEntity(const std::string& Tag);
 		void CheckEntitiesCollision();
 
 		CollisionManager* collisionManager = nullptr;
+		FactoryManager* factoryManager = nullptr;
 		
 	private:
 		std::map<std::string, std::vector<Entity*>> entities; //a variable: a list of entities that is called entities

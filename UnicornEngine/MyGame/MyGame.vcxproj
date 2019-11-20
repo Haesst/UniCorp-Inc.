@@ -101,6 +101,7 @@
     <ClCompile Include="PlayerState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConcreteFactories.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="IFiniteStateMachine.h" />

@@ -106,6 +106,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="EntityManager.cpp" />
+    <ClCompile Include="FactoryManager.cpp" />
     <ClCompile Include="ICollidable.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Logger.cpp" />
