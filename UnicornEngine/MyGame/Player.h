@@ -25,7 +25,7 @@ private:
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
 
-	FG::Vector2D position;
+	//FG::Vector2D position;
 	FG::SpriteManager* spriteManager;
 
 

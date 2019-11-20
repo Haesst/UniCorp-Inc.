@@ -48,7 +48,8 @@ bool GameApplication::Initialize()
 	inputManager->Initialize();
 
 	entityManager = new FG::EntityManager();
-	enemy = new Enemy(spriteManager);
+	int temp[] = { 1,2,3,4 };
+	enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player, "Player");
 	entityManager->AddEntity(enemy, "Enemy");
@@ -138,8 +139,10 @@ void GameApplication::CreateEnemies()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		enemy = new Enemy(spriteManager);
+		int temp[] = { 1,2,3,4 };
+		enemy = new Enemy(temp, "test " + i, spriteManager);
 		enemy->position.y = 10.f*i;
+		enemy->position.x = (enemy->rect.w + 10) * i;
 		entityManager->AddEntity(enemy, "Enemy");
 	}
 }

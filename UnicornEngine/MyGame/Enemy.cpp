@@ -15,8 +15,9 @@ void Enemy::onCollision(Tag tagau)
 	}
 }
 
-Enemy::Enemy(FG::SpriteManager* spriteManagerRef) : spriteManager(spriteManagerRef)
+Enemy::Enemy(int param[4], const char* filename, FG::SpriteManager* spriteManagerRef)
 {
+	spriteManager = spriteManagerRef;
 	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
 	rect = { 400,50,90,80 };
 	myCollider->square.w = rect.w;
