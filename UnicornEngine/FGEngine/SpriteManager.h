@@ -21,6 +21,7 @@ namespace FG
 		void Clear();
 		void Present();
 		void Draw(Sprite* sprite, SDL_Rect rect);
+		void DebugDraw(SDL_Rect debugrect);
 
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;

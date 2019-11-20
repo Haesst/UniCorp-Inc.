@@ -1,8 +1,6 @@
 #include "Player.h"
-#include "PlayerState.h"
-
 #include <SpriteManager.h>
-
+#include <iostream>
 #include <InputManager.h>
 #include <Camera.h>
 
@@ -12,19 +10,22 @@
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
-	sprite = spriteManager->CreateSprite("../TestingAssets/FIREBALL.png", 1, 1, 900, 800);
-	myCollider->square.w = 900;
-	myCollider->square.h = 800;
+	sprite = spriteManager->CreateSprite("../TestingAssets/FROGGY.png", 1, 1, 92, 98);
+	rect = { 0,0, 92, 98 };
+	myCollider->square.w = rect.w;
+	myCollider->square.h = rect.h;
 
-	playerState = new PlayerState();
+	myTagau = Tag::Playerau;
 }
 
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
-	rect = {(int)position.x, (int)position.y, 900, 800 };
-
-	playerState->Update(this, deltaTime);
+	rect = {(int)position.x, (int)position.y, 92, 98 };
+	myCollider->square.x = rect.x;
+	myCollider->square.y = rect.y;
+	UpdateCollider();
+	
 }
 
 void Player::Render(FG::Camera* const camera)
@@ -41,16 +42,7 @@ void Player::Render(FG::Camera* const camera)
 	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
 
 	spriteManager->Draw(sprite, rect);
-}
-
-void Player::SetPosition(FG::Vector2D position)
-{
-	this->position = position;
-}
-
-FG::Vector2D Player::GetPosition()
-{
-	return position;
+	spriteManager->DebugDraw(myCollider->square);
 }
 
 void Player::MovePlayer(float deltaTime)
@@ -75,5 +67,10 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	position += movement * playerSpeed * deltaTime;
+	position += movement * movementSpeed * deltaTime;
+}
+
+void Player::onCollision(Tag tagau)
+{
+	std::cout << "Player Collided" << std::endl;
 }

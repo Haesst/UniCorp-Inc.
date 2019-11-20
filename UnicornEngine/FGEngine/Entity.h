@@ -2,24 +2,39 @@
 
 #include "Sprite.h"
 #include "ICollidable.h"
-#include "Vector2D.h"
+#include "Collider.h"
+#include "Config.h"
 
 namespace FG
 {
 	class Camera;
 	class Sprite;
 	class Collidable;
-	class Vector2D;
-
 	class Entity : public Sprite, public Collidable
 	{
 	public:
 		virtual ~Entity() {}
 
+		void UpdateCollider()
+		{
+			myCollider->bounds.bottom = myCollider->square.y + myCollider->square.h;
+			myCollider->bounds.top = myCollider->square.y;
+			myCollider->bounds.right = myCollider->square.x + myCollider->square.w;
+			myCollider->bounds.left = myCollider->square.x;
+		}
+
 		virtual void Update(float deltaTime) {}
 		virtual void Render(Camera* const camera) {}
+		Sprite* sprite = nullptr;
+		SDL_Rect rect;
+		Tag myTagau;
+		bool Active = true;
 
-		virtual void SetPosition(Vector2D position) {}
-		virtual Vector2D GetPosition() { return Vector2D(0, 0); }
+		float movementSpeed = 250.0f;
+
+
+		// Inherited via Collidable
+		virtual void onCollision(Tag tagau) = 0;
+
 	};
 }

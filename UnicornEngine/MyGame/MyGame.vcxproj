@@ -94,12 +94,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="IFiniteStateMachine.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="IFiniteStateMachine.h" />
     <ClInclude Include="Player.h" />

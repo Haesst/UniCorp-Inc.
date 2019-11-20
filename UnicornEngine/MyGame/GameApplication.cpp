@@ -1,4 +1,5 @@
 #include "GameApplication.h"
+#include <iostream>
 
 #include <Logger.h>
 #include <Window.h>
@@ -6,11 +7,12 @@
 #include <Camera.h>
 #include <EntityManager.h>
 #include <SpriteManager.h>
-
+#include <CollisionManager.h>
 #include <SDL.h>
 #include <SDL_image.h>
 
-#include <iostream>
+#include "Player.h"
+#include "Enemy.h"
 
 bool GameApplication::Initialize()
 {
@@ -46,9 +48,15 @@ bool GameApplication::Initialize()
 	inputManager->Initialize();
 
 	entityManager = new FG::EntityManager();
-
+	enemy = new Enemy(spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
-	entityManager->AddEntity(player);
+	entityManager->AddEntity(player, "Player");
+	entityManager->AddEntity(enemy, "Enemy");
+
+	collisionManager = new FG::CollisionManager();
+
+	CreateEnemies();
+
 
 	return true;
 }
@@ -58,12 +66,12 @@ void GameApplication::Run()
 	bool quit = false;
 	while (!quit)
 	{
-		int startFrame = SDL_GetTicks();
 		// Start the timer
 		time.StartFrame();
 		// Update input
 		inputManager->Update(quit);
 
+		entityManager->CheckEntitiesCollision();
 		//Update entities
 		entityManager->Update(time.DeltaTime());
 		// Tell camera to start render frame
@@ -73,15 +81,6 @@ void GameApplication::Run()
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
 		// End the timer
-
-		int frameTime = SDL_GetTicks() - startFrame;
-
-		if (frameTime < GameApplication::frameDelay)
-		{
-			SDL_Delay(GameApplication::frameDelay - frameTime);
-		}
-
-
 		time.EndFrame();
 	}
 }
@@ -106,6 +105,12 @@ void GameApplication::Shutdown()
 		inputManager = nullptr;
 	}
 
+	if (collisionManager)
+	{
+		delete collisionManager;
+		collisionManager = nullptr;
+	}
+
 	if (spriteManager)
 	{
 		spriteManager->Shutdown();
@@ -127,4 +132,14 @@ void GameApplication::Shutdown()
 	IMG_Quit();
 	
 	SDL_Quit();
+}
+
+void GameApplication::CreateEnemies()
+{
+	for (int i = 0; i < 5; i++)
+	{
+		enemy = new Enemy(spriteManager);
+		enemy->position.y = 10.f*i;
+		entityManager->AddEntity(enemy, "Enemy");
+	}
 }

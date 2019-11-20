@@ -113,5 +113,17 @@
     <ClInclude Include="ICollidable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpawnManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryManager.h">
+      <Filter>Header Files\System\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="AbstractFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

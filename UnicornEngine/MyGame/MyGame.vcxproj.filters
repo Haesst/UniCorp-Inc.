@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\FSM">
-      <UniqueIdentifier>{b0295b16-53b0-45cc-aa9c-8e5de80f6408}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\FSM">
-      <UniqueIdentifier>{cf57d630-f245-4a76-8f08-0b6c27b38273}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameApplication.cpp">
@@ -27,25 +21,19 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="IFiniteStateMachine.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files\FSM</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IFiniteStateMachine.h">
+    <ClInclude Include="Enemy.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameApplication.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Header Files\FSM</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

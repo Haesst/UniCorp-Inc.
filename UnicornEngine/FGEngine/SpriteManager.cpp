@@ -56,3 +56,10 @@ void FG::SpriteManager::Draw(Sprite* sprite, SDL_Rect rect)
 {
 	SDL_RenderCopy(renderer, sprite->GetTexture(), &sprite->GetSource(), &rect);
 }
+
+void FG::SpriteManager::DebugDraw(SDL_Rect debugrect)
+{
+	SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	SDL_RenderDrawRect(renderer, &debugrect);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+}
