@@ -15,7 +15,7 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 	playerState = new PlayerState();
 	playerState->Configure(this);
 	playerState->ChangeState(new PlayerState::Idle());
-	sprite = spriteManager->CreateSprite("../TestingAssets/FROGGY.png", 1, 1, 92, 98);
+	sprite = spriteManager->CreateSprite("../TestingAssets/player.png", 1, 1, 92, 98);
 	rect = { 0,0, 92, 98 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
