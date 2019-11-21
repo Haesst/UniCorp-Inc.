@@ -13,6 +13,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
 #include "UI.h"
@@ -33,7 +34,7 @@ bool GameApplication::Initialize()
 
 	// Create a window
 	window = new FG::Window();
-	if (!window->Initialize("UniCorp, Inc.", 1024, 768))
+	if (!window->Initialize("UniCorp, Inc.", 600, 900))
 	{
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;
@@ -60,6 +61,11 @@ bool GameApplication::Initialize()
 
 	ui = new UI("UI", spriteManager);
 	entityManager->AddEntity(ui, "UI");
+
+	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
+	backgroundStars = new Background("../TestingAssets/ParallaxStars.png", spriteManager, 4);
+	entityManager->AddEntity(background, "Background");
+	entityManager->AddEntity(backgroundStars, "Background");
 
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
