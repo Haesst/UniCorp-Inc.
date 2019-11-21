@@ -12,6 +12,7 @@ class Projectile : public FG::Entity
 {
 private:
 	float speed;
+	float lifetime = 3.0f;
 	FG::Vector2D direction;
 	FG::SpriteManager* spriteManager;
 

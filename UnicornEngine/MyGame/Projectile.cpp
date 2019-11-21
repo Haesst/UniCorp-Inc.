@@ -20,6 +20,13 @@ Projectile::~Projectile()
 
 void Projectile::Update(float deltaTime)
 {
+	// Todo: Change lifetime to instead destroy them when they hit the top
+	lifetime -= deltaTime;
+	if (lifetime <= 0.0f)
+	{
+		Active = false;
+	}
+
 	position += direction * speed * deltaTime;
 
 	rect = { (int)position.x, (int)position.y, 3, 36 };
