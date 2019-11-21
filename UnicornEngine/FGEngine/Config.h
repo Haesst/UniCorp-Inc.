@@ -2,5 +2,5 @@
 
 static enum Tag
 {
-	Playerau, Enemyau
+	Playerau, Enemyau, Bulletau,
 };

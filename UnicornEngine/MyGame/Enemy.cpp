@@ -13,11 +13,13 @@ void Enemy::onCollision(Tag tagau)
 	{
 		case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 		case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
+		case Tag::Bulletau: Active = false; break;
 	}
 }
 
 Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 {
+	Active = true;
 	spriteManager = spriteManagerRef;
 	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 36, 30);
 	rect = { 0,0,36,30 };

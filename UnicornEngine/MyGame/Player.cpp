@@ -44,6 +44,11 @@ void Player::Update(float deltaTime)
 		currentShotTimer = timeBetweenShots;
 	}
 
+	if (inputManager->IsKeyDown(SDL_SCANCODE_RCTRL))
+	{
+		entityManager->AddEntity("Enemy");
+	}
+
 	rect = {(int)position.x, (int)position.y, 33, 40 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;

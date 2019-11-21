@@ -11,6 +11,8 @@ Projectile::Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager,
 	rect = { 0,0, 6, 36 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
+	
+	myTagau = Bulletau;
 }
 
 Projectile::~Projectile()
@@ -34,4 +36,17 @@ void Projectile::Render(FG::Camera* const camera)
 
 void Projectile::onCollision(Tag tagau)
 {
+	switch (tagau)
+	{
+	case Playerau:
+		Active = false;
+		break;
+	case Enemyau:
+		Active = false;
+		break;
+	case Bulletau:
+		break;
+	default:
+		break;
+	}
 }
