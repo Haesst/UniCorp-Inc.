@@ -19,6 +19,11 @@
 #include "UI.h"
 #include "MusicManager.h"
 
+
+
+#include "Entity.h"
+//ta bort
+
 bool GameApplication::Initialize()
 {
 	// Initialize SDL
@@ -78,13 +83,24 @@ bool GameApplication::Initialize()
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	entityManager->AddEntity(player, "Player");
+
+	std::cout << player->Active << std::endl;
+
+	auto _p = entityManager->GetObject("Player");
+
+	if (_p != nullptr)
+		std::cout << "Not a nullptr" << std::endl;
+	else
+		std::cout << "nullptr" << std::endl;
+
+	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
 	entityManager->AddEntity("Enemy");
 
 	entityManager->AddEntity("Enemy");
 
-	entityManager->AddEntity("Enemy");
+	/*entityManager->AddEntity("Enemy");*/
 
 	//CreateEnemies();
 

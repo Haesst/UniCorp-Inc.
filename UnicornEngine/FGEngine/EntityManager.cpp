@@ -105,23 +105,36 @@ namespace FG
 			}
 		}
 
-		
+
 	}
 
-	
-	
-}
+	FG::Entity* EntityManager::GetObject(const std::string& Tag)
+	{
+		auto it = entities.find(Tag);
+		if (it == entities.end())
+		{
+			AddEntity(Tag);
+			it = entities.find(Tag);
+		}
 
-/*
-for(auto& ent1 : entities)
-{
-for(auto& ent2 : entities)
-{
-if(ent2 != ent1 && ent2.active)
-{
-checkCollision() {}
-}
-}
-}
+		if (it->second.empty())
+		{
+			it->second.push_back(factoryManager->RunFactory(Tag));
+		}
 
-*/
+		for (size_t i = 0; i < it->second.size(); i++)
+		{
+			if (!it->second[i]->Active)
+			{
+				//it->second[i]->Active = true;
+				return it->second[i];
+				//Entity* GiveMeAnObject = factoryManager->RunFactory(Tag);
+				//return GiveMeAnObject;
+			}
+			else if (i == it->second.size())
+			{
+				it->second.push_back(factoryManager->RunFactory(Tag));
+			}
+		}
+	}
+}
