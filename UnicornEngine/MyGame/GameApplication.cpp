@@ -16,6 +16,11 @@
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
 
+
+
+#include "Entity.h"
+//ta bort
+
 bool GameApplication::Initialize()
 {
 	// Initialize SDL
@@ -60,13 +65,24 @@ bool GameApplication::Initialize()
 	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player, "Player");
+
+	std::cout << player->Active << std::endl;
+
+	auto _p = entityManager->GetObject("Player");
+
+	if (_p != nullptr)
+		std::cout << "Not a nullptr" << std::endl;
+	else
+		std::cout << "nullptr" << std::endl;
+
+	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
 	entityManager->AddEntity("Enemy");
 
 	entityManager->AddEntity("Enemy");
 
-	entityManager->AddEntity("Enemy");
+	/*entityManager->AddEntity("Enemy");*/
 
 	//CreateEnemies();
 
