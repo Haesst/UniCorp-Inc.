@@ -39,6 +39,9 @@
     <ClCompile Include="EnemyState.cpp">
       <Filter>Source Files\FSM</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApplication.h">
@@ -61,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="EnemyState.h">
       <Filter>Header Files\FSM</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcreteFactories.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

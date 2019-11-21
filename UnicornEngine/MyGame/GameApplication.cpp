@@ -58,7 +58,8 @@ bool GameApplication::Initialize()
 	entityManager = new FG::EntityManager(collisionManager, factoryManager);
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
-	player = new Player(inputManager, camera, spriteManager);
+	player = new Player(inputManager, camera, spriteManager, entityManager);
+	player->Active = true;
 	entityManager->AddEntity(player, "Player");
 	//entityManager->AddEntity(enemy, "Enemy");
 	

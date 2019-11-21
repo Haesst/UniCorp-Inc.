@@ -19,14 +19,14 @@ void Enemy::onCollision(Tag tagau)
 Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 {
 	spriteManager = spriteManagerRef;
-	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 900, 800);
-	rect = { 400,50,90,80 };
+	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 36, 30);
+	rect = { 0,0,36,30 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 
-	rect = { (int)position.x, (int)position.y, 92, 98 };
+	rect = { (int)position.x, (int)position.y, 36, 30 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	enemyState = new EnemyState();
@@ -44,7 +44,7 @@ Enemy::~Enemy()
 void Enemy::Update(float deltaTime)
 {
 	enemyState->Update();
-	rect = { (int)position.x, (int)position.y, 92, 98 };
+	rect = { (int)position.x, (int)position.y, 36, 30 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	UpdateCollider();
