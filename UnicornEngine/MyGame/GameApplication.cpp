@@ -15,6 +15,7 @@
 #include "Enemy.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
+#include "UI.h"
 
 bool GameApplication::Initialize()
 {
@@ -56,6 +57,10 @@ bool GameApplication::Initialize()
 	collisionManager = new FG::CollisionManager();
 
 	entityManager = new FG::EntityManager(collisionManager, factoryManager);
+
+	ui = new UI("UI", spriteManager);
+	entityManager->AddEntity(ui, "UI");
+
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager, entityManager);

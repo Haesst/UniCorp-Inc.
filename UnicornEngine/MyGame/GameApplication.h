@@ -2,6 +2,7 @@
 
 #include <Application.h>
 #include <Time.h>
+#include <SDL_image.h>
 
 namespace FG
 {
@@ -17,6 +18,8 @@ namespace FG
 
 class Player; //Forward declaration : there is a class but you dont have to know what it does yet
 class Enemy;
+class UI;
+class SDL_Texture;
 
 class GameApplication : public FG::Application
 {
@@ -38,6 +41,7 @@ private:
 
 	FG::Time time;
 
+	UI* ui = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
 
