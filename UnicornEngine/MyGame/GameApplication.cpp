@@ -70,6 +70,7 @@ bool GameApplication::Initialize()
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager, entityManager);
+	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	entityManager->AddEntity(player, "Player");
 	//entityManager->AddEntity(enemy, "Enemy");
