@@ -1,7 +1,6 @@
 #include "Background.h"
 
 #include <Camera.h>
-#include <iostream>
 
 Background::Background(const char* path, FG::SpriteManager* spriteManager, float speed)
 	: spriteManager(spriteManager), speed(speed)
@@ -23,7 +22,6 @@ void Background::Update(float deltaTime)
 	if (position.y >= 1600.0f)
 	{
 		position.y = 0.0f;
-		std::cout << "Looping image" << std::endl;
 	}
 	rect = { (int)position.x, (int)position.y, 600, 1600 };
 	secondImage = { (int)position.x, (int)position.y - 1600, 600, 1600 };
