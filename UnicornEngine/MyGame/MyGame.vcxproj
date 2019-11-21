@@ -65,7 +65,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)FGEngine;$(SolutionDir)Third Party\SDL2_Image\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2_mixer\include\;$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)FGEngine;$(SolutionDir)Third Party\SDL2_Image\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -99,6 +99,7 @@
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
+    <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
+    <ClInclude Include="MusicManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />
@@ -121,6 +123,9 @@
     <ProjectReference Include="..\FGEngine\FGEngine.vcxproj">
       <Project>{d8844da9-cb26-4dbc-b6e0-914929563115}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="log.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

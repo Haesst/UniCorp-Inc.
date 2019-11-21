@@ -17,6 +17,7 @@
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
 #include "UI.h"
+#include "MusicManager.h"
 
 bool GameApplication::Initialize()
 {
@@ -45,6 +46,10 @@ bool GameApplication::Initialize()
 	{
 		return false;
 	}
+
+	musicManager = new MusicManager();
+	musicManager->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
+
 	spriteManager = new FG::SpriteManager();
 	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
@@ -143,6 +148,13 @@ void GameApplication::Shutdown()
 		delete spriteManager;
 		spriteManager = nullptr;
 	}
+
+	if (musicManager)
+	{
+		delete musicManager;
+		musicManager = nullptr;
+	}
+
 	if (camera)
 	{
 		camera->Shutdown();

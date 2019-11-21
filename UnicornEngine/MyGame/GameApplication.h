@@ -21,6 +21,7 @@ class Enemy;
 class UI;
 class Background;
 class SDL_Texture;
+class MusicManager;
 
 class GameApplication : public FG::Application
 {
@@ -41,6 +42,8 @@ private:
 	FG::EnemyFactory* enemyFactory = nullptr;
 
 	FG::Time time;
+
+	MusicManager* musicManager = nullptr;
 
 	UI* ui = nullptr;
 	Background* background = nullptr;
