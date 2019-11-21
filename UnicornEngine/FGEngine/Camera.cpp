@@ -15,7 +15,7 @@ namespace FG
 		assert(window);
 
 		ownerWindow = window;
-		renderer = SDL_CreateRenderer(window->GetInternalWindow(), -1, SDL_RENDERER_ACCELERATED);
+		renderer = SDL_CreateRenderer(window->GetInternalWindow(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
 		if (!renderer)
 		{

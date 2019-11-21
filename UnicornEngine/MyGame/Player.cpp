@@ -1,17 +1,25 @@
 #include "Player.h"
+#include "PlayerState.h"
+#include "Projectile.h"
+
 #include <SpriteManager.h>
-#include <iostream>
 #include <InputManager.h>
 #include <Camera.h>
+#include <Collider.h>
+#include <EntityManager.h>
 
+#include <iostream>
+#include <memory>
 #include <SDL_render.h>
 
-#include <Collider.h>
 
-Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
+Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef, FG::EntityManager* entityManager) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef), entityManager(entityManager)
 {
-	sprite = spriteManager->CreateSprite("../TestingAssets/FROGGY.png", 1, 1, 92, 98);
-	rect = { 0,0, 92, 98 };
+	playerState = new PlayerState();
+	playerState->Configure(this);
+	playerState->ChangeState(new PlayerState::Idle());
+	sprite = spriteManager->CreateSprite("../TestingAssets/player.png", 1, 1, 33, 40);
+	rect = { 0,0, 33, 40 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
 
@@ -21,10 +29,31 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
-	rect = {(int)position.x, (int)position.y, 92, 98 };
+
+	if (currentShotTimer > 0.0f)
+	{
+		currentShotTimer -= deltaTime;
+	}
+
+	if (inputManager->IsKeyDown(SDL_SCANCODE_SPACE) && currentShotTimer <= 0.0f)
+	{
+		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), spriteManager);
+		projectile->SetPosition(position + FG::Vector2D(20, -60));
+		projectile->Active = true;
+		entityManager->AddEntity(projectile, "Projectile");
+		currentShotTimer = timeBetweenShots;
+	}
+
+	if (inputManager->IsKeyDown(SDL_SCANCODE_RCTRL))
+	{
+		entityManager->AddEntity("Enemy");
+	}
+
+	rect = {(int)position.x, (int)position.y, 33, 40 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	UpdateCollider();
+	playerState->Update();
 	
 }
 
@@ -40,7 +69,6 @@ void Player::Render(FG::Camera* const camera)
 	SDL_RenderFillRect(camera->GetInternalRenderer(), &finalRect);
 
 	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
-
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
 }
