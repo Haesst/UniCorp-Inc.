@@ -13,6 +13,8 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "ConcreteFactories.h"
+#include "FactoryManager.h"
 
 bool GameApplication::Initialize()
 {
@@ -44,19 +46,29 @@ bool GameApplication::Initialize()
 	spriteManager = new FG::SpriteManager();
 	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
+	factoryManager = new FG::FactoryManager();
+	enemyFactory = new FG::EnemyFactory(spriteManager);
+	factoryManager->AddFactory("Enemy", enemyFactory);
+
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
 
-	entityManager = new FG::EntityManager();
+	collisionManager = new FG::CollisionManager();
+
+	entityManager = new FG::EntityManager(collisionManager, factoryManager);
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
 	entityManager->AddEntity(player, "Player");
 	//entityManager->AddEntity(enemy, "Enemy");
+	
+	entityManager->AddEntity("Enemy");
 
-	collisionManager = new FG::CollisionManager();
+	entityManager->AddEntity("Enemy");
 
-	CreateEnemies();
+	entityManager->AddEntity("Enemy");
+
+	//CreateEnemies();
 
 
 	return true;
@@ -140,9 +152,6 @@ void GameApplication::CreateEnemies()
 	for (int i = 0; i < 5; i++)
 	{
 		int temp[] = { 1,2,3,4 };
-		enemy = new Enemy(temp, "test " + i, spriteManager);
-		enemy->position.y = 10.f*i;
-		enemy->position.x = (enemy->rect.w + 10) * i;
-		entityManager->AddEntity(enemy, "Enemy");
+		entityManager->AddEntity("Enemy");
 	}
 }

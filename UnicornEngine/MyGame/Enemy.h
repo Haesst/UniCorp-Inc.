@@ -15,7 +15,8 @@ class EnemyState;
 class Enemy : public FG::Entity
 {
 public:
-	Enemy(int param[4], const char* filename, FG::SpriteManager* spriteManagerRef);
+	Enemy();
+	Enemy(FG::SpriteManager* spriteManagerRef);
 	~Enemy();
 
 	virtual void Update(float deltaTime) override; //*?
@@ -24,7 +25,6 @@ public:
 	//FG::Vector2D position;
 
 private:
-	Enemy();
 	void MoveEnemy(float deltaTime);
 	//FG::Vector2D position;
 	FG::SpriteManager* spriteManager;

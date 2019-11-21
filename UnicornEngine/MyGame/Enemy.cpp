@@ -16,7 +16,7 @@ void Enemy::onCollision(Tag tagau)
 	}
 }
 
-Enemy::Enemy(int param[4], const char* filename, FG::SpriteManager* spriteManagerRef)
+Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 {
 	spriteManager = spriteManagerRef;
 	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 900, 800);

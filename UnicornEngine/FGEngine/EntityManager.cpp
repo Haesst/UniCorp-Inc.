@@ -1,12 +1,14 @@
 #include "EntityManager.h"
 #include "Entity.h"
 #include "CollisionManager.h"
+#include "FactoryManager.h"
 
 namespace FG
 {
-	EntityManager::EntityManager(FG::CollisionManager* collisionManagerRef)
+	EntityManager::EntityManager(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef)
 	{
 		collisionManager = collisionManagerRef;
+		factoryManager = facManagerRef;
 	}
 	EntityManager::~EntityManager()
 	{
@@ -58,6 +60,19 @@ namespace FG
 			it = entities.find(Tag);
 		}
 		it->second.push_back(entity);
+	}
+
+	void EntityManager::AddEntity(const std::string& Tag)
+	{
+		auto it = entities.find(Tag);
+		if (it == entities.end())
+		{
+			entities.insert({ Tag, std::vector<Entity*>() }); //insert takes two values //{} a set of values
+			it = entities.find(Tag);
+		}
+		it->second.push_back(factoryManager->RunFactory(Tag));
+
+		std::cout << Tag << " list contains #" << it->second.size() << " items." << std::endl;
 	}
 
 	void EntityManager::CheckEntitiesCollision()

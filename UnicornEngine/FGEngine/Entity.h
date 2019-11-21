@@ -32,7 +32,7 @@ namespace FG
 		Tag myTagau;
 		Vector2D position;
 
-		bool Active = true;
+		bool Active = false;
 
 		float movementSpeed = 250.0f;
 
