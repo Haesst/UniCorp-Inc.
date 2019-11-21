@@ -2,6 +2,7 @@
 
 #include <Application.h>
 #include <Time.h>
+#include <SDL_image.h>
 
 namespace FG
 {
@@ -15,8 +16,10 @@ namespace FG
 	class FactoryManager;
 }
 
-class Player; //Forward declaration : there is a class but you dont have to know what it does yet
+class Player; //Forward declaration : there is a class but you don't have to know what it does yet
 class Enemy;
+class Background;
+class SDL_Texture;
 
 class GameApplication : public FG::Application
 {
@@ -38,11 +41,10 @@ private:
 
 	FG::Time time;
 
+	Background* background = nullptr;
+	Background* backgroundStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
-
-	constexpr static int FPS = 120;
-	constexpr static float frameDelay = 1000 / FPS;
 };
 
 FG::Application* FG::CreateApplication()
