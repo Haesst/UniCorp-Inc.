@@ -52,8 +52,10 @@ bool GameApplication::Initialize()
 		return false;
 	}
 
-	musicManager = new MusicManager();
-	musicManager->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
+	MusicManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
+
+	MusicManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
+	MusicManager::Instance()->PlayMusic("GameMusic");
 
 	spriteManager = new FG::SpriteManager();
 	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
@@ -163,12 +165,6 @@ void GameApplication::Shutdown()
 		spriteManager->Shutdown();
 		delete spriteManager;
 		spriteManager = nullptr;
-	}
-
-	if (musicManager)
-	{
-		delete musicManager;
-		musicManager = nullptr;
 	}
 
 	if (camera)

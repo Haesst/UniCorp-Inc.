@@ -7,11 +7,11 @@
 #include <Camera.h>
 #include <Collider.h>
 #include <EntityManager.h>
+#include "MusicManager.h"
 
 #include <iostream>
 #include <memory>
 #include <SDL_render.h>
-
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef, FG::EntityManager* entityManager) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef), entityManager(entityManager)
 {
@@ -41,6 +41,7 @@ void Player::Update(float deltaTime)
 		projectile->SetPosition(position + FG::Vector2D(20, -60));
 		projectile->Active = true;
 		entityManager->AddEntity(projectile, "Projectile");
+		MusicManager::Instance()->PlaySound("PlayerShot");
 		currentShotTimer = timeBetweenShots;
 	}
 

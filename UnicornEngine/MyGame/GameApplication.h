@@ -43,8 +43,6 @@ private:
 
 	FG::Time time;
 
-	MusicManager* musicManager = nullptr;
-
 	UI* ui = nullptr;
 	Background* background = nullptr;
 	Background* backgroundStars = nullptr;

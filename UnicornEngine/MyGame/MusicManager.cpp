@@ -7,6 +7,14 @@ MusicManager::MusicManager()
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
 }
 
+
+MusicManager* MusicManager::Instance()
+{
+	static MusicManager* instance = new MusicManager();
+
+	return instance;
+}
+
 MusicManager::~MusicManager()
 {
 	Mix_CloseAudio();
@@ -14,19 +22,9 @@ MusicManager::~MusicManager()
 
 void MusicManager::PlayMusic(const char* name)
 {
-	Mix_Music* musicFile = nullptr;
-	for (auto& musicPair : music)
+	if (music.find(name) != music.end())
 	{
-		if (musicPair.first == name)
-		{
-			musicFile = musicPair.second;
-			break;
-		}
-	}
-
-	if (musicFile != nullptr)
-	{
-		Mix_PlayMusic(musicFile, -1);
+		Mix_PlayMusic(music[name], -1);
 	}
 }
 
@@ -34,23 +32,26 @@ void MusicManager::AddMusic(const char* path, const char* name)
 {
 	Mix_Music* musicFile = Mix_LoadMUS(path);
 
-	if (musicFile != nullptr)
+	if (music.find(name) == music.end() && musicFile != nullptr)
 	{
-		//music.insert(std::make_pair(name, musicFile));
-		Mix_PlayMusic(musicFile, -1);
-	}
-	else
-	{
-		std::cout << "Music was nullptr" << std::endl;
+		music[name] = musicFile;
 	}
 }
 
 void MusicManager::PlaySound(const char* name)
 {
-
+	if (soundEffects.find(name) != soundEffects.end())
+	{
+		Mix_PlayChannel(-1, soundEffects[name], 0);
+	}
 }
 
 void MusicManager::AddSound(const char* path, const char* name)
 {
+	Mix_Chunk* soundFile = Mix_LoadWAV(path);
 
+	if (soundEffects.find(name) == soundEffects.end() && soundFile != nullptr)
+	{
+		soundEffects[name] = soundFile;
+	}
 }
