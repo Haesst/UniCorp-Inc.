@@ -12,10 +12,12 @@ Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::Sprite
 	if (bulletType == BulletType::PlayerBullet)
 	{
 		sprite = spriteManager->CreateSprite("../TestingAssets/bullet.png", 1, 1, 6, 36);
+		myTagau = PlayerBulletau;
 	}
 	else
 	{
 		sprite = spriteManager->CreateSprite("../TestingAssets/EnemyBullet.png", 1, 1, 6, 36);
+		myTagau = EnemyBulletau;
 	}
 
 	this->position = position;
@@ -26,8 +28,6 @@ Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::Sprite
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
 	UpdateCollider();
-	
-	myTagau = Bulletau;
 }
 
 Projectile::~Projectile()
@@ -65,9 +65,13 @@ void Projectile::onCollision(Tag tagau)
 		Active = false;
 		break;
 	case Enemyau:
-		Active = false;
+		if (myTagau == PlayerBulletau)
+		{
+			Active = false;
+		}
 		break;
-	case Bulletau:
+	case PlayerBulletau:
+	case EnemyBulletau:
 		break;
 	default:
 		break;

@@ -9,7 +9,7 @@
 
 void FollowingEnemy::onCollision(Tag tagau)
 {
-	if (tagau == Tag::Bulletau)
+	if (tagau == Tag::PlayerBulletau)
 	{
 		health--;
 
