@@ -101,7 +101,7 @@ bool GameApplication::Initialize()
 	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
-	FG::EntityManager::Instance()->AddEntity("Enemy");
+	//FG::EntityManager::Instance()->AddEntity("Enemy");
 
 	FG::EntityManager::Instance()->AddEntity("Enemy");
 
@@ -115,13 +115,23 @@ bool GameApplication::Initialize()
 
 void GameApplication::Run()
 {
+	float timeBetweenSpawn = 5.0f;
+	float currentTime = 5.0f;
+
 	bool quit = false;
 	while (!quit)
 	{
+		currentTime -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
 		inputManager->Update(quit);
+
+		if (currentTime <= 0.0f)
+		{
+			FG::EntityManager::Instance()->AddEntity("Enemy");
+			currentTime = timeBetweenSpawn;
+		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		//Update entities

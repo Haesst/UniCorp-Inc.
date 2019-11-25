@@ -3,7 +3,6 @@
 
 #include <Entity.h>
 #include <EntityManager.h>
-#include <iostream>
 
 void EnemyState::Idle::Enter(Enemy* entity)
 {}
