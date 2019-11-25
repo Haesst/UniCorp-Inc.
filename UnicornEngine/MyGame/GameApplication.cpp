@@ -13,6 +13,7 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "FollowingEnemy.h"
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -20,7 +21,6 @@
 #include "MusicManager.h"
 
 #include "Entity.h"
-//ta bort
 
 bool GameApplication::Initialize()
 {
@@ -98,12 +98,16 @@ bool GameApplication::Initialize()
 	else
 		std::cout << "nullptr" << std::endl;
 
+	FollowingEnemy* followingEnemy = new FollowingEnemy(spriteManager);
+	followingEnemy->Active = true;
+	
+	FG::EntityManager::Instance()->AddEntity(followingEnemy, "FollowingEnemy");
 	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
-	//FG::EntityManager::Instance()->AddEntity("Enemy");
-
 	FG::EntityManager::Instance()->AddEntity("Enemy");
+
+	//FG::EntityManager::Instance()->AddEntity("Enemy");
 
 	/*entityManager->AddEntity("Enemy");*/
 
@@ -127,11 +131,11 @@ void GameApplication::Run()
 		// Update input
 		inputManager->Update(quit);
 
-		if (currentTime <= 0.0f)
+		/*if (currentTime <= 0.0f)
 		{
 			FG::EntityManager::Instance()->AddEntity("Enemy");
 			currentTime = timeBetweenSpawn;
-		}
+		}*/
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		//Update entities
