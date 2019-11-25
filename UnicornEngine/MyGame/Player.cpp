@@ -7,13 +7,13 @@
 #include <Camera.h>
 #include <Collider.h>
 #include <EntityManager.h>
+#include "MusicManager.h"
 
 #include <iostream>
 #include <memory>
 #include <SDL_render.h>
 
-
-Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef, FG::EntityManager* entityManager) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef), entityManager(entityManager)
+Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
 	playerState = new PlayerState();
 	playerState->Configure(this);
@@ -37,16 +37,17 @@ void Player::Update(float deltaTime)
 
 	if (inputManager->IsKeyDown(SDL_SCANCODE_SPACE) && currentShotTimer <= 0.0f)
 	{
-		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), spriteManager);
+		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), spriteManager, Projectile::BulletType::PlayerBullet);
 		projectile->SetPosition(position + FG::Vector2D(20, -60));
 		projectile->Active = true;
-		entityManager->AddEntity(projectile, "Projectile");
+		FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+		MusicManager::Instance()->PlaySound("PlayerShot");
 		currentShotTimer = timeBetweenShots;
 	}
 
 	if (inputManager->IsKeyDown(SDL_SCANCODE_RCTRL))
 	{
-		entityManager->AddEntity("Enemy");
+		FG::EntityManager::Instance()->AddEntity("Enemy");
 	}
 
 	rect = {(int)position.x, (int)position.y, 33, 40 };

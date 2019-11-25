@@ -4,10 +4,17 @@
 #include <Camera.h>
 #include <SpriteManager.h>
 
-Projectile::Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, float speed /* = 350.0f */)
+Projectile::Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, BulletType bulletType, float speed /* = 350.0f */)
 	: direction(direction), spriteManager(spriteManager), speed(speed)
 {
-	sprite = spriteManager->CreateSprite("../TestingAssets/bullet.png", 1, 1, 6, 36);
+	if (bulletType == BulletType::PlayerBullet)
+	{
+		sprite = spriteManager->CreateSprite("../TestingAssets/bullet.png", 1, 1, 6, 36);
+	}
+	else
+	{
+		sprite = spriteManager->CreateSprite("../TestingAssets/EnemyBullet.png", 1, 1, 6, 36);
+	}
 	rect = { 0,0, 6, 36 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;

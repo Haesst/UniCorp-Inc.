@@ -31,16 +31,19 @@ namespace FG
 	class EntityManager
 	{
 	public:
-		EntityManager() {}
-		EntityManager(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef);
+		EntityManager();
 		~EntityManager();
 
+		static EntityManager* Instance();
+
+		void Initialize(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef);
 		void Shutdown();
 		void Update(float deltaTime);
 		void Render(Camera* camera);
 		void AddEntity(Entity* entity, const std::string& Tag);
 		void AddEntity(const std::string& Tag);
 		void CheckEntitiesCollision();
+		Entity* GetPlayer();
 		Entity* GetObject(const std::string& Tag);
 
 		CollisionManager* collisionManager = nullptr;

@@ -5,13 +5,21 @@
 
 namespace FG
 {
-	EntityManager::EntityManager(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef)
+	EntityManager::EntityManager()
+	{}
+	EntityManager::~EntityManager()
+	{
+	}
+	EntityManager* EntityManager::Instance()
+	{
+		static EntityManager* entityManager = new EntityManager();
+
+		return entityManager;
+	}
+	void EntityManager::Initialize(FG::CollisionManager* collisionManagerRef, FG::FactoryManager* facManagerRef)
 	{
 		collisionManager = collisionManagerRef;
 		factoryManager = facManagerRef;
-	}
-	EntityManager::~EntityManager()
-	{
 	}
 	void EntityManager::Shutdown()
 	{
@@ -106,6 +114,23 @@ namespace FG
 		}
 
 
+	}
+
+	FG::Entity* EntityManager::GetPlayer()
+	{
+		auto it = entities.find("Player");
+		if (it == entities.end())
+		{
+			return nullptr;
+		}
+
+		for (size_t i = 0; i < it->second.size(); i++)
+		{
+			if (it->second[i]->Active)
+			{
+				return it->second[i];
+			}
+		}
 	}
 
 	FG::Entity* EntityManager::GetObject(const std::string& Tag)
