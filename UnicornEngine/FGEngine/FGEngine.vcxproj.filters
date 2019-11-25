@@ -128,5 +128,11 @@
     <ClInclude Include="AbstractFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AFormation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriralFormation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 #include "Vector2D.h"
+#include <cmath>
 
 namespace FG
 {
@@ -48,4 +49,19 @@ namespace FG
 		y -= other.y;
 		return *this;
 	}
+
+	Vector2D Vector2D::operator/(float scalar) const
+	{
+		return Vector2D(x / scalar, y / scalar);
+	}
+
+	float Vector2D::Magnitude()
+	{
+		return sqrt(x * x + y * y);
+	}
+
+	Vector2D Vector2D::Normalized() {
+		return Vector2D(x, y) / Magnitude();
+	}
+
 }
