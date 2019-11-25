@@ -97,12 +97,16 @@
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
+    <ClCompile Include="FollowingEnemy.cpp" />
+    <ClCompile Include="FollowingEnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="MusicManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SmallEnemy.cpp" />
+    <ClCompile Include="SmallEnemyState.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +114,8 @@
     <ClInclude Include="ConcreteFactories.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />
-    <ClInclude Include="Formation.h" />
+    <ClInclude Include="FollowingEnemy.h" />
+    <ClInclude Include="FollowingEnemyState.h" />
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
@@ -118,6 +123,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SmallEnemy.h" />
+    <ClInclude Include="SmallEnemyState.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>

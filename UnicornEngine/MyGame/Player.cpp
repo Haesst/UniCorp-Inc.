@@ -37,8 +37,7 @@ void Player::Update(float deltaTime)
 
 	if (inputManager->IsKeyDown(SDL_SCANCODE_SPACE) && currentShotTimer <= 0.0f)
 	{
-		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), spriteManager, Projectile::BulletType::PlayerBullet);
-		projectile->SetPosition(position + FG::Vector2D(20, -60));
+		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
 		projectile->Active = true;
 		FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
 		MusicManager::Instance()->PlaySound("PlayerShot");
@@ -103,8 +102,6 @@ void Player::onCollision(Tag tagau)
 {
 		switch (tagau)
 		{
-		case Tag::Playerau: std::cout << "Player collided with Enemy" << std::endl; break;
-		//case Tag::Enemyau: std::cout << "Enemy collided" << std::endl; break;
 		
 		}
 	

@@ -24,8 +24,8 @@ public:
 	virtual void Render(FG::Camera* const camera) override;
 
 	void SetState(FSMState<Enemy>* state);
-	void Shoot();
-	float GetCurrentShotTime();
+	virtual void Shoot();
+	virtual float GetCurrentShotTime();
 
 	//FG::Vector2D position;
 
@@ -35,10 +35,10 @@ private:
 	FG::SpriteManager* spriteManager;
 	EnemyState* enemyState = nullptr;
 
-	float timeBetweenShots = 1.6f;
-	float currentShotTime = timeBetweenShots;
-
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;
 	void EnemyDies();
+protected:
+	float timeBetweenShots = 1.6f;
+	float currentShotTime = timeBetweenShots;
 };

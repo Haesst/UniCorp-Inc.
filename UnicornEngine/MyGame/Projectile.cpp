@@ -4,26 +4,35 @@
 #include <Camera.h>
 #include <SpriteManager.h>
 
-Projectile::Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, BulletType bulletType, float speed /* = 350.0f */)
+#include <iostream>
+
+Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::SpriteManager* spriteManager, BulletType bulletType, float speed /* = 350.0f */)
 	: direction(direction), spriteManager(spriteManager), speed(speed)
 {
 	if (bulletType == BulletType::PlayerBullet)
 	{
 		sprite = spriteManager->CreateSprite("../TestingAssets/bullet.png", 1, 1, 6, 36);
+		myTagau = PlayerBulletau;
 	}
 	else
 	{
 		sprite = spriteManager->CreateSprite("../TestingAssets/EnemyBullet.png", 1, 1, 6, 36);
+		myTagau = EnemyBulletau;
 	}
-	rect = { 0,0, 6, 36 };
+
+	this->position = position;
+
+	rect = { (int)position.x,(int)position.y, 6, 36 };
+	myCollider->square.x = rect.x;
+	myCollider->square.y = rect.y;
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
-	
-	myTagau = Bulletau;
+	UpdateCollider();
 }
 
 Projectile::~Projectile()
-{}
+{
+}
 
 void Projectile::Update(float deltaTime)
 {
@@ -56,9 +65,13 @@ void Projectile::onCollision(Tag tagau)
 		Active = false;
 		break;
 	case Enemyau:
-		Active = false;
+		if (myTagau == PlayerBulletau)
+		{
+			Active = false;
+		}
 		break;
-	case Bulletau:
+	case PlayerBulletau:
+	case EnemyBulletau:
 		break;
 	default:
 		break;

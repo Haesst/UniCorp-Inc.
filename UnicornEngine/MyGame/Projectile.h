@@ -23,7 +23,7 @@ public:
 		EnemyBullet,
 	};
 
-	Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, BulletType bulletType, float speed = 350.0f);
+	Projectile(FG::Vector2D direction, FG::Vector2D position, FG::SpriteManager* spriteManager, BulletType bulletType, float speed = 350.0f);
 	~Projectile();
 
 	// Inherited via Entity

@@ -13,6 +13,8 @@
 
 #include "Player.h"
 #include "Enemy.h"
+#include "FollowingEnemy.h"
+#include "SmallEnemy.h"
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -20,7 +22,6 @@
 #include "MusicManager.h"
 
 #include "Entity.h"
-//ta bort
 
 bool GameApplication::Initialize()
 {
@@ -78,9 +79,11 @@ bool GameApplication::Initialize()
 	FG::EntityManager::Instance()->AddEntity(ui, "UI");
 
 	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
-	backgroundStars = new Background("../TestingAssets/ParallaxStars.png", spriteManager, 4);
+	backgroundBigStars = new Background("../TestingAssets/ParallaxBigStars.png", spriteManager, 4);
+	backgroundSmallStars = new Background("../TestingAssets/ParallaxSmallStars.png", spriteManager, 3);
 	FG::EntityManager::Instance()->AddEntity(background, "Background");
-	FG::EntityManager::Instance()->AddEntity(backgroundStars, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundBigStars, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundSmallStars, "Background");
 
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
@@ -98,12 +101,23 @@ bool GameApplication::Initialize()
 	else
 		std::cout << "nullptr" << std::endl;
 
+	FollowingEnemy* followingEnemy = new FollowingEnemy(spriteManager);
+	followingEnemy->Active = true;
+	
+	FG::EntityManager::Instance()->AddEntity(followingEnemy, "FollowingEnemy");
+
+	SmallEnemy* smallEnemy = new SmallEnemy(spriteManager);
+	smallEnemy->Active = true;
+
+	FG::EntityManager::Instance()->AddEntity(smallEnemy, "SmallEnemy");
+
+
 	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
-	//FG::EntityManager::Instance()->AddEntity("Enemy");
-
 	FG::EntityManager::Instance()->AddEntity("Enemy");
+
+	//FG::EntityManager::Instance()->AddEntity("Enemy");
 
 	/*entityManager->AddEntity("Enemy");*/
 
@@ -115,8 +129,10 @@ bool GameApplication::Initialize()
 
 void GameApplication::Run()
 {
-	float timeBetweenSpawn = 5.0f;
-	float currentTime = 5.0f;
+	float timeBetweenSpawn = 3.0f;
+	float timeBetweenSpawn2 = 5.0f;
+	float currentTime = 3.0f;
+	float currentTime2 = 5.0f;
 
 	bool quit = false;
 	while (!quit)
@@ -131,6 +147,12 @@ void GameApplication::Run()
 		{
 			FG::EntityManager::Instance()->AddEntity("Enemy");
 			currentTime = timeBetweenSpawn;
+		}
+
+		if (currentTime2 <= 0.0f)
+		{
+			FG::EntityManager::Instance()->AddEntity("FollowingEnemy");
+			currentTime2 = timeBetweenSpawn2;
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();

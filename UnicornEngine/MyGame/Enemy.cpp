@@ -17,7 +17,7 @@ void Enemy::onCollision(Tag tagau)
 	{
 		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 		case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
-		case Tag::Bulletau: EnemyDies(); break;
+		case Tag::PlayerBulletau: EnemyDies(); break;
 	}
 }
 
@@ -91,8 +91,7 @@ void Enemy::SetState(FSMState<Enemy>* state)
 
 void Enemy::Shoot()
 {
-	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), spriteManager, Projectile::BulletType::EnemyBullet);
-	bullet->SetPosition(FG::Vector2D(position.x, position.y + 40.0f));
+	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x + 15.0f, position.y + 40.0f), spriteManager, Projectile::BulletType::EnemyBullet);
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
 	MusicManager::Instance()->PlaySound("EnemyShot");
