@@ -64,10 +64,10 @@
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="SmallEnemy.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="SmallEnemyState.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,10 +114,10 @@
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="SmallEnemy.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="SmallEnemyState.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\FSM</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
