@@ -33,7 +33,7 @@ void EnemyState::AttackPlayer::Execute(Enemy* entity)
 		}
 		else
 		{
-			if (currentY + 20.0f > curPos.y)
+			if (currentY + 40.0f > curPos.y)
 			{
 				entity->SetPosition(FG::Vector2D(curPos.x, curPos.y + 1));
 			}

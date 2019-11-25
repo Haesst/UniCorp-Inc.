@@ -45,7 +45,8 @@ private:
 
 	UI* ui = nullptr;
 	Background* background = nullptr;
-	Background* backgroundStars = nullptr;
+	Background* backgroundBigStars = nullptr;
+	Background* backgroundSmallStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
 };

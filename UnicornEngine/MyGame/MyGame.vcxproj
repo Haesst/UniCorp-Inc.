@@ -105,6 +105,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SmallEnemy.cpp" />
+    <ClCompile Include="SmallEnemyState.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +123,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SmallEnemy.h" />
+    <ClInclude Include="SmallEnemyState.h" />
     <ClInclude Include="UI.h" />
   </ItemGroup>
   <ItemGroup>
