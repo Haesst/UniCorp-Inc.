@@ -34,7 +34,7 @@ private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
-	FG::EntityManager* entityManager = nullptr;
+	//FG::EntityManager* entityManager = nullptr;
 	FG::SpriteManager* spriteManager = nullptr;
 	FG::CollisionManager* collisionManager = nullptr;
 

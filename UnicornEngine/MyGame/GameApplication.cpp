@@ -19,8 +19,6 @@
 #include "UI.h"
 #include "MusicManager.h"
 
-
-
 #include "Entity.h"
 //ta bort
 
@@ -53,6 +51,8 @@ bool GameApplication::Initialize()
 	}
 
 	MusicManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
+	MusicManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
+	MusicManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
 
 	MusicManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
 	MusicManager::Instance()->PlayMusic("GameMusic");
@@ -60,35 +60,38 @@ bool GameApplication::Initialize()
 	spriteManager = new FG::SpriteManager();
 	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
+
 	factoryManager = new FG::FactoryManager();
 	enemyFactory = new FG::EnemyFactory(spriteManager);
 	factoryManager->AddFactory("Enemy", enemyFactory);
+
+	FG::EntityManager::Instance()->Initialize(collisionManager, factoryManager);
 
 	inputManager = new FG::InputManager();
 	inputManager->Initialize();
 
 	collisionManager = new FG::CollisionManager();
 
-	entityManager = new FG::EntityManager(collisionManager, factoryManager);
+	//entityManager = new FG::EntityManager(collisionManager, factoryManager);
 
 	ui = new UI("UI", spriteManager);
-	entityManager->AddEntity(ui, "UI");
+	FG::EntityManager::Instance()->AddEntity(ui, "UI");
 
 	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
 	backgroundStars = new Background("../TestingAssets/ParallaxStars.png", spriteManager, 4);
-	entityManager->AddEntity(background, "Background");
-	entityManager->AddEntity(backgroundStars, "Background");
+	FG::EntityManager::Instance()->AddEntity(background, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundStars, "Background");
 
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
-	player = new Player(inputManager, camera, spriteManager, entityManager);
+	player = new Player(inputManager, camera, spriteManager);
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
-	entityManager->AddEntity(player, "Player");
+	FG::EntityManager::Instance()->AddEntity(player, "Player");
 
 	std::cout << player->Active << std::endl;
 
-	auto _p = entityManager->GetObject("Player");
+	auto _p = FG::EntityManager::Instance()->GetObject("Player");
 
 	if (_p != nullptr)
 		std::cout << "Not a nullptr" << std::endl;
@@ -98,9 +101,9 @@ bool GameApplication::Initialize()
 	
 	//entityManager->AddEntity(enemy, "Enemy");
 	
-	entityManager->AddEntity("Enemy");
+	FG::EntityManager::Instance()->AddEntity("Enemy");
 
-	entityManager->AddEntity("Enemy");
+	FG::EntityManager::Instance()->AddEntity("Enemy");
 
 	/*entityManager->AddEntity("Enemy");*/
 
@@ -120,13 +123,13 @@ void GameApplication::Run()
 		// Update input
 		inputManager->Update(quit);
 
-		entityManager->CheckEntitiesCollision();
+		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		//Update entities
-		entityManager->Update(time.DeltaTime());
+		FG::EntityManager::Instance()->Update(time.DeltaTime());
 		// Tell camera to start render frame
 		camera->StartRenderFrame();
 		// Render every entity
-		entityManager->Render(camera);
+		FG::EntityManager::Instance()->Render(camera);
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
 		// End the timer
@@ -140,12 +143,6 @@ void GameApplication::Shutdown()
 	{
 		delete player;
 		player = nullptr;
-	}
-	// Reverse order
-	if (entityManager)
-	{
-		delete entityManager;
-		entityManager = nullptr;
 	}
 	
 	if (inputManager)
@@ -189,6 +186,6 @@ void GameApplication::CreateEnemies()
 	for (int i = 0; i < 5; i++)
 	{
 		int temp[] = { 1,2,3,4 };
-		entityManager->AddEntity("Enemy");
+		FG::EntityManager::Instance()->AddEntity("Enemy");
 	}
 }

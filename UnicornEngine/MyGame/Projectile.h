@@ -17,7 +17,13 @@ private:
 	FG::SpriteManager* spriteManager;
 
 public:
-	Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, float speed = 350.0f);
+	enum class BulletType
+	{
+		PlayerBullet,
+		EnemyBullet,
+	};
+
+	Projectile(FG::Vector2D direction, FG::SpriteManager* spriteManager, BulletType bulletType, float speed = 350.0f);
 	~Projectile();
 
 	// Inherited via Entity

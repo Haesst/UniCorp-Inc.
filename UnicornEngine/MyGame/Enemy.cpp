@@ -1,7 +1,11 @@
 #include "Enemy.h"
 #include "Config.h"
 #include "EnemyState.h"
+#include "MusicManager.h"
+#include "Projectile.h"
+
 #include <SpriteManager.h>
+#include <EntityManager.h>
 #include <Collider.h>
 #include <iostream>
 
@@ -13,14 +17,28 @@ void Enemy::onCollision(Tag tagau)
 	{
 		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 		case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
-		case Tag::Bulletau: Active = false; break;
+		case Tag::Bulletau: EnemyDies(); break;
 	}
+}
+
+void Enemy::EnemyDies()
+{
+	MusicManager::Instance()->PlaySound("EnemyExplosion");
+	Active = false;
+}
+
+float Enemy::GetCurrentShotTime()
+{
+	return currentShotTime;
 }
 
 Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 {
+	position.x = 10.0f;
+	position.y = 50.0f;
 	Active = true;
 	spriteManager = spriteManagerRef;
+
 	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 36, 30);
 	rect = { 0,0,36,30 };
 	myCollider->square.w = rect.w;
@@ -33,7 +51,7 @@ Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 	myCollider->square.y = rect.y;
 	enemyState = new EnemyState();
 	enemyState->Configure(this);
-	enemyState->ChangeState(new EnemyState::Idle());
+	enemyState->ChangeState(new EnemyState::AttackPlayer());
 	//UpdateCollider();
 
 	myTagau = Tag::Enemyau;
@@ -41,14 +59,22 @@ Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
 
 Enemy::~Enemy()
 {
+	delete enemyState;
+	enemyState = nullptr;
 }
 
 void Enemy::Update(float deltaTime)
 {
+	if (currentShotTime > 0)
+	{
+		currentShotTime -= deltaTime;
+	}
+
 	enemyState->Update();
 	rect = { (int)position.x, (int)position.y, 36, 30 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+
 	UpdateCollider();
 }
 
@@ -56,4 +82,19 @@ void Enemy::Render(FG::Camera* const camera)
 {
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
+}
+
+void Enemy::SetState(FSMState<Enemy>* state)
+{
+	enemyState->ChangeState(state);
+}
+
+void Enemy::Shoot()
+{
+	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), spriteManager, Projectile::BulletType::EnemyBullet);
+	bullet->SetPosition(FG::Vector2D(position.x, position.y + 40.0f));
+	bullet->Active = true;
+	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
+	MusicManager::Instance()->PlaySound("EnemyShot");
+	currentShotTime = timeBetweenShots;
 }

@@ -17,6 +17,16 @@ MusicManager* MusicManager::Instance()
 
 MusicManager::~MusicManager()
 {
+	for (auto song : music)
+	{
+		Mix_FreeMusic(song.second);
+	}
+
+	for (auto soundEffect : soundEffects)
+	{
+		Mix_FreeChunk(soundEffect.second);
+	}
+
 	Mix_CloseAudio();
 }
 
