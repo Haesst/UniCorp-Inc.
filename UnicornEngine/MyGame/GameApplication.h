@@ -22,6 +22,7 @@ class UI;
 class Background;
 class SDL_Texture;
 class MusicManager;
+class SpiralFormation;
 
 class GameApplication : public FG::Application
 {
@@ -49,6 +50,11 @@ private:
 	Background* backgroundSmallStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
+	SpiralFormation* spiralFormation = nullptr;
+
+	// THEO
+	float spawnSpiralRate = 1 / 4.f;
+	float spawnSpiralTimer = 0.f;
 };
 
 FG::Application* FG::CreateApplication()

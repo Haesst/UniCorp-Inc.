@@ -95,7 +95,7 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	position += movement * movementSpeed * deltaTime;
+	position += movement.Normalized() * movementSpeed * deltaTime;
 }
 
 void Player::onCollision(Tag tagau)

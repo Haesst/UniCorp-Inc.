@@ -15,6 +15,8 @@
 #include "Enemy.h"
 #include "FollowingEnemy.h"
 #include "SmallEnemy.h"
+#include "SpiralFormation.h"
+
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -123,6 +125,7 @@ bool GameApplication::Initialize()
 
 	//CreateEnemies();
 
+	spiralFormation = new SpiralFormation(spriteManager);
 
 	return true;
 }
@@ -153,6 +156,16 @@ void GameApplication::Run()
 		{
 			FG::EntityManager::Instance()->AddEntity("FollowingEnemy");
 			currentTime2 = timeBetweenSpawn2;
+		}
+
+		// THEO
+		if (spiralFormation->enemyNum > 0) {
+			if (spawnSpiralTimer > spawnSpiralRate) {
+				spiralFormation->Spawn();
+				spiralFormation->enemyNum--;
+				spawnSpiralTimer -= spawnSpiralRate;
+			}
+			spawnSpiralTimer += time.DeltaTime();
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
