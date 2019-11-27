@@ -15,6 +15,7 @@
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
+	score = 0;
 	playerState = new PlayerState();
 	playerState->Configure(this);
 	playerState->ChangeState(new PlayerState::Idle());
@@ -100,8 +101,12 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	FG::Vector2D newPosition = position + (movement * movementSpeed * deltaTime);
+	FG::Vector2D newPosition = position;
 
+	if (movement.x != 0 || movement.y != 0)
+	{
+		newPosition = position + (movement.Normalized() * movementSpeed * deltaTime);
+	}
 	// Todo: Remove magic numbers and define screen size somewhere
 
 	int height;

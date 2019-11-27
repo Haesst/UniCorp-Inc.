@@ -151,14 +151,12 @@ void GameApplication::Run()
 
 			if (!x.empty())
 			{
-				player->LifesLeft(3);
 				FG::EntityManager::Instance()->ClearEntities();
 				CreateBackground();
 				CreatePlayer();
-				if (ui)
-				{
-					delete ui;
-				}
+				UI::Instance()->ResetUI();
+				UI::Instance()->UpdateScore();
+
 				Run();
 			}
 			//quit = true;
@@ -254,7 +252,12 @@ void GameApplication::CreateBackground()
 
 void GameApplication::CreatePlayer()
 {
+	if (player)
+	{
+		delete player;
+	}
 	player = new Player(inputManager, camera, spriteManager);
+	player->ResetScore();
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");

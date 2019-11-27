@@ -11,6 +11,9 @@ namespace FG
 		Vector2D() {}
 		Vector2D(const Vector2D& other);
 		Vector2D(float x, float y);
+		Vector2D Normalized();
+		Vector2D operator/(float scalar) const;
+		float Magnitude();
 
 		Vector2D operator+(const Vector2D& other) const;
 		Vector2D operator-(const Vector2D& other) const;
