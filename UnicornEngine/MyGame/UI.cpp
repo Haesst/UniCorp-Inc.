@@ -8,7 +8,9 @@ UI::UI(const char* element, FG::SpriteManager* spriteManager) : spriteManager(sp
 {
 	Active = true;
 	sprite = spriteManager->CreateSprite("../TestingAssets/Table.png", 1, 1, 361, 101);
-	pilotPortrait = spriteManager->CreateSprite("../TestingAssets/UniPilot.png", 1, 1, 38, 40);
+	pilotPortraitStage1 = spriteManager->CreateSprite("../TestingAssets/UniPilot.png", 1, 1, 38, 40);
+	pilotPortraitStage2 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage2.png", 1, 1, 38, 40);
+	pilotPortraitStage3 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage3.png", 1, 1, 38, 40);
 	heart = spriteManager->CreateSprite("../TestingAssets/Heart.png", 1, 1, 32, 32);
 	rect = { 0,0, 361, 101};
 	position = FG::Vector2D(0, 0);
@@ -28,7 +30,7 @@ void UI::Update(float deltaTime)
 
 void UI::Render(FG::Camera* const camera)
 {
-	spriteManager->Draw(pilotPortrait, pilotPortraitRect);
+	DrawPortrait();
 	DrawHearts();
 }
 
@@ -44,5 +46,23 @@ void UI::DrawHearts()
 	for (int i = 0; i < player->LifesLeft(); i++)
 	{
 		spriteManager->Draw(heart, { heartRect.x + (i * 35), heartRect.y, heartRect.w, heartRect.h });
+	}
+}
+
+void UI::DrawPortrait()
+{
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+
+	switch (player->LifesLeft())
+	{
+	case 3:
+		spriteManager->Draw(pilotPortraitStage1, pilotPortraitRect);
+		break;
+	case 2:
+		spriteManager->Draw(pilotPortraitStage2, pilotPortraitRect);
+		break;
+	case 1:
+		spriteManager->Draw(pilotPortraitStage3, pilotPortraitRect);
+		break;
 	}
 }

@@ -15,7 +15,9 @@ private:
 	FG::SpriteManager* spriteManager;
 
 	SDL_Rect pilotPortraitRect;
-	FG::Sprite* pilotPortrait = nullptr;
+	FG::Sprite* pilotPortraitStage1 = nullptr;
+	FG::Sprite* pilotPortraitStage2 = nullptr;
+	FG::Sprite* pilotPortraitStage3 = nullptr;
 
 	SDL_Rect heartRect;
 	FG::Sprite* heart = nullptr;
@@ -31,5 +33,6 @@ public:
 
 private:
 	void UpdateScore(float deltaTime);
+	void DrawPortrait();
 	void DrawHearts();
 };
