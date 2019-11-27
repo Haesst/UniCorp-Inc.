@@ -13,6 +13,8 @@ namespace FG
 	class SpriteManager;
 	class CollisionManager;
 	class EnemyFactory;
+	class FollowingEnemyFactory;
+	class SmallEnemyFactory;
 	class FactoryManager;
 }
 
@@ -31,6 +33,11 @@ public:
 	virtual void Shutdown() override;
 	void CreateEnemies();
 private:
+	void InitializeSounds();
+	void CreateFactories();
+	void CreateBackground();
+	void CreatePlayer();
+private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
@@ -40,6 +47,8 @@ private:
 
 	FG::FactoryManager* factoryManager = nullptr;
 	FG::EnemyFactory* enemyFactory = nullptr;
+	FG::FollowingEnemyFactory* followingEnemyFactory = nullptr;
+	FG::SmallEnemyFactory* smallEnemyFactory = nullptr;
 
 	FG::Time time;
 

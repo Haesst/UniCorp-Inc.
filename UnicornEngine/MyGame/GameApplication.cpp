@@ -12,9 +12,6 @@
 #include <SDL_image.h>
 
 #include "Player.h"
-#include "Enemy.h"
-#include "FollowingEnemy.h"
-#include "SmallEnemy.h"
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -51,20 +48,12 @@ bool GameApplication::Initialize()
 		return false;
 	}
 
-	MusicManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
-	MusicManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
-	MusicManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
-
-	MusicManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
-	MusicManager::Instance()->PlayMusic("GameMusic");
+	InitializeSounds();
 
 	spriteManager = new FG::SpriteManager();
 	spriteManager->Initialize(window->GetInternalWindow(), camera->GetInternalRenderer());
 
-
-	factoryManager = new FG::FactoryManager();
-	enemyFactory = new FG::EnemyFactory(spriteManager);
-	factoryManager->AddFactory("Enemy", enemyFactory);
+	CreateFactories();
 
 	FG::EntityManager::Instance()->Initialize(collisionManager, factoryManager);
 
@@ -73,56 +62,11 @@ bool GameApplication::Initialize()
 
 	collisionManager = new FG::CollisionManager();
 
-	//entityManager = new FG::EntityManager(collisionManager, factoryManager);
-
 	ui = new UI("UI", spriteManager);
 	FG::EntityManager::Instance()->AddEntity(ui, "UI");
 
-	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
-	backgroundBigStars = new Background("../TestingAssets/ParallaxBigStars.png", spriteManager, 4);
-	backgroundSmallStars = new Background("../TestingAssets/ParallaxSmallStars.png", spriteManager, 3);
-	FG::EntityManager::Instance()->AddEntity(background, "Background");
-	FG::EntityManager::Instance()->AddEntity(backgroundBigStars, "Background");
-	FG::EntityManager::Instance()->AddEntity(backgroundSmallStars, "Background");
-
-	int temp[] = { 1,2,3,4 };
-	//enemy = new Enemy(temp, "test", spriteManager);
-	player = new Player(inputManager, camera, spriteManager);
-	player->SetPosition(FG::Vector2D(280, 800));
-	player->Active = true;
-	FG::EntityManager::Instance()->AddEntity(player, "Player");
-
-	std::cout << player->Active << std::endl;
-
-	auto _p = FG::EntityManager::Instance()->GetObject("Player");
-
-	if (_p != nullptr)
-		std::cout << "Not a nullptr" << std::endl;
-	else
-		std::cout << "nullptr" << std::endl;
-
-	FollowingEnemy* followingEnemy = new FollowingEnemy(spriteManager);
-	followingEnemy->Active = true;
-	
-	FG::EntityManager::Instance()->AddEntity(followingEnemy, "FollowingEnemy");
-
-	SmallEnemy* smallEnemy = new SmallEnemy(spriteManager);
-	smallEnemy->Active = true;
-
-	FG::EntityManager::Instance()->AddEntity(smallEnemy, "SmallEnemy");
-
-
-	
-	//entityManager->AddEntity(enemy, "Enemy");
-	
-	FG::EntityManager::Instance()->AddEntity("Enemy");
-
-	//FG::EntityManager::Instance()->AddEntity("Enemy");
-
-	/*entityManager->AddEntity("Enemy");*/
-
-	//CreateEnemies();
-
+	CreateBackground();
+	CreatePlayer();
 
 	return true;
 }
@@ -138,6 +82,7 @@ void GameApplication::Run()
 	while (!quit)
 	{
 		currentTime -= time.DeltaTime();
+		currentTime2 -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -220,4 +165,45 @@ void GameApplication::CreateEnemies()
 		int temp[] = { 1,2,3,4 };
 		FG::EntityManager::Instance()->AddEntity("Enemy");
 	}
+}
+
+void GameApplication::InitializeSounds()
+{
+	MusicManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
+	MusicManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
+	MusicManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
+
+	MusicManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
+	MusicManager::Instance()->PlayMusic("GameMusic");
+}
+
+void GameApplication::CreateFactories()
+{
+	factoryManager = new FG::FactoryManager();
+	enemyFactory = new FG::EnemyFactory(spriteManager);
+	factoryManager->AddFactory("Enemy", enemyFactory);
+
+	followingEnemyFactory = new FG::FollowingEnemyFactory(spriteManager);
+	factoryManager->AddFactory("FollowingEnemy", followingEnemyFactory);
+
+	smallEnemyFactory = new FG::SmallEnemyFactory(spriteManager);
+	factoryManager->AddFactory("SmallEnemy", smallEnemyFactory);
+}
+
+void GameApplication::CreateBackground()
+{
+	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
+	backgroundBigStars = new Background("../TestingAssets/ParallaxBigStars.png", spriteManager, 4);
+	backgroundSmallStars = new Background("../TestingAssets/ParallaxSmallStars.png", spriteManager, 3);
+	FG::EntityManager::Instance()->AddEntity(background, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundBigStars, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundSmallStars, "Background");
+}
+
+void GameApplication::CreatePlayer()
+{
+	player = new Player(inputManager, camera, spriteManager);
+	player->SetPosition(FG::Vector2D(280, 800));
+	player->Active = true;
+	FG::EntityManager::Instance()->AddEntity(player, "Player");
 }

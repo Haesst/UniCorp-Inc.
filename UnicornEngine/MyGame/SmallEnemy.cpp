@@ -12,6 +12,7 @@ void SmallEnemy::onCollision(Tag tagau)
 
 SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft/* = true*/)
 {
+	Active = true;
 
 	if (startingLeft)
 	{

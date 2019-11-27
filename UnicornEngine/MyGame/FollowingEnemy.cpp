@@ -23,6 +23,7 @@ void FollowingEnemy::onCollision(Tag tagau)
 
 FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef)
 {
+	Active = true;
 	timeBetweenShots = 1.1f;
 	position.x = 10.0f;
 	position.y = 50.0f;
