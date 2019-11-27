@@ -42,6 +42,6 @@ namespace FG
 
 		SpriteManager* spriteManager = nullptr;
 
-		virtual Entity* CreateEntity() { std::cout << "t" << std::endl; return new FollowingEnemy(spriteManager); }
+		virtual Entity* CreateEntity() { return new SmallEnemy(spriteManager); }
 	};
 }

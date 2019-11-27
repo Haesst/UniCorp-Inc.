@@ -3,17 +3,12 @@
 #include "Enemy.h"
 #include "FollowingEnemyState.h";
 
-namespace FG
-{
-	class SpriteManager;
-}
 
 class FollowingEnemy : public Enemy
 {
 private:
 	FollowingEnemyState* enemyState;
 	FG::SpriteManager* spriteManager;
-	int health = 2;
 
 private:
 	void onCollision(Tag tagau) override;

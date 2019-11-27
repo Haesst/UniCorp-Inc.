@@ -75,14 +75,17 @@ void GameApplication::Run()
 {
 	float timeBetweenSpawn = 3.0f;
 	float timeBetweenSpawn2 = 5.0f;
+	float timeBetweenSpawn3 = 7.0f;
 	float currentTime = 3.0f;
 	float currentTime2 = 5.0f;
+	float currentTime3 = 7.0f;
 
 	bool quit = false;
 	while (!quit)
 	{
 		currentTime -= time.DeltaTime();
 		currentTime2 -= time.DeltaTime();
+		currentTime3 -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -98,6 +101,13 @@ void GameApplication::Run()
 		{
 			FG::EntityManager::Instance()->AddEntity("FollowingEnemy");
 			currentTime2 = timeBetweenSpawn2;
+		}
+
+		if (currentTime3 <= 0.0f)
+		{
+			std::cout << "Small enemy incoming" << std::endl;
+			FG::EntityManager::Instance()->AddEntity("SmallEnemy");
+			currentTime3 = timeBetweenSpawn3;
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -162,7 +172,6 @@ void GameApplication::CreateEnemies()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		int temp[] = { 1,2,3,4 };
 		FG::EntityManager::Instance()->AddEntity("Enemy");
 	}
 }

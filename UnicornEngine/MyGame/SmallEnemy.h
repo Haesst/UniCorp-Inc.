@@ -9,7 +9,6 @@ private:
 	SmallEnemyState* enemyState;
 	FG::SpriteManager* spriteManager;
 
-	int health = 1;
 	int shotsToFire = 3;
 
 	float rechargeShots = 1.6f;

@@ -6,13 +6,23 @@
 #include <SpriteManager.h>
 #include <EntityManager.h>
 
+#include <iostream>
+
 void SmallEnemy::onCollision(Tag tagau)
 {
+	switch (tagau)
+	{
+	case PlayerBulletau:
+		Active = false;
+		break;
+	}
 }
 
 SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft/* = true*/)
 {
+	health = 1;
 	Active = true;
+	std::cout << "Spawning me" << std::endl;
 
 	if (startingLeft)
 	{
