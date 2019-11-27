@@ -2,6 +2,10 @@
 #include <AbstractFactory.h>
 
 #include "Enemy.h"
+#include "FollowingEnemy.h"
+#include "SmallEnemy.h"
+
+#include <iostream>
 
 namespace FG
 {
@@ -17,4 +21,27 @@ namespace FG
 		virtual Entity* CreateEntity() { return new Enemy(spriteManager); }
 	};
 
+	class FollowingEnemyFactory : public AFactory
+	{
+	public:
+		FollowingEnemyFactory() {}
+		FollowingEnemyFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~FollowingEnemyFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity() { return new FollowingEnemy(spriteManager); }
+	};
+
+	class SmallEnemyFactory : public AFactory
+	{
+	public:
+		SmallEnemyFactory() {}
+		SmallEnemyFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~SmallEnemyFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity() { return new SmallEnemy(spriteManager); }
+	};
 }

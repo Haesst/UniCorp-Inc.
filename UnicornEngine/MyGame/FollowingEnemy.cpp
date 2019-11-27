@@ -1,6 +1,8 @@
 #include "FollowingEnemy.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
+#include "Player.h"
+#include "UI.h"
 
 #include <SpriteManager.h>
 #include <EntityManager.h>
@@ -15,14 +17,16 @@ void FollowingEnemy::onCollision(Tag tagau)
 
 		if (health <= 0)
 		{
-			MusicManager::Instance()->PlaySound("EnemyExplosion");
-			Active = false;
+			EnemyDies();
 		}
 	}
 }
 
 FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef)
 {
+	health = 2;
+	score = 20;
+	Active = true;
 	timeBetweenShots = 1.1f;
 	position.x = 10.0f;
 	position.y = 50.0f;
@@ -78,6 +82,15 @@ void FollowingEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
+}
+
+void FollowingEnemy::EnemyDies()
+{
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+	player->AddToScore(score);
+	UI::Instance()->UpdateScore();
+	SoundManager::Instance()->PlaySound("EnemyExplosion");
+	Active = false;
 }

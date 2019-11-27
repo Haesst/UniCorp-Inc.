@@ -32,13 +32,20 @@ public:
 private:
 	void MoveEnemy(float deltaTime);
 	//FG::Vector2D position;
-	FG::SpriteManager* spriteManager;
 	EnemyState* enemyState = nullptr;
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;
-	void EnemyDies();
 protected:
+	virtual void EnemyDies();
+
+protected:
+	FG::SpriteManager* spriteManager;
+
 	float timeBetweenShots = 1.6f;
 	float currentShotTime = timeBetweenShots;
+
+	int health = 1;
+	int score = 10;
+
 };

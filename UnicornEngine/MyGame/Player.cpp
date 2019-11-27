@@ -7,7 +7,7 @@
 #include <Camera.h>
 #include <Collider.h>
 #include <EntityManager.h>
-#include "MusicManager.h"
+#include "SoundManager.h"
 
 #include <iostream>
 #include <memory>
@@ -41,7 +41,7 @@ void Player::Update(float deltaTime)
 		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
 		projectile->Active = true;
 		FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
-		MusicManager::Instance()->PlaySound("PlayerShot");
+		SoundManager::Instance()->PlaySound("PlayerShot");
 		currentShotTimer = timeBetweenShots;
 	}
 
@@ -74,6 +74,11 @@ void Player::Render(FG::Camera* const camera)
 	spriteManager->DebugDraw(myCollider->square);
 }
 
+void Player::AddToScore(int score)
+{
+	this->score += score;
+}
+
 void Player::MovePlayer(float deltaTime)
 {
 	FG::Vector2D movement;
@@ -95,15 +100,47 @@ void Player::MovePlayer(float deltaTime)
 	{
 		movement.y += 1.0f;
 	}
+<<<<<<< HEAD
 	if(movement.y != 0 || movement.x != 0)
 		position += movement.Normalized() * movementSpeed * deltaTime;
+=======
+
+	FG::Vector2D newPosition = position + (movement * movementSpeed * deltaTime);
+
+	// Todo: Remove magic numbers and define screen size somewhere
+
+	int height;
+	int width;
+
+	SDL_GetWindowSize(camera->GetWindow()->GetInternalWindow(), &width, &height);
+
+	if (newPosition.x < 0)
+	{
+		newPosition.x = 0;
+	}
+	else if (newPosition.x > width - rect.w)
+	{
+		newPosition.x = width - rect.w;
+	}
+
+	if (newPosition.y < 0)
+	{
+		newPosition.y = 0;
+	}
+	else if (newPosition.y > height - rect.h - 100)
+	{
+		newPosition.y = height - rect.h - 100;
+	}
+
+	position = newPosition;
+>>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 }
 
 void Player::onCollision(Tag tagau)
 {
 		switch (tagau)
 		{
-		
+		case EnemyBulletau:
+			lifes--;
 		}
-	
 }

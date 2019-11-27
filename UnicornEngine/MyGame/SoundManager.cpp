@@ -1,21 +1,21 @@
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include <iostream>
 
-MusicManager::MusicManager()
+SoundManager::SoundManager()
 { 
 	//Initialize SDL_mixer
 	Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
 }
 
 
-MusicManager* MusicManager::Instance()
+SoundManager* SoundManager::Instance()
 {
-	static MusicManager* instance = new MusicManager();
+	static SoundManager* instance = new SoundManager();
 
 	return instance;
 }
 
-MusicManager::~MusicManager()
+SoundManager::~SoundManager()
 {
 	for (auto song : music)
 	{
@@ -30,7 +30,7 @@ MusicManager::~MusicManager()
 	Mix_CloseAudio();
 }
 
-void MusicManager::PlayMusic(const char* name)
+void SoundManager::PlayMusic(const char* name)
 {
 	if (music.find(name) != music.end())
 	{
@@ -38,7 +38,7 @@ void MusicManager::PlayMusic(const char* name)
 	}
 }
 
-void MusicManager::AddMusic(const char* path, const char* name)
+void SoundManager::AddMusic(const char* path, const char* name)
 {
 	Mix_Music* musicFile = Mix_LoadMUS(path);
 
@@ -48,7 +48,7 @@ void MusicManager::AddMusic(const char* path, const char* name)
 	}
 }
 
-void MusicManager::PlaySound(const char* name)
+void SoundManager::PlaySound(const char* name)
 {
 	if (soundEffects.find(name) != soundEffects.end())
 	{
@@ -56,7 +56,7 @@ void MusicManager::PlaySound(const char* name)
 	}
 }
 
-void MusicManager::AddSound(const char* path, const char* name)
+void SoundManager::AddSound(const char* path, const char* name)
 {
 	Mix_Chunk* soundFile = Mix_LoadWAV(path);
 

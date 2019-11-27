@@ -170,4 +170,9 @@ namespace FG
 		assert(returnVal != nullptr);
 		return returnVal;
 	}
+
+	void EntityManager::ClearEntities()
+	{
+		entities.clear();
+	}
 }

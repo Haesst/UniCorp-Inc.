@@ -65,7 +65,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2_mixer\include\;$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)FGEngine;$(SolutionDir)Third Party\SDL2_Image\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2_ttf\include\;$(SolutionDir)Third Party\SDL2_mixer\include\;$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)FGEngine;$(SolutionDir)Third Party\SDL2_Image\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -84,7 +84,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)FGEngine;$(SolutionDir)Third Party\SDL2_Image\include\;$(SolutionDir)UnicornEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)Third Party\SDL2_mixer\include\;$(SolutionDir)Third Party\SDL2_Image\include\;$(SolutionDir)FGEngine;$(SolutionDir)UnicornEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,7 +101,7 @@
     <ClCompile Include="FollowingEnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
-    <ClCompile Include="MusicManager.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -121,7 +121,7 @@
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
-    <ClInclude Include="MusicManager.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />

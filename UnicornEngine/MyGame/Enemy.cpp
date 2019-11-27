@@ -1,8 +1,10 @@
 #include "Enemy.h"
 #include "Config.h"
 #include "EnemyState.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
+#include "Player.h"
+#include "UI.h";
 
 #include <SpriteManager.h>
 #include <EntityManager.h>
@@ -23,7 +25,10 @@ void Enemy::onCollision(Tag tagau)
 
 void Enemy::EnemyDies()
 {
-	MusicManager::Instance()->PlaySound("EnemyExplosion");
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+	player->AddToScore(score);
+	UI::Instance()->UpdateScore();
+	SoundManager::Instance()->PlaySound("EnemyExplosion");
 	Active = false;
 }
 
@@ -94,6 +99,6 @@ void Enemy::Shoot()
 	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x + 15.0f, position.y + 40.0f), spriteManager, Projectile::BulletType::EnemyBullet);
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 }

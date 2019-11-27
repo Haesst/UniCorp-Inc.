@@ -1,17 +1,31 @@
 #include "SmallEnemy.h"
 #include "FSMState.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
+#include "Player.h"
+#include "UI.h"
 
 #include <SpriteManager.h>
 #include <EntityManager.h>
 
+#include <iostream>
+
 void SmallEnemy::onCollision(Tag tagau)
 {
+	switch (tagau)
+	{
+	case PlayerBulletau:
+		EnemyDies();
+		break;
+	}
 }
 
 SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft/* = true*/)
 {
+	score = 15;
+	health = 1;
+	Active = true;
+	std::cout << "Spawning me" << std::endl;
 
 	if (startingLeft)
 	{
@@ -79,7 +93,7 @@ void SmallEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 	shotsToFire--;
 }
@@ -102,4 +116,13 @@ void SmallEnemy::ChangeState(FSMState<SmallEnemy>* state)
 int SmallEnemy::ShotsToFire()
 {
 	return shotsToFire;
+}
+
+void SmallEnemy::EnemyDies()
+{
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+	player->AddToScore(score);
+	UI::Instance()->UpdateScore();
+	SoundManager::Instance()->PlaySound("EnemyExplosion");
+	Active = false;
 }
