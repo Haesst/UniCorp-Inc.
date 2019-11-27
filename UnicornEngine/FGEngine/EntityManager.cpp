@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "CollisionManager.h"
 #include "FactoryManager.h"
+#include <cassert>
 
 namespace FG
 {
@@ -70,7 +71,7 @@ namespace FG
 		it->second.push_back(entity);
 	}
 
-	void EntityManager::AddEntity(const std::string& Tag)
+	void EntityManager::AddEntity(const std::string& Tag, Vector2D position)
 	{
 		auto it = entities.find(Tag);
 		if (it == entities.end())
@@ -78,7 +79,7 @@ namespace FG
 			entities.insert({ Tag, std::vector<Entity*>() }); //insert takes two values //{} a set of values
 			it = entities.find(Tag);
 		}
-		it->second.push_back(factoryManager->RunFactory(Tag));
+		it->second.push_back(factoryManager->RunFactory(Tag, position));
 
 		std::cout << Tag << " list contains #" << it->second.size() << " items." << std::endl;
 	}
@@ -133,18 +134,19 @@ namespace FG
 		}
 	}
 
-	FG::Entity* EntityManager::GetObject(const std::string& Tag)
+	FG::Entity* EntityManager::GetObject(const std::string& Tag, Vector2D position)
 	{
+		FG::Entity* returnVal = nullptr;
 		auto it = entities.find(Tag);
 		if (it == entities.end())
 		{
-			AddEntity(Tag);
+			AddEntity(Tag, position);
 			it = entities.find(Tag);
 		}
 
 		if (it->second.empty())
 		{
-			it->second.push_back(factoryManager->RunFactory(Tag));
+			it->second.push_back(factoryManager->RunFactory(Tag, position));
 		}
 
 		for (size_t i = 0; i < it->second.size(); i++)
@@ -152,15 +154,19 @@ namespace FG
 			if (!it->second[i]->Active)
 			{
 				//it->second[i]->Active = true;
-				return it->second[i];
+				returnVal = it->second[i];
+				break;
 				//Entity* GiveMeAnObject = factoryManager->RunFactory(Tag);
 				//return GiveMeAnObject;
 			}
 			else if (i == it->second.size())
 			{
-				it->second.push_back(factoryManager->RunFactory(Tag));
+				it->second.push_back(factoryManager->RunFactory(Tag, position));
+				returnVal = it->second[it->second.size() - 1];
 			}
 		}
+		assert(returnVal != nullptr);
+		return returnVal;
 	}
 
 	void EntityManager::ClearEntities()

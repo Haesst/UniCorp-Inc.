@@ -1,5 +1,6 @@
 #include "FactoryManager.h"
 #include "AbstractFactory.h"
+#include "Vector2D.h"
 FG::FactoryManager::FactoryManager()
 {
 	
@@ -23,7 +24,7 @@ void FG::FactoryManager::AddFactory(const std::string& Namae, AFactory* factory)
 	}
 }
 
-FG::Entity* FG::FactoryManager::RunFactory(const std::string& Namae)
+FG::Entity* FG::FactoryManager::RunFactory(const std::string& Namae, Vector2D position)
 {
 	auto it = factories.find(Namae);
 	if (it == factories.end())

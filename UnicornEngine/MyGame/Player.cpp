@@ -46,7 +46,7 @@ void Player::Update(float deltaTime)
 
 	if (inputManager->IsKeyDown(SDL_SCANCODE_RCTRL))
 	{
-		FG::EntityManager::Instance()->AddEntity("Enemy");
+		FG::EntityManager::Instance()->AddEntity("Enemy", position);
 	}
 
 	rect = {(int)position.x, (int)position.y, 33, 40 };

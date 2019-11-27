@@ -10,6 +10,7 @@
 #include <CollisionManager.h>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <Vector2D.h>
 
 #include "Player.h"
 #include "Background.h"
@@ -96,37 +97,8 @@ void GameApplication::Run()
 
 		if (currentTime <= 0.0f)
 		{
-			int i;
-			int n = 3;
-			std::string temp = enemyTypes[0];
-			for (i = 0; i < n - 1; i++)
-			{
-				enemyTypes[i] = enemyTypes[i + 1];
-			}
-			enemyTypes[n - 1] = temp;
-			FG::EntityManager::Instance()->AddEntity(enemyTypes[0]);
+			SpawnWave(enemyTypes, timeBetweenSpawn);
 			currentTime = timeBetweenSpawn;
-			std::cout << "spawning from list:" + enemyTypes[0] << std::endl;
-		}
-
-
-		if (currentTime <= 0.0f)
-		{
-			FG::EntityManager::Instance()->AddEntity("Enemy");
-			currentTime = timeBetweenSpawn;
-		}
-
-		if (currentTime2 <= 0.0f)
-		{
-			FG::EntityManager::Instance()->AddEntity("FollowingEnemy");
-			currentTime2 = timeBetweenSpawn2;
-		}
-
-		if (currentTime3 <= 0.0f)
-		{
-			std::cout << "Small enemy incoming" << std::endl;
-			FG::EntityManager::Instance()->AddEntity("SmallEnemy");
-			currentTime3 = timeBetweenSpawn3;
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -210,7 +182,7 @@ void GameApplication::CreateEnemies()
 {
 	for (int i = 0; i < 5; i++)
 	{
-		FG::EntityManager::Instance()->AddEntity("Enemy");
+		//FG::EntityManager::Instance()->AddEntity("Enemy",);
 	}
 }
 
@@ -254,4 +226,22 @@ void GameApplication::CreatePlayer()
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
 	player->lives = 3;
+}
+
+void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency)
+{ //Not working as intended! Enemies still spawn in pos 0,0 :(
+	int i;
+	int n = 3;
+	std::string temp = enemyTypes[0];
+	for (i = 0; i < n - 1; i++)
+	{
+		enemyTypes[i] = enemyTypes[i + 1];
+	}
+	enemyTypes[n - 1] = temp;
+	FG::Vector2D position = {};
+	position.x = 100.0f;
+	position.y = 250.0f;
+	FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
+	std::cout << "spawning from list:" + enemyTypes[0] << std::endl;
+
 }

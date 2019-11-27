@@ -21,14 +21,14 @@ void FollowingEnemy::onCollision(Tag tagau)
 	}
 }
 
-FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef)
+FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D takenpos)
 {
 	health = 2;
 	Active = true;
 	timeBetweenShots = 1.1f;
-	position.x = 10.0f;
-	position.y = 50.0f;
 	spriteManager = spriteManagerRef;
+	position.x = takenpos.x;
+	position.y = takenpos.y;
 
 	sprite = spriteManager->CreateSprite("../TestingAssets/FollowingEnemy.png", 1, 1, 37, 33);
 

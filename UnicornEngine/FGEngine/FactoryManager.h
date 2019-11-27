@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string.h>
 #include <map>
+#include "Vector2D.h"
 /*
 User story <3
 map, to know the factories
@@ -27,7 +28,7 @@ namespace FG
 		std::map<std::string, AFactory*> factories;
 
 		void AddFactory(const std::string& Namae, AFactory* factory);
-		Entity* RunFactory(const std::string& Namae);
+		Entity* RunFactory(const std::string& Namae, Vector2D position);
 
 	};
 

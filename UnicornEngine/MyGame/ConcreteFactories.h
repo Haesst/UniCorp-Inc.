@@ -1,11 +1,11 @@
 #pragma once
 #include <AbstractFactory.h>
+#include <Vector2D.h>
 
 #include "Enemy.h"
 #include "FollowingEnemy.h"
 #include "SmallEnemy.h"
 
-#include <iostream>
 
 namespace FG
 {
@@ -17,8 +17,9 @@ namespace FG
 		~EnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
+		Vector2D position;
 
-		virtual Entity* CreateEntity() { return new Enemy(spriteManager); }
+		virtual Entity* CreateEntity() { return new Enemy(spriteManager, position); }
 	};
 
 	class FollowingEnemyFactory : public AFactory
@@ -29,8 +30,9 @@ namespace FG
 		~FollowingEnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
+		Vector2D position;
 
-		virtual Entity* CreateEntity() { return new FollowingEnemy(spriteManager); }
+		virtual Entity* CreateEntity() { return new FollowingEnemy(spriteManager, position); }
 	};
 
 	class SmallEnemyFactory : public AFactory
@@ -41,7 +43,8 @@ namespace FG
 		~SmallEnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
+		Vector2D position;
 
-		virtual Entity* CreateEntity() { return new SmallEnemy(spriteManager); }
+		virtual Entity* CreateEntity() { return new SmallEnemy(spriteManager, position); }
 	};
 }

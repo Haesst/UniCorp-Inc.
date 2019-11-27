@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "CollisionManager.h"
+#include "Vector2D.h"
 
 #include <map>
 #include <string>
@@ -41,11 +42,11 @@ namespace FG
 		void Update(float deltaTime);
 		void Render(Camera* camera);
 		void AddEntity(Entity* entity, const std::string& Tag);
-		void AddEntity(const std::string& Tag);
+		void AddEntity(const std::string& Tag, Vector2D position);
 		void CheckEntitiesCollision();
 		void ClearEntities();
 		Entity* GetPlayer();
-		Entity* GetObject(const std::string& Tag);
+		Entity* GetObject(const std::string& Tag, Vector2D position);
 
 		CollisionManager* collisionManager = nullptr;
 		FactoryManager* factoryManager = nullptr;

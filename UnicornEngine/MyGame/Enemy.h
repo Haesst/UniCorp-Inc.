@@ -17,7 +17,7 @@ class Enemy : public FG::Entity
 {
 public:
 	Enemy();
-	Enemy(FG::SpriteManager* spriteManagerRef);
+	Enemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position);
 	~Enemy();
 
 	virtual void Update(float deltaTime) override; //*?

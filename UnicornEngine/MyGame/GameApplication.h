@@ -3,6 +3,7 @@
 #include <Application.h>
 #include <Time.h>
 #include <SDL_image.h>
+#include <string>
 
 namespace FG
 {
@@ -39,6 +40,7 @@ private:
 	void CreateFactories();
 	void CreateBackground();
 	void CreatePlayer();
+	void SpawnWave(std::string enemyTypes[], float spawnFrequency);
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;

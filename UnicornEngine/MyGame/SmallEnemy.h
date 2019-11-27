@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 #include "SmallEnemyState.h"
+#include <Vector2D.h>
 
 class SmallEnemy : public Enemy
 {
@@ -23,7 +24,7 @@ private:
 
 public:
 
-	SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft = true);
+	SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position, bool startingLeft = true);
 
 	void Update(float deltaTime) override;
 	void Render(FG::Camera* const camera) override;

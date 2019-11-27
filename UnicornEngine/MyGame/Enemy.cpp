@@ -8,6 +8,7 @@
 #include <EntityManager.h>
 #include <Collider.h>
 #include <iostream>
+#include <Vector2D.h>
 
 Enemy::Enemy() {}
 
@@ -32,10 +33,13 @@ float Enemy::GetCurrentShotTime()
 	return currentShotTime;
 }
 
-Enemy::Enemy(FG::SpriteManager* spriteManagerRef)
+Enemy::Enemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 {
-	position.x = 10.0f;
-	position.y = 50.0f;
+	std::cout << "(Enemy: Enemy) My position is: ";
+	std::cout << position.x;
+	std::cout << " + ";
+	std::cout << position.y << std::endl;
+
 	Active = true;
 	spriteManager = spriteManagerRef;
 

@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 #include "FollowingEnemyState.h";
+#include <Vector2D.h>
 
 
 class FollowingEnemy : public Enemy
@@ -15,7 +16,7 @@ private:
 
 public:
 
-	FollowingEnemy(FG::SpriteManager* spriteManagerRef);
+	FollowingEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position);
 
 	void Update(float deltaTime) override;
 	void Render(FG::Camera* const camera) override;

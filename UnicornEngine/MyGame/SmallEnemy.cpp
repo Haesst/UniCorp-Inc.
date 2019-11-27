@@ -18,7 +18,7 @@ void SmallEnemy::onCollision(Tag tagau)
 	}
 }
 
-SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft/* = true*/)
+SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position, bool startingLeft/* = true*/)
 {
 	health = 1;
 	Active = true;
@@ -35,7 +35,6 @@ SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, bool startingLeft/* 
 		goingRight = false;
 	}
 
-	position.y = 50.0f;
 	spriteManager = spriteManagerRef;
 
 	sprite = spriteManager->CreateSprite("../TestingAssets/SmallEnemy.png", 1, 1, 37, 33);
