@@ -24,4 +24,6 @@ public:
 	float GetCurrentShotTime() override;
 	void Shoot() override;
 
+protected:
+	void EnemyDies() override;
 };
