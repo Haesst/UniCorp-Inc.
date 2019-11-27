@@ -1,7 +1,7 @@
 #include "SpiralEnemy.h"
 #include <SpriteManager.h>
 #include <iostream>
-#include "MusicManager.h"
+#include "SoundManager.h"
 
 
 SpiralEnemy::SpiralEnemy()
@@ -63,6 +63,6 @@ void SpiralEnemy::onCollision(Tag tagau)
 
 void SpiralEnemy::EnemyDies()
 {
-	MusicManager::Instance()->PlaySound("EnemyExplosion");
+	SoundManager::Instance()->PlaySound("EnemyExplosion");
 	Active = false;
 }

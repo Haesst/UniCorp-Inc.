@@ -36,9 +36,7 @@ private:
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;
-protected:
-	virtual void EnemyDies();
-
+	void EnemyDies();
 protected:
 	FG::SpriteManager* spriteManager;
 

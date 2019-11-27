@@ -23,9 +23,6 @@ public:
 	int LifesLeft() { return lifes; }
 	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
 
-	int GetScore() { return score; }
-	void AddToScore(int score);
-
 private:
 	Player() {}
 
@@ -41,7 +38,6 @@ private:
 	float currentShotTimer = 0.0f;
 
 	int lifes = 3;
-	int score = 0;
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;

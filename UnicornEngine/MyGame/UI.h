@@ -2,27 +2,17 @@
 
 #include <Entity.h>
 #include <SpriteManager.h>
-#include <SDL_ttf.h>
 
 namespace FG
 {
 	class Camera;
-	class Sprite;
 }
-class Player;
 
-class UI
+
+class UI : public FG::Entity
 {
 private:
 	FG::SpriteManager* spriteManager;
-	SDL_Renderer* renderer;
-	SDL_Window* window;
-
-	SDL_Rect playerScoreRect;
-	SDL_Surface* playerScoreSurface = nullptr;
-	TTF_Font* scoreFont = nullptr;
-	SDL_Texture* scoreTexture = nullptr;
-	FG::Sprite* playerScoreSprite = nullptr;
 
 	SDL_Rect pilotPortraitRect;
 	FG::Sprite* pilotPortraitStage1 = nullptr;
@@ -32,22 +22,17 @@ private:
 	SDL_Rect heartRect;
 	FG::Sprite* heart = nullptr;
 
-	Player* player;
-
-
 public:
-	UI();
+	UI(const char* element, FG::SpriteManager* spritemanager);
 	~UI();
 
-	void Update(float deltatime);
-	void Render(FG::Camera* const camera);
+	void Update(float deltatime) override;
+	void Render(FG::Camera* const camera) override;
 
-	static UI* Instance();
-	void Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SDL_Window* window);
-	void UpdateScore();
+	virtual void onCollision(Tag tagau) override { return; };
 
 private:
+	void UpdateScore(float deltaTime);
 	void DrawPortrait();
 	void DrawHearts();
-	void DrawScore();
 };
