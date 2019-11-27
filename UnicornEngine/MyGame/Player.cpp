@@ -54,6 +54,8 @@ void Player::Update(float deltaTime)
 	rect = {(int)position.x, (int)position.y, 33, 40 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+	myCollider->square.w = 33;
+	myCollider->square.h = 40;
 	UpdateCollider();
 	playerState->Update();
 	
