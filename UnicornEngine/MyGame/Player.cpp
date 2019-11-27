@@ -101,10 +101,6 @@ void Player::MovePlayer(float deltaTime)
 	{
 		movement.y += 1.0f;
 	}
-<<<<<<< HEAD
-	if(movement.y != 0 || movement.x != 0)
-		position += movement.Normalized() * movementSpeed * deltaTime;
-=======
 
 	FG::Vector2D newPosition = position;
 
@@ -138,7 +134,6 @@ void Player::MovePlayer(float deltaTime)
 	}
 
 	position = newPosition;
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 }
 
 void Player::onCollision(Tag tagau)

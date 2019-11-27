@@ -22,12 +22,9 @@ class Enemy;
 class UI;
 class Background;
 class SDL_Texture;
-<<<<<<< HEAD
 class MusicManager;
 class SpiralFormation;
-=======
 class SoundManager;
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 
 class GameApplication : public FG::Application
 {
@@ -64,17 +61,14 @@ private:
 	Background* backgroundSmallStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
-<<<<<<< HEAD
 	SpiralFormation* spiralFormation = nullptr;
 
 	// THEO
 	float spawnSpiralRate = 1 / 4.f;
 	float spawnSpiralTimer = 0.f;
-=======
 
 	static const int height = 900;
 	static const int width = 640;
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 };
 
 FG::Application* FG::CreateApplication()

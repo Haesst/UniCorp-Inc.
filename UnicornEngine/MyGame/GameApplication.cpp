@@ -12,14 +12,11 @@
 #include <SDL_image.h>
 
 #include "Player.h"
-<<<<<<< HEAD
 #include "Enemy.h"
 #include "FollowingEnemy.h"
 #include "SmallEnemy.h"
 #include "SpiralFormation.h"
 
-=======
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -70,11 +67,10 @@ bool GameApplication::Initialize()
 
 	collisionManager = new FG::CollisionManager();
 
-<<<<<<< HEAD
 	//entityManager = new FG::EntityManager(collisionManager, factoryManager);
 
-	ui = new UI("UI", spriteManager);
-	FG::EntityManager::Instance()->AddEntity(ui, "UI");
+	/*ui = new UI("UI", spriteManager);
+	FG::EntityManager::Instance()->AddEntity(ui, "UI");*/
 
 	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
 	backgroundBigStars = new Background("../TestingAssets/ParallaxBigStars.png", spriteManager, 4);
@@ -113,12 +109,10 @@ bool GameApplication::Initialize()
 	/*entityManager->AddEntity("Enemy");*/
 
 	//CreateEnemies();
-=======
 	CreateBackground();
 	CreatePlayer();
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 
 	spiralFormation = new SpiralFormation(spriteManager);
 
@@ -176,7 +170,6 @@ void GameApplication::Run()
 			currentTime2 = timeBetweenSpawn2;
 		}
 
-<<<<<<< HEAD
 		// THEO
 		if (spiralFormation->enemyNum > 0) {
 			if (spawnSpiralTimer > spawnSpiralRate) {
@@ -185,13 +178,11 @@ void GameApplication::Run()
 				spawnSpiralTimer -= spawnSpiralRate;
 			}
 			spawnSpiralTimer += time.DeltaTime();
-=======
 		if (currentTime3 <= 0.0f)
 		{
 			std::cout << "Small enemy incoming" << std::endl;
 			FG::EntityManager::Instance()->AddEntity("SmallEnemy");
 			currentTime3 = timeBetweenSpawn3;
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -228,7 +219,6 @@ void GameApplication::Run()
 		}
 
 	}
-}
 
 void GameApplication::Shutdown()
 {
@@ -327,4 +317,5 @@ void GameApplication::CreatePlayer()
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
 	player->LifesLeft(3);
+}
 }
