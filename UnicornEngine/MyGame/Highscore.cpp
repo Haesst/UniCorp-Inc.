@@ -1,17 +1,20 @@
 #include "Highscore.h"
 #include "Player.h"
+#include "UI.h"
 
-void AddToFile()
+#include <EntityManager.h>
+
+
+void Highscore::AddToFile(Player* player, std::string name)
 {
-	int newScore;
-	std::string newName = "WIZARDKING";
 
-	newScore = rand() % 10000 + 100;
+	int newScore = player->GetScore();
+	std::string newName = name;
 
 	std::ifstream file("highscore.txt");
 	std::ofstream output_file("tempfile.txt");
 
-	std::cout << "New Higscore is: "; std::cout << newScore << std::endl;
+	std::cout << "New Highscore is: "; std::cout << newScore << std::endl;
 	std::string newScoreString = std::to_string(newScore);
 
 

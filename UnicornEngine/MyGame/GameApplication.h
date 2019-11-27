@@ -24,6 +24,7 @@ class UI;
 class Background;
 class SDL_Texture;
 class SoundManager;
+class Highscore;
 
 class GameApplication : public FG::Application
 {
@@ -61,6 +62,7 @@ private:
 	Background* backgroundSmallStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
+	Highscore* highscoreManager = nullptr;
 
 	static const int height = 900;
 	static const int width = 640;

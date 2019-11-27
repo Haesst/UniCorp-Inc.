@@ -18,7 +18,7 @@
 #include "FactoryManager.h"
 #include "UI.h"
 #include "SoundManager.h"
-
+#include "Highscore.h"
 #include "Entity.h"
 
 bool GameApplication::Initialize()
@@ -62,6 +62,8 @@ bool GameApplication::Initialize()
 	inputManager->Initialize();
 
 	collisionManager = new FG::CollisionManager();
+
+	highscoreManager = new Highscore();
 
 	CreateBackground();
 	CreatePlayer();
@@ -118,8 +120,11 @@ void GameApplication::Run()
 		{
 			//Todo: Add Game over screen w. scores here
 			std::string x;
-			std::cout << "You have been killed! Game over. Press any key to continue." << std::endl;
+			std::cout << "You have been killed! Game over." << std::endl;
+			std::cout << "Enter your name to see if you got a highscore!" << std::endl;
 			std::cin >> x;
+
+			highscoreManager->AddToFile(player, x);
 
 			if (!x.empty())
 			{

@@ -97,8 +97,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2_mixer.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Third Party\SDL2\libs;$(SolutionDir)Third Party\SDL2_Image\libs;$(SolutionDir)Third Party\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2_mixer.lib;SDL2_ttf.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Third Party\SDL2\libs;$(SolutionDir)Third Party\SDL2_Image\libs;$(SolutionDir)Third Party\SDL2_mixer\lib\x64;$(SolutionDir)Third Party\SDL2_ttf\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
