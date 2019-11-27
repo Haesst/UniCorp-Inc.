@@ -73,6 +73,11 @@ void Player::Render(FG::Camera* const camera)
 	spriteManager->DebugDraw(myCollider->square);
 }
 
+void Player::AddToScore(int score)
+{
+	this->score += score;
+}
+
 void Player::MovePlayer(float deltaTime)
 {
 	FG::Vector2D movement;

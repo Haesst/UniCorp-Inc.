@@ -62,11 +62,11 @@ bool GameApplication::Initialize()
 
 	collisionManager = new FG::CollisionManager();
 
-	ui = new UI("UI", spriteManager);
-	FG::EntityManager::Instance()->AddEntity(ui, "UI");
-
 	CreateBackground();
 	CreatePlayer();
+
+	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
+
 
 	return true;
 }
@@ -136,6 +136,7 @@ void GameApplication::Run()
 		camera->StartRenderFrame();
 		// Render every entity
 		FG::EntityManager::Instance()->Render(camera);
+		UI::Instance()->Render(camera);
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
 		// End the timer
@@ -158,8 +159,6 @@ void GameApplication::Run()
 				{
 					delete ui;
 				}
-				ui = new UI("", spriteManager);
-				FG::EntityManager::Instance()->AddEntity(ui, "UI");
 				Run();
 			}
 			//quit = true;

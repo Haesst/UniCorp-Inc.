@@ -36,4 +36,7 @@ public:
 
 	void ChangeState(FSMState<SmallEnemy>* state);
 	int ShotsToFire();
+
+protected:
+	virtual void EnemyDies() override;
 };

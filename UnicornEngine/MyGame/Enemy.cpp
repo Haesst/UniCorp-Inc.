@@ -3,6 +3,8 @@
 #include "EnemyState.h"
 #include "SoundManager.h"
 #include "Projectile.h"
+#include "Player.h"
+#include "UI.h";
 
 #include <SpriteManager.h>
 #include <EntityManager.h>
@@ -23,6 +25,9 @@ void Enemy::onCollision(Tag tagau)
 
 void Enemy::EnemyDies()
 {
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+	player->AddToScore(score);
+	UI::Instance()->UpdateScore();
 	SoundManager::Instance()->PlaySound("EnemyExplosion");
 	Active = false;
 }
