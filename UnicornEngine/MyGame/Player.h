@@ -20,6 +20,8 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Render(FG::Camera* const camera) override;
 
+	int LifesLeft() { return lifes; }
+
 private:
 	Player() {}
 
@@ -33,6 +35,8 @@ private:
 
 	float timeBetweenShots = 0.3f;
 	float currentShotTimer = 0.0f;
+
+	int lifes = 3;
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;

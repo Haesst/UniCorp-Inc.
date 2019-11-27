@@ -11,6 +11,15 @@ namespace FG
 
 class UI : public FG::Entity
 {
+private:
+	FG::SpriteManager* spriteManager;
+
+	SDL_Rect pilotPortraitRect;
+	FG::Sprite* pilotPortrait = nullptr;
+
+	SDL_Rect heartRect;
+	FG::Sprite* heart = nullptr;
+
 public:
 	UI(const char* element, FG::SpriteManager* spritemanager);
 	~UI();
@@ -22,5 +31,5 @@ public:
 
 private:
 	void UpdateScore(float deltaTime);
-	FG::SpriteManager* spriteManager;
+	void DrawHearts();
 };

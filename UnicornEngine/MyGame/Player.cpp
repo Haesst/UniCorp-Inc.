@@ -117,9 +117,9 @@ void Player::MovePlayer(float deltaTime)
 	{
 		newPosition.y = 0;
 	}
-	else if (newPosition.y > height - rect.h)
+	else if (newPosition.y > height - rect.h - 100)
 	{
-		newPosition.y = height - rect.h;
+		newPosition.y = height - rect.h - 100;
 	}
 
 	position = newPosition;
@@ -129,6 +129,7 @@ void Player::onCollision(Tag tagau)
 {
 		switch (tagau)
 		{
-		
+		case EnemyBulletau:
+			lifes--;
 		}
 }
