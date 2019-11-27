@@ -113,7 +113,7 @@ void GameApplication::Run()
 		// End the timer
 		time.EndFrame();
 
-		if (player->lives <= 0)
+		if (player->LifesLeft() <= 0)
 		{
 			//Todo: Add Game over screen w. scores here
 			std::string x;
@@ -122,10 +122,16 @@ void GameApplication::Run()
 
 			if (!x.empty())
 			{
-				player->lives = 3;
+				player->LifesLeft(3);
 				FG::EntityManager::Instance()->ClearEntities();
 				CreateBackground();
 				CreatePlayer();
+				if (ui)
+				{
+					delete ui;
+				}
+				ui = new UI("", spriteManager);
+				FG::EntityManager::Instance()->AddEntity(ui, "UI");
 				Run();
 			}
 			//quit = true;
@@ -225,7 +231,7 @@ void GameApplication::CreatePlayer()
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
-	player->lives = 3;
+	player->LifesLeft(3);
 }
 
 void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency)

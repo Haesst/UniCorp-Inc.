@@ -20,6 +20,9 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Render(FG::Camera* const camera) override;
 
+	int LifesLeft() { return lifes; }
+	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
+
 private:
 	Player() {}
 

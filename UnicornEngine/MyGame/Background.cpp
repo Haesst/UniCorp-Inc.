@@ -23,8 +23,8 @@ void Background::Update(float deltaTime)
 	{
 		position.y = 0.0f;
 	}
-	rect = { (int)position.x, (int)position.y, 600, 1600 };
-	secondImage = { (int)position.x, (int)position.y - 1600, 600, 1600 };
+	rect = { (int)position.x, (int)position.y, 700, 1600 };
+	secondImage = { (int)position.x, (int)position.y - 1600, 700, 1600 };
 }
 
 void Background::Render(FG::Camera* const camera)
