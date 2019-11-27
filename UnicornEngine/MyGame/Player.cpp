@@ -95,7 +95,34 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	position += movement * movementSpeed * deltaTime;
+	FG::Vector2D newPosition = position + (movement * movementSpeed * deltaTime);
+
+	// Todo: Remove magic numbers and define screen size somewhere
+
+	int height;
+	int width;
+
+	SDL_GetWindowSize(camera->GetWindow()->GetInternalWindow(), &width, &height);
+
+	if (newPosition.x < 0)
+	{
+		newPosition.x = 0;
+	}
+	else if (newPosition.x > width - rect.w)
+	{
+		newPosition.x = width - rect.w;
+	}
+
+	if (newPosition.y < 0)
+	{
+		newPosition.y = 0;
+	}
+	else if (newPosition.y > height - rect.h)
+	{
+		newPosition.y = height - rect.h;
+	}
+
+	position = newPosition;
 }
 
 void Player::onCollision(Tag tagau)
@@ -104,5 +131,4 @@ void Player::onCollision(Tag tagau)
 		{
 		
 		}
-	
 }

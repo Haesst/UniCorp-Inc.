@@ -36,7 +36,7 @@ bool GameApplication::Initialize()
 
 	// Create a window
 	window = new FG::Window();
-	if (!window->Initialize("UniCorp, Inc.", 600, 900))
+	if (!window->Initialize("UniCorp, Inc.", width, height))
 	{
 		FG::Logger::Log(SDL_GetError(), FG::Logger::RemovePathFromFile(__FILE__), __LINE__);
 		return false;

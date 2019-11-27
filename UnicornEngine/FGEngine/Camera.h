@@ -24,6 +24,7 @@ namespace FG
 		SDL_Color GetColor();
 
 		SDL_Renderer* GetInternalRenderer() const { return renderer; };
+		Window* GetWindow() const { return ownerWindow; }
 
 	protected:
 		Window* ownerWindow = nullptr;

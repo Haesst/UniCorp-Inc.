@@ -31,6 +31,9 @@ public:
 	virtual void Run() override;
 	virtual void Shutdown() override;
 	void CreateEnemies();
+
+	static const int GetWindowHeight() { return height; }
+	static const int GetWindowWidth() { return width; }
 private:
 	void InitializeSounds();
 	void CreateFactories();
@@ -56,6 +59,9 @@ private:
 	Background* backgroundSmallStars = nullptr;
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
+
+	static const int height = 900;
+	static const int width = 640;
 };
 
 FG::Application* FG::CreateApplication()
