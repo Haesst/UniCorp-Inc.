@@ -3,6 +3,8 @@
 #include "CollisionManager.h"
 #include "FactoryManager.h"
 
+#include <cassert>
+
 namespace FG
 {
 	EntityManager::EntityManager()
@@ -135,6 +137,7 @@ namespace FG
 
 	FG::Entity* EntityManager::GetObject(const std::string& Tag)
 	{
+		FG::Entity* returnVal = nullptr;
 		auto it = entities.find(Tag);
 		if (it == entities.end())
 		{
@@ -152,14 +155,19 @@ namespace FG
 			if (!it->second[i]->Active)
 			{
 				//it->second[i]->Active = true;
-				return it->second[i];
+				returnVal = it->second[i];
+				break;
 				//Entity* GiveMeAnObject = factoryManager->RunFactory(Tag);
 				//return GiveMeAnObject;
 			}
-			else if (i == it->second.size())
-			{
-				it->second.push_back(factoryManager->RunFactory(Tag));
-			}
 		}
+
+		if (returnVal == nullptr)
+		{
+			it->second.push_back(factoryManager->RunFactory(Tag));
+			returnVal = it->second[it->second.size() - 1];
+		}
+		assert(returnVal != nullptr);
+		return returnVal;
 	}
 }

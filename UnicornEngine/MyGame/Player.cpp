@@ -19,9 +19,10 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 	playerState->Configure(this);
 	playerState->ChangeState(new PlayerState::Idle());
 	sprite = spriteManager->CreateSprite("../TestingAssets/player.png", 1, 1, 33, 40);
-	rect = { 0,0, 33, 40 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
+
+	position = { 280, 800 };
 
 	myTagau = Tag::Playerau;
 }
@@ -94,8 +95,8 @@ void Player::MovePlayer(float deltaTime)
 	{
 		movement.y += 1.0f;
 	}
-
-	position += movement.Normalized() * movementSpeed * deltaTime;
+	if(movement.y != 0 || movement.x != 0)
+		position += movement.Normalized() * movementSpeed * deltaTime;
 }
 
 void Player::onCollision(Tag tagau)

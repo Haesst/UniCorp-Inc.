@@ -90,18 +90,11 @@ bool GameApplication::Initialize()
 	int temp[] = { 1,2,3,4 };
 	//enemy = new Enemy(temp, "test", spriteManager);
 	player = new Player(inputManager, camera, spriteManager);
-	player->SetPosition(FG::Vector2D(280, 800));
-	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
 
+	FG::EntityManager::Instance()->GetObject("Player")->Active = true;
+
 	std::cout << player->Active << std::endl;
-
-	auto _p = FG::EntityManager::Instance()->GetObject("Player");
-
-	if (_p != nullptr)
-		std::cout << "Not a nullptr" << std::endl;
-	else
-		std::cout << "nullptr" << std::endl;
 
 	FollowingEnemy* followingEnemy = new FollowingEnemy(spriteManager);
 	followingEnemy->Active = true;

@@ -37,7 +37,7 @@ namespace FG
 		float movementSpeed = 250.0f;
 
 		virtual Vector2D GetPosition() { return position; }
-		virtual void SetPosition(Vector2D position) { this->position = position; }
+		virtual void SetPosition(Vector2D pos) { this->position = pos; }
 
 		// Inherited via Collidable
 		virtual void onCollision(Tag tagau) = 0;
