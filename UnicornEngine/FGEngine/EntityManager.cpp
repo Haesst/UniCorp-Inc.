@@ -162,4 +162,9 @@ namespace FG
 			}
 		}
 	}
+
+	void EntityManager::ClearEntities()
+	{
+		entities.clear();
+	}
 }

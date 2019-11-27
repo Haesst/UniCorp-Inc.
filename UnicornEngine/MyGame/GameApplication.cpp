@@ -80,6 +80,8 @@ void GameApplication::Run()
 	float currentTime2 = 5.0f;
 	float currentTime3 = 7.0f;
 
+	std::string enemyTypes[3] = { "Enemy", "SmallEnemy", "FollowingEnemy" };
+
 	bool quit = false;
 	while (!quit)
 	{
@@ -90,6 +92,23 @@ void GameApplication::Run()
 		time.StartFrame();
 		// Update input
 		inputManager->Update(quit);
+
+
+		if (currentTime <= 0.0f)
+		{
+			int i;
+			int n = 3;
+			std::string temp = enemyTypes[0];
+			for (i = 0; i < n - 1; i++)
+			{
+				enemyTypes[i] = enemyTypes[i + 1];
+			}
+			enemyTypes[n - 1] = temp;
+			FG::EntityManager::Instance()->AddEntity(enemyTypes[0]);
+			currentTime = timeBetweenSpawn;
+			std::cout << "spawning from list:" + enemyTypes[0] << std::endl;
+		}
+
 
 		if (currentTime <= 0.0f)
 		{
@@ -121,6 +140,25 @@ void GameApplication::Run()
 		camera->EndRenderFrame();
 		// End the timer
 		time.EndFrame();
+
+		if (player->lives <= 0)
+		{
+			//Todo: Add Game over screen w. scores here
+			std::string x;
+			std::cout << "You have been killed! Game over. Press any key to continue." << std::endl;
+			std::cin >> x;
+
+			if (!x.empty())
+			{
+				player->lives = 3;
+				FG::EntityManager::Instance()->ClearEntities();
+				CreateBackground();
+				CreatePlayer();
+				Run();
+			}
+			//quit = true;
+		}
+
 	}
 }
 
@@ -215,4 +253,5 @@ void GameApplication::CreatePlayer()
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
+	player->lives = 3;
 }

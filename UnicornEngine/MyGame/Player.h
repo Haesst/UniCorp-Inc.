@@ -20,8 +20,11 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Render(FG::Camera* const camera) override;
 
+	int lives = 0;
+
 private:
 	Player() {}
+
 
 	void MovePlayer(float deltaTime);
 	FG::InputManager* inputManager = nullptr;

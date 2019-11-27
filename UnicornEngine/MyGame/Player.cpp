@@ -129,6 +129,10 @@ void Player::onCollision(Tag tagau)
 {
 		switch (tagau)
 		{
-		
+		case EnemyBulletau:
+			lives -= 1;
+			std::cout << "Player hit! Health left:";
+			std::cout << lives << std::endl;
+			break;
 		}
 }
