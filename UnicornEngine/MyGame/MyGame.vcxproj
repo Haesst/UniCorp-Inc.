@@ -101,7 +101,7 @@
     <ClCompile Include="FollowingEnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
-    <ClCompile Include="MusicManager.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -119,7 +119,7 @@
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
-    <ClInclude Include="MusicManager.h" />
+    <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />

@@ -9,7 +9,6 @@ namespace FG
 	class Window;
 	class InputManager;
 	class Camera;
-	class EntityManager;
 	class SpriteManager;
 	class CollisionManager;
 	class EnemyFactory;
@@ -23,7 +22,7 @@ class Enemy;
 class UI;
 class Background;
 class SDL_Texture;
-class MusicManager;
+class SoundManager;
 
 class GameApplication : public FG::Application
 {
@@ -41,7 +40,6 @@ private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
 	FG::Camera* camera = nullptr;
-	//FG::EntityManager* entityManager = nullptr;
 	FG::SpriteManager* spriteManager = nullptr;
 	FG::CollisionManager* collisionManager = nullptr;
 

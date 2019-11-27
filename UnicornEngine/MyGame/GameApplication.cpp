@@ -16,7 +16,7 @@
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
 #include "UI.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 
 #include "Entity.h"
 
@@ -178,12 +178,12 @@ void GameApplication::CreateEnemies()
 
 void GameApplication::InitializeSounds()
 {
-	MusicManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
-	MusicManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
-	MusicManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
+	SoundManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
+	SoundManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
+	SoundManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
 
-	MusicManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
-	MusicManager::Instance()->PlayMusic("GameMusic");
+	SoundManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
+	SoundManager::Instance()->PlayMusic("GameMusic");
 }
 
 void GameApplication::CreateFactories()

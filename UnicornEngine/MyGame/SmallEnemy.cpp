@@ -1,6 +1,6 @@
 #include "SmallEnemy.h"
 #include "FSMState.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
 
 #include <SpriteManager.h>
@@ -90,7 +90,7 @@ void SmallEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 	shotsToFire--;
 }

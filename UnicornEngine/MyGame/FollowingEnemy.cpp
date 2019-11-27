@@ -1,5 +1,5 @@
 #include "FollowingEnemy.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
 
 #include <SpriteManager.h>
@@ -15,7 +15,7 @@ void FollowingEnemy::onCollision(Tag tagau)
 
 		if (health <= 0)
 		{
-			MusicManager::Instance()->PlaySound("EnemyExplosion");
+			SoundManager::Instance()->PlaySound("EnemyExplosion");
 			Active = false;
 		}
 	}
@@ -80,6 +80,6 @@ void FollowingEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 }

@@ -1,7 +1,7 @@
 #include "Enemy.h"
 #include "Config.h"
 #include "EnemyState.h"
-#include "MusicManager.h"
+#include "SoundManager.h"
 #include "Projectile.h"
 
 #include <SpriteManager.h>
@@ -23,7 +23,7 @@ void Enemy::onCollision(Tag tagau)
 
 void Enemy::EnemyDies()
 {
-	MusicManager::Instance()->PlaySound("EnemyExplosion");
+	SoundManager::Instance()->PlaySound("EnemyExplosion");
 	Active = false;
 }
 
@@ -94,6 +94,6 @@ void Enemy::Shoot()
 	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x + 15.0f, position.y + 40.0f), spriteManager, Projectile::BulletType::EnemyBullet);
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	MusicManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 }

@@ -7,7 +7,7 @@
 #include <Camera.h>
 #include <Collider.h>
 #include <EntityManager.h>
-#include "MusicManager.h"
+#include "SoundManager.h"
 
 #include <iostream>
 #include <memory>
@@ -40,7 +40,7 @@ void Player::Update(float deltaTime)
 		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
 		projectile->Active = true;
 		FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
-		MusicManager::Instance()->PlaySound("PlayerShot");
+		SoundManager::Instance()->PlaySound("PlayerShot");
 		currentShotTimer = timeBetweenShots;
 	}
 
