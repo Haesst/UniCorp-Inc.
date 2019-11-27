@@ -36,7 +36,7 @@ private:
 	PlayerState* playerState = nullptr;
 
 	//FG::Vector2D position;
-	FG::SpriteManager* spriteManager;
+	FG::SpriteManager* spriteManager = nullptr;
 
 	float timeBetweenShots = 0.3f;
 	float currentShotTimer = 0.0f;

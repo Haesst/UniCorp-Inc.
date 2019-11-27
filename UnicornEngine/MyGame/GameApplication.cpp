@@ -12,6 +12,14 @@
 #include <SDL_image.h>
 
 #include "Player.h"
+<<<<<<< HEAD
+#include "Enemy.h"
+#include "FollowingEnemy.h"
+#include "SmallEnemy.h"
+#include "SpiralFormation.h"
+
+=======
+>>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 #include "Background.h"
 #include "ConcreteFactories.h"
 #include "FactoryManager.h"
@@ -62,11 +70,57 @@ bool GameApplication::Initialize()
 
 	collisionManager = new FG::CollisionManager();
 
+<<<<<<< HEAD
+	//entityManager = new FG::EntityManager(collisionManager, factoryManager);
+
+	ui = new UI("UI", spriteManager);
+	FG::EntityManager::Instance()->AddEntity(ui, "UI");
+
+	background = new Background("../TestingAssets/GalaxyUno.png", spriteManager, 5);
+	backgroundBigStars = new Background("../TestingAssets/ParallaxBigStars.png", spriteManager, 4);
+	backgroundSmallStars = new Background("../TestingAssets/ParallaxSmallStars.png", spriteManager, 3);
+	FG::EntityManager::Instance()->AddEntity(background, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundBigStars, "Background");
+	FG::EntityManager::Instance()->AddEntity(backgroundSmallStars, "Background");
+
+	int temp[] = { 1,2,3,4 };
+	//enemy = new Enemy(temp, "test", spriteManager);
+	player = new Player(inputManager, camera, spriteManager);
+	FG::EntityManager::Instance()->AddEntity(player, "Player");
+
+	FG::EntityManager::Instance()->GetObject("Player")->Active = true;
+
+	std::cout << player->Active << std::endl;
+
+	FollowingEnemy* followingEnemy = new FollowingEnemy(spriteManager);
+	followingEnemy->Active = true;
+	
+	FG::EntityManager::Instance()->AddEntity(followingEnemy, "FollowingEnemy");
+
+	SmallEnemy* smallEnemy = new SmallEnemy(spriteManager);
+	smallEnemy->Active = true;
+
+	FG::EntityManager::Instance()->AddEntity(smallEnemy, "SmallEnemy");
+
+
+	
+	//entityManager->AddEntity(enemy, "Enemy");
+	
+	FG::EntityManager::Instance()->AddEntity("Enemy");
+
+	//FG::EntityManager::Instance()->AddEntity("Enemy");
+
+	/*entityManager->AddEntity("Enemy");*/
+
+	//CreateEnemies();
+=======
 	CreateBackground();
 	CreatePlayer();
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
+>>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 
+	spiralFormation = new SpiralFormation(spriteManager);
 
 	return true;
 }
@@ -122,11 +176,22 @@ void GameApplication::Run()
 			currentTime2 = timeBetweenSpawn2;
 		}
 
+<<<<<<< HEAD
+		// THEO
+		if (spiralFormation->enemyNum > 0) {
+			if (spawnSpiralTimer > spawnSpiralRate) {
+				spiralFormation->Spawn();
+				spiralFormation->enemyNum--;
+				spawnSpiralTimer -= spawnSpiralRate;
+			}
+			spawnSpiralTimer += time.DeltaTime();
+=======
 		if (currentTime3 <= 0.0f)
 		{
 			std::cout << "Small enemy incoming" << std::endl;
 			FG::EntityManager::Instance()->AddEntity("SmallEnemy");
 			currentTime3 = timeBetweenSpawn3;
+>>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();

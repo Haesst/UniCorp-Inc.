@@ -18,7 +18,7 @@ void Enemy::onCollision(Tag tagau)
 	switch (tagau)
 	{
 		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
-		case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
+		//case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
 		case Tag::PlayerBulletau: EnemyDies(); break;
 	}
 }
