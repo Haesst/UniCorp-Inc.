@@ -96,6 +96,8 @@
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
     <ClCompile Include="BigEnemyBullet.cpp" />
+    <ClCompile Include="BigMommaEnemy.cpp" />
+    <ClCompile Include="BigMommaState.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="FollowingEnemy.cpp" />
@@ -103,6 +105,7 @@
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="LaserBeam.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -114,6 +117,8 @@
   <ItemGroup>
     <ClInclude Include="Background.h" />
     <ClInclude Include="BigEnemyBullet.h" />
+    <ClInclude Include="BigMommaEnemy.h" />
+    <ClInclude Include="BigMommaState.h" />
     <ClInclude Include="ConcreteFactories.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />
@@ -123,6 +128,7 @@
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Highscore.h" />
+    <ClInclude Include="LaserBeam.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />

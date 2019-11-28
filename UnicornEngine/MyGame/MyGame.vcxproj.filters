@@ -14,10 +14,12 @@
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SmallEnemy.cpp" />
     <ClCompile Include="SmallEnemyState.cpp" />
-    <ClCompile Include="SpiralEnemy.cpp" />
-    <ClCompile Include="SpiralFormation.cpp" />
     <ClCompile Include="UI.cpp" />
     <ClCompile Include="BigEnemyBullet.cpp" />
+    <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="BigMommaEnemy.cpp" />
+    <ClCompile Include="BigMommaState.cpp" />
+    <ClCompile Include="LaserBeam.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -35,10 +37,12 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SmallEnemy.h" />
     <ClInclude Include="SmallEnemyState.h" />
-    <ClInclude Include="SpiralEnemy.h" />
-    <ClInclude Include="SpiralFormation.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="BigEnemyBullet.h" />
+    <ClInclude Include="Highscore.h" />
+    <ClInclude Include="BigMommaEnemy.h" />
+    <ClInclude Include="BigMommaState.h" />
+    <ClInclude Include="LaserBeam.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />

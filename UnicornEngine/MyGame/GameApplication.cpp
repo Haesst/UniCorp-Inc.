@@ -70,6 +70,7 @@ bool GameApplication::Initialize()
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
 
+	FG::EntityManager::Instance()->AddEntity("BigMomma", FG::Vector2D(50, 50));
 
 	return true;
 }
@@ -219,6 +220,9 @@ void GameApplication::CreateFactories()
 
 	smallEnemyFactory = new FG::SmallEnemyFactory(spriteManager);
 	factoryManager->AddFactory("SmallEnemy", smallEnemyFactory);
+
+	bigMommaFactory = new FG::BigMommaFactory(spriteManager);
+	factoryManager->AddFactory("BigMomma", bigMommaFactory);
 }
 
 void GameApplication::CreateBackground()

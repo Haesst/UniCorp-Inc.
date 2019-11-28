@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "FollowingEnemy.h"
 #include "SmallEnemy.h"
+#include "BigMommaEnemy.h"
 
 
 namespace FG
@@ -43,5 +44,17 @@ namespace FG
 		SpriteManager* spriteManager = nullptr;
 		
 		virtual Entity* CreateEntity(Vector2D pos) { return new SmallEnemy(spriteManager, pos); }
+	};
+
+	class BigMommaFactory : public AFactory
+	{
+	public:
+		BigMommaFactory() {}
+		BigMommaFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~BigMommaFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new BigMommaEnemy(spriteManager, pos); }
 	};
 }
