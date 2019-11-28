@@ -23,7 +23,6 @@ void BigMommaEnemy::onCollision(Tag tagau)
 
 BigMommaEnemy::BigMommaEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position)
 {
-	Active = true;
 	this->position = position;
 	spriteManager = spriteManagerRef;
 	score = 50;
@@ -37,11 +36,15 @@ BigMommaEnemy::BigMommaEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D p
 	myCollider->square.h = rect.h;
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+	UpdateCollider();
+
 	myTagau = Tag::Enemyau;
 
 	enemyState = new BigMommaState();
 	enemyState->Configure(this);
 	enemyState->ChangeState(new BigMommaState::AttackPlayer());
+
+	Active = true;
 }
 
 void BigMommaEnemy::Update(float deltaTime)

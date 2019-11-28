@@ -20,13 +20,15 @@ void FollowingEnemy::onCollision(Tag tagau)
 			EnemyDies();
 		}
 	}
+	else if (tagau == Tag::Enemyau)
+	{
+	}
 }
 
 FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D takenpos)
 {
 	health = 2;
 	score = 20;
-	Active = true;
 	timeBetweenShots = 1.1f;
 	spriteManager = spriteManagerRef;
 	position.x = takenpos.x;
@@ -34,20 +36,18 @@ FollowingEnemy::FollowingEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D
 
 	sprite = spriteManager->CreateSprite("../TestingAssets/FollowingEnemy.png", 1, 1, 37, 33);
 
-	rect = { 0,0,37,33 };
+	rect = { (int)position.x, (int)position.y, 37, 33 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
-
-	rect = { (int)position.x, (int)position.y, 37, 33 };
-	myCollider->square.x = rect.x;
-	myCollider->square.y = rect.y;
+	UpdateCollider();
 
 	enemyState = new FollowingEnemyState();
 	enemyState->Configure(this);
 	enemyState->ChangeState(new FollowingEnemyState::AttackPlayer());
 	myTagau = Tag::Enemyau;
+	Active = true;
 }
 
 void FollowingEnemy::Update(float deltaTime)
@@ -58,9 +58,11 @@ void FollowingEnemy::Update(float deltaTime)
 	}
 
 	enemyState->Update();
+
 	rect = { (int)position.x, (int)position.y, 36, 30 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+
 
 	UpdateCollider();
 }
@@ -69,6 +71,12 @@ void FollowingEnemy::Render(FG::Camera* const camera)
 {
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
+}
+
+void FollowingEnemy::LateUpdate(float deltaTime)
+{
+	currentFrameVector = position - lastFramePosition;
+	lastFramePosition = position;
 }
 
 float FollowingEnemy::GetCurrentShotTime()

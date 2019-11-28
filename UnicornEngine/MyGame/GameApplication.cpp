@@ -85,7 +85,7 @@ void GameApplication::Run()
 	float timeBetweenSpawn = 8.0f;
 	int spawnAmount = 10;
 
-	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
+	std::string enemyTypes[4] = { "FollowingEnemy", "Enemy", "SmallEnemy",  "BigMomma" };
 
 	bool quit = false;
 	while (!quit)
@@ -114,9 +114,9 @@ void GameApplication::Run()
 			//Spawn powerup
 		}
 
-		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		//Update entities
 		FG::EntityManager::Instance()->Update(time.DeltaTime());
+		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		// Tell camera to start render frame
 		camera->StartRenderFrame();
 		// Render every entity
@@ -124,6 +124,7 @@ void GameApplication::Run()
 		UI::Instance()->Render(camera);
 		// Tell camera to end render frame
 		camera->EndRenderFrame();
+		FG::EntityManager::Instance()->LateUpdate(time.DeltaTime());
 		// End the timer
 		time.EndFrame();
 
@@ -290,8 +291,8 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 	{
 		for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
 		{
+			position.x += diff.x + 15;
 			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-			position.x += diff.x;
 		}
 	}
 	else

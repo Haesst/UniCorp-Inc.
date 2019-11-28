@@ -60,6 +60,19 @@ namespace FG
 			}
 		}
 	}
+	void EntityManager::LateUpdate(float deltaTime)
+	{
+		for (auto& it : entities)
+		{
+			for (auto& entity : it.second)
+			{
+				if (entity->Active)
+				{
+					entity->LateUpdate(deltaTime);
+				}
+			}
+		}
+	}
 	void EntityManager::AddEntity(Entity* entity, const std::string& Tag)
 	{
 		auto it = entities.find(Tag);

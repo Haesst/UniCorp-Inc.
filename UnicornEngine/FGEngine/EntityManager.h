@@ -41,6 +41,7 @@ namespace FG
 		void Shutdown();
 		void Update(float deltaTime);
 		void Render(Camera* camera);
+		void LateUpdate(float deltaTime);
 		void AddEntity(Entity* entity, const std::string& Tag);
 		void AddEntity(const std::string& Tag, Vector2D position);
 		void CheckEntitiesCollision();
