@@ -43,25 +43,23 @@ DescendingEnemy::DescendingEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector
 	position.x = pos.x;
 	position.y = pos.y;
 
-	Active = true;
 	spriteManager = spriteManagerRef;
 
 	sprite = spriteManager->CreateSprite("../TestingAssets/enemy.png", 1, 1, 36, 30);
-	rect = { 0,0,36,30 };
+
+	rect = { (int)position.x, (int)position.y, 36, 30 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
-
-	rect = { (int)position.x, (int)position.y, 36, 30 };
-	myCollider->square.x = rect.x;
-	myCollider->square.y = rect.y;
+	UpdateCollider();
 	descendingEnemyState = new DescendingEnemyState();
 	descendingEnemyState->Configure(this);
 	descendingEnemyState->ChangeState(new DescendingEnemyState::AttackPlayer());
 	//UpdateCollider();
 
 	myTagau = Tag::Enemyau;
+	Active = true;
 }
 
 DescendingEnemy::~DescendingEnemy()

@@ -27,6 +27,7 @@ namespace FG
 
 		virtual void Update(float deltaTime) {}
 		virtual void Render(Camera* const camera) {}
+		virtual void LateUpdate(float deltaTime) {}
 		Sprite* sprite = nullptr;
 		SDL_Rect rect;
 		Tag myTagau;

@@ -10,6 +10,8 @@ class FollowingEnemy : public Enemy
 private:
 	FollowingEnemyState* enemyState;
 	FG::SpriteManager* spriteManager;
+	FG::Vector2D lastFramePosition;
+	FG::Vector2D currentFrameVector;
 
 private:
 	void onCollision(Tag tagau) override;
@@ -20,6 +22,7 @@ public:
 
 	void Update(float deltaTime) override;
 	void Render(FG::Camera* const camera) override;
+	void LateUpdate(float deltaTime) override;
 
 	float GetCurrentShotTime() override;
 	void Shoot() override;
