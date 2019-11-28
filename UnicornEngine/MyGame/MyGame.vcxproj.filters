@@ -1,150 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\FSM">
-      <UniqueIdentifier>{735e3d05-5bf0-4a25-a00c-b0c42b02096e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\FSM">
-      <UniqueIdentifier>{55e67ee2-ba9b-4237-8b3e-bd2735a79678}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Enemies">
-      <UniqueIdentifier>{1de33225-f23a-4db4-9425-6a388ccf3c5d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Enemies">
-      <UniqueIdentifier>{9c39c04f-a995-4cdb-83fb-bfca3bac6b9b}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Background.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyState.cpp" />
+    <ClCompile Include="FollowingEnemy.cpp" />
+    <ClCompile Include="FollowingEnemyState.cpp" />
+    <ClCompile Include="GameApplication.cpp" />
+    <ClCompile Include="FiniteStateMachine.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="SmallEnemy.cpp" />
+    <ClCompile Include="SmallEnemyState.cpp" />
+    <ClCompile Include="SpiralEnemy.cpp" />
+    <ClCompile Include="SpiralFormation.cpp" />
+    <ClCompile Include="UI.cpp" />
+    <ClCompile Include="BigEnemyBullet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameApplication.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="FiniteStateMachine.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyState.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="Projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="UI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Background.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowingEnemyState.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-    <ClCompile Include="FollowingEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="SmallEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="SmallEnemyState.cpp">
-      <Filter>Source Files\FSM</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="SpiralEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="SpiralFormation.cpp">
-=======
-    <ClCompile Include="SoundManager.cpp">
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpiralEnemy.cpp">
-      <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="SpiralFormation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="GameApplication.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="FiniteStateMachine.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="FSMState.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyState.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="ConcreteFactories.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UI.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Background.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowingEnemyState.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="FollowingEnemy.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="SmallEnemy.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="SmallEnemyState.h">
-      <Filter>Header Files\FSM</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="SpiralEnemy.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="SpiralFormation.h">
-=======
-    <ClInclude Include="SoundManager.h">
->>>>>>> cf2bb7b642febdef33a43c56fb5ad9fa1b7bbf24
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpiralEnemy.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="SpiralFormation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="Background.h" />
+    <ClInclude Include="ConcreteFactories.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyState.h" />
+    <ClInclude Include="FollowingEnemy.h" />
+    <ClInclude Include="FollowingEnemyState.h" />
+    <ClInclude Include="FSMState.h" />
+    <ClInclude Include="GameApplication.h" />
+    <ClInclude Include="FiniteStateMachine.h" />
+    <ClInclude Include="SoundManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="SmallEnemy.h" />
+    <ClInclude Include="SmallEnemyState.h" />
+    <ClInclude Include="SpiralEnemy.h" />
+    <ClInclude Include="SpiralFormation.h" />
+    <ClInclude Include="UI.h" />
+    <ClInclude Include="BigEnemyBullet.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />

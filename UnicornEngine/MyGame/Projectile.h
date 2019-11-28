@@ -10,7 +10,7 @@ namespace FG
 
 class Projectile : public FG::Entity
 {
-private:
+protected:
 	float speed;
 	float lifetime = 3.0f;
 	FG::Vector2D direction;
@@ -31,5 +31,8 @@ public:
 	virtual void Render(FG::Camera* const camera) override;
 
 	virtual void onCollision(Tag tagau) override;
+
+protected:
+	Projectile(FG::Vector2D direction, FG::Vector2D position, FG::SpriteManager* spriteManager, float speed = 350.0f);
 };
 

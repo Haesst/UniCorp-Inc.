@@ -95,6 +95,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BigEnemyBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="FollowingEnemy.cpp" />
@@ -113,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BigEnemyBullet.h" />
     <ClInclude Include="ConcreteFactories.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />

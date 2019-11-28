@@ -77,3 +77,9 @@ void Projectile::onCollision(Tag tagau)
 		break;
 	}
 }
+
+Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::SpriteManager* spriteManager, float speed)
+	: direction(direction), spriteManager(spriteManager), speed(speed)
+{
+	this->position = position;
+}
