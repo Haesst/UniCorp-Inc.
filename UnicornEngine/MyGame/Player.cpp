@@ -45,9 +45,10 @@ void Player::Update(float deltaTime)
 		currentShotTimer = timeBetweenShots;
 	}
 
+	FG::Vector2D temppos = { 0, 0 };
 	if (inputManager->IsKeyDown(SDL_SCANCODE_RCTRL))
 	{
-		FG::EntityManager::Instance()->AddEntity("Enemy", position);
+		FG::EntityManager::Instance()->AddEntity("Enemy", temppos);
 	}
 
 	rect = {(int)position.x, (int)position.y, 33, 40 };

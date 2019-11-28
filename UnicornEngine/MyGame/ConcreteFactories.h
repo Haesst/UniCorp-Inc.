@@ -5,7 +5,8 @@
 #include "Enemy.h"
 #include "FollowingEnemy.h"
 #include "SmallEnemy.h"
-
+#include "SpiralEnemy.h"
+#include "DescendingEnemy.h"
 
 namespace FG
 {
@@ -44,4 +45,28 @@ namespace FG
 		
 		virtual Entity* CreateEntity(Vector2D pos) { return new SmallEnemy(spriteManager, pos); }
 	};
+
+	class DescendingEnemyFactory : public AFactory
+	{
+	public:
+		DescendingEnemyFactory() {}
+		DescendingEnemyFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~DescendingEnemyFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new DescendingEnemy(spriteManager, pos); }
+	};
+	/*
+	class SpiralEnemyFactory : public AFactory
+	{
+	public:
+		SpiralEnemyFactory() {}
+		SpiralEnemyFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~SpiralEnemyFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new SpiralEnemy(spriteManager, pos); }
+	};*/
 }

@@ -28,14 +28,12 @@ SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos, bo
 	health = 1;
 	Active = true;
 
-	if (startingLeft) //TODO: Remove position.x here. Or maybe modify it in another manner?
+	if (startingLeft)
 	{
-		position.x = 10.0f;
 		goingRight = true;
 	}
 	else
 	{
-		position.x = 460.0f;
 		goingRight = false;
 	}
 

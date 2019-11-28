@@ -15,6 +15,8 @@ namespace FG
 	class EnemyFactory;
 	class FollowingEnemyFactory;
 	class SmallEnemyFactory;
+	class DescendingEnemyFactory;
+	class SpiralEnemyFactory;
 	class FactoryManager;
 }
 
@@ -42,7 +44,7 @@ private:
 	void CreateFactories();
 	void CreateBackground();
 	void CreatePlayer();
-	void SpawnWave(std::string enemyTypes[], float spawnFrequency, int spawnAmount);
+	void SpawnWave(std::string enemyTypes[], int spawnAmount);
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
@@ -54,6 +56,8 @@ private:
 	FG::EnemyFactory* enemyFactory = nullptr;
 	FG::FollowingEnemyFactory* followingEnemyFactory = nullptr;
 	FG::SmallEnemyFactory* smallEnemyFactory = nullptr;
+	FG::DescendingEnemyFactory* descendingEnemyFactory = nullptr;
+	FG::SpiralEnemyFactory* spiralEnemyFactory = nullptr;
 
 	FG::Time time;
 

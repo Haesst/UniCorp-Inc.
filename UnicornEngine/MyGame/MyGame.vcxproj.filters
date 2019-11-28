@@ -2,25 +2,29 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
+    <ClCompile Include="BigEnemyBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyState.cpp" />
     <ClCompile Include="FollowingEnemy.cpp" />
     <ClCompile Include="FollowingEnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
+    <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="SmallEnemy.cpp" />
     <ClCompile Include="SmallEnemyState.cpp" />
-    <ClCompile Include="SpiralEnemy.cpp" />
-    <ClCompile Include="SpiralFormation.cpp" />
     <ClCompile Include="UI.cpp" />
-    <ClCompile Include="BigEnemyBullet.cpp" />
+    <ClCompile Include="SpiralFormation.cpp" />
+    <ClCompile Include="SpiralEnemy.cpp" />
+    <ClCompile Include="DescendingEnemy.cpp" />
+    <ClCompile Include="DescendingEnemyState.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
+    <ClInclude Include="BigEnemyBullet.h" />
     <ClInclude Include="ConcreteFactories.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyState.h" />
@@ -29,16 +33,18 @@
     <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
     <ClInclude Include="FiniteStateMachine.h" />
+    <ClInclude Include="Highscore.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="SmallEnemy.h" />
     <ClInclude Include="SmallEnemyState.h" />
-    <ClInclude Include="SpiralEnemy.h" />
-    <ClInclude Include="SpiralFormation.h" />
     <ClInclude Include="UI.h" />
-    <ClInclude Include="BigEnemyBullet.h" />
+    <ClInclude Include="SpiralEnemy.h" />
+    <ClInclude Include="DescendingEnemy.h" />
+    <ClInclude Include="DescendingEnemyState.h" />
+    <ClInclude Include="SpiralFormation.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />
