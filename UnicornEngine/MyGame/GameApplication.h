@@ -25,6 +25,7 @@ class Background;
 class SDL_Texture;
 class SoundManager;
 class Highscore;
+class SpiralFormation;
 
 class GameApplication : public FG::Application
 {
@@ -63,6 +64,11 @@ private:
 	Player* player = nullptr;
 	Enemy* enemy = nullptr;
 	Highscore* highscoreManager = nullptr;
+	SpiralFormation* spiralFormation = nullptr;
+
+	// THEO
+	float spawnSpiralRate = 1 / 4.f;
+	float spawnSpiralTimer = 0.f;
 
 	static const int height = 900;
 	static const int width = 640;

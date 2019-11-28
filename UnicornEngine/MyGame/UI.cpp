@@ -79,6 +79,11 @@ void UI::UpdateScore()
 	playerScoreSprite = new FG::Sprite(scoreTexture, 1, 1, width, height);
 }
 
+void UI::ResetUI()
+{
+	player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+}
+
 void UI::DrawHearts()
 {
 

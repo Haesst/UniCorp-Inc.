@@ -45,6 +45,7 @@ public:
 	static UI* Instance();
 	void Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SDL_Window* window);
 	void UpdateScore();
+	void ResetUI();
 
 private:
 	void DrawPortrait();

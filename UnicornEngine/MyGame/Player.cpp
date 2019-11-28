@@ -15,6 +15,7 @@
 
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
+	score = 0;
 	playerState = new PlayerState();
 	playerState->Configure(this);
 	playerState->ChangeState(new PlayerState::Idle());
@@ -52,6 +53,8 @@ void Player::Update(float deltaTime)
 	rect = {(int)position.x, (int)position.y, 33, 40 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
+	myCollider->square.w = 33;
+	myCollider->square.h = 40;
 	UpdateCollider();
 	playerState->Update();
 	
@@ -100,8 +103,12 @@ void Player::MovePlayer(float deltaTime)
 		movement.y += 1.0f;
 	}
 
-	FG::Vector2D newPosition = position + (movement * movementSpeed * deltaTime);
+	FG::Vector2D newPosition = position;
 
+	if (movement.x != 0 || movement.y != 0)
+	{
+		newPosition = position + (movement.Normalized() * movementSpeed * deltaTime);
+	}
 	// Todo: Remove magic numbers and define screen size somewhere
 
 	int height;

@@ -25,6 +25,7 @@ public:
 
 	int GetScore() { return score; }
 	void AddToScore(int score);
+	void ResetScore() { score = 0; }
 
 private:
 	Player() {}

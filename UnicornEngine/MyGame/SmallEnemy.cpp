@@ -1,7 +1,7 @@
 #include "SmallEnemy.h"
 #include "FSMState.h"
 #include "SoundManager.h"
-#include "Projectile.h"
+#include "BigEnemyBullet.h"
 #include "Player.h"
 #include "UI.h"
 
@@ -88,10 +88,10 @@ void SmallEnemy::Shoot()
 {
 	fired = true;
 
-	Projectile* bullet = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x, position.y + 40.0f), spriteManager, Projectile::BulletType::EnemyBullet);
+	BigEnemyBullet* bullet = new BigEnemyBullet(FG::Vector2D(0, 1), FG::Vector2D(position.x, position.y + 40.0f), spriteManager);
 
 	bullet->Active = true;
-	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
+	FG::EntityManager::Instance()->AddEntity(bullet, "BigEnemyBullet");
 	SoundManager::Instance()->PlaySound("EnemyShot");
 	currentShotTime = timeBetweenShots;
 	shotsToFire--;
