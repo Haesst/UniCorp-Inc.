@@ -103,7 +103,7 @@ void GameApplication::Run()
 		}
 		if (currentTime <= 0.0f)
 		{
-			SpawnWave(enemyTypes, timeBetweenSpawn, spawnAmount);
+			SpawnWave(enemyTypes, spawnAmount);
 			currentTime = timeBetweenSpawn;
 		}
 
@@ -223,6 +223,13 @@ void GameApplication::CreateFactories()
 
 	bigMommaFactory = new FG::BigMommaFactory(spriteManager);
 	factoryManager->AddFactory("BigMomma", bigMommaFactory);
+
+	descendingEnemyFactory = new FG::DescendingEnemyFactory(spriteManager);
+	factoryManager->AddFactory("DescendingEnemy", descendingEnemyFactory);
+
+	//TODO: Fix spawning of spiral enemies, as they take a pointer to a direction
+	/*spiralEnemyFactory = new FG::SpiralEnemyFactory(spriteManager);
+	factoryManager->AddFactory("SpiralEnemyFactory", spiralEnemyFactory);*/
 }
 
 void GameApplication::CreateBackground()
@@ -249,20 +256,53 @@ void GameApplication::CreatePlayer()
 	player->LifesLeft(3);
 }
 
-void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency, int spawnAmount)
-{
-	int i;
-	int n = 3;
-	std::string temp = enemyTypes[0];
-	for (i = 0; i < n - 1; i++)
-	{
-		enemyTypes[i] = enemyTypes[i + 1];
-	}
-	enemyTypes[n - 1] = temp;
-	FG::Vector2D position = {};
-	position.x = 500.0f;
-	position.y = 250.0f;
-	FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-	std::cout << "spawning from list:" + enemyTypes[0] << std::endl;
+void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
+{/*There is presumably a better way to handle these positions, with less duplication.
+	However, in my attempts to refactor them, the original position and diff values (origpos & origdiff)
+	are modified by any future changes to the position or diff variables. Unclear why.*/
+	FG::Vector2D position;
+	position.x = 20.0f;
+	position.y = 200.0f;
+	FG::Vector2D origpos = position;
+	FG::Vector2D diff = position;
+	FG::Vector2D origdiff = diff;
+	origpos.x = position.x;
+	origpos.y = position.y;
+	diff.x = 40.0f;
+	origdiff.x = diff.x;
 
+	if (enemyTypes[0] == "FollowingEnemy" || enemyTypes[0] == "SmallEnemy")
+	{
+		for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
+		{
+			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
+			position.x += diff.x;
+		}
+	}
+	else
+	{
+		for (size_t i = 0; i < spawnAmount; i++)
+		{
+			if (i % 2 != 0) // ODD numbers
+			{
+				position.x = origpos.x + diff.x;
+				diff.x += origdiff.x;
+			}
+			else //EVEN numbers. First number is even (thus, first spawned enemy enters this)
+			{
+				if (i > 0)
+				{
+					position.x = origpos.x - diff.x;
+					position.y += 35.0f; // Flip this to make them spawn in V-pattern
+				}
+				else //First enemy spawn pos is unchanged
+				{
+					position.x -= diff.x;
+				}
+			}
+			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
+		}
+	}
+
+	std::string temp = enemyTypes[0]; //Shuffles all enemy types around so the next enemy type spawns.
 }
