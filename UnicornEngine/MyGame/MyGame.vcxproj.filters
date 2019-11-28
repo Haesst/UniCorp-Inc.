@@ -21,6 +21,11 @@
     <ClCompile Include="SpiralEnemy.cpp" />
     <ClCompile Include="DescendingEnemy.cpp" />
     <ClCompile Include="DescendingEnemyState.cpp" />
+    <ClCompile Include="BigEnemyBullet.cpp" />
+    <ClCompile Include="Highscore.cpp" />
+    <ClCompile Include="BigMommaEnemy.cpp" />
+    <ClCompile Include="BigMommaState.cpp" />
+    <ClCompile Include="LaserBeam.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -45,6 +50,11 @@
     <ClInclude Include="DescendingEnemy.h" />
     <ClInclude Include="DescendingEnemyState.h" />
     <ClInclude Include="SpiralFormation.h" />
+    <ClInclude Include="BigEnemyBullet.h" />
+    <ClInclude Include="Highscore.h" />
+    <ClInclude Include="BigMommaEnemy.h" />
+    <ClInclude Include="BigMommaState.h" />
+    <ClInclude Include="LaserBeam.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />

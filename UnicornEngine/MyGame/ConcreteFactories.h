@@ -7,6 +7,7 @@
 #include "SmallEnemy.h"
 #include "SpiralEnemy.h"
 #include "DescendingEnemy.h"
+#include "BigMommaEnemy.h"
 
 namespace FG
 {
@@ -69,4 +70,15 @@ namespace FG
 
 		virtual Entity* CreateEntity(Vector2D pos) { return new SpiralEnemy(spriteManager, pos); }
 	};*/
+	class BigMommaFactory : public AFactory
+	{
+	public:
+		BigMommaFactory() {}
+		BigMommaFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~BigMommaFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new BigMommaEnemy(spriteManager, pos); }
+	};
 }

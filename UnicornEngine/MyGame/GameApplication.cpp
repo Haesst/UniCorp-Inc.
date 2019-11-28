@@ -70,6 +70,7 @@ bool GameApplication::Initialize()
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
 
+	FG::EntityManager::Instance()->AddEntity("BigMomma", FG::Vector2D(50, 50));
 
 	return true;
 }
@@ -78,17 +79,17 @@ void GameApplication::Run()
 {
 	float elapsedTime = 0.0;
 
-	float timeToSpawn = 3.0f;
-	float timeBetweenSpawn = 10.0f;
-	int spawnAmount = 10;
+	float currentTime = 3.0f;
+	float timeBetweenSpawn = 3.0f;
+	int spawnAmount = 2;
 
-	std::string enemyTypes[4] = { "Enemy", "DescendingEnemy", "SmallEnemy", "FollowingEnemy" };
+	std::string enemyTypes[3] = { "Enemy", "SmallEnemy", "FollowingEnemy" };
 
 	bool quit = false;
 	while (!quit)
 	{
 		elapsedTime += time.DeltaTime();
-		timeToSpawn -= time.DeltaTime();
+		currentTime -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -98,12 +99,12 @@ void GameApplication::Run()
 		{
 			//std::cout << "More than 10 sec has passed! Increasing spawn amount!" << std::endl;
 			//std::cout << "Elapsed time is: "; std::cout << elapsedTime << std::endl;
-			spawnAmount = 1;
+			spawnAmount = 5;
 		}
-		if (timeToSpawn <= 0.0f)
+		if (currentTime <= 0.0f)
 		{
-			SpawnWave(enemyTypes, spawnAmount);
-			timeToSpawn = timeBetweenSpawn;
+			SpawnWave(enemyTypes, timeBetweenSpawn, spawnAmount);
+			currentTime = timeBetweenSpawn;
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -211,7 +212,6 @@ void GameApplication::InitializeSounds()
 void GameApplication::CreateFactories()
 {
 	factoryManager = new FG::FactoryManager();
-
 	enemyFactory = new FG::EnemyFactory(spriteManager);
 	factoryManager->AddFactory("Enemy", enemyFactory);
 
@@ -221,12 +221,8 @@ void GameApplication::CreateFactories()
 	smallEnemyFactory = new FG::SmallEnemyFactory(spriteManager);
 	factoryManager->AddFactory("SmallEnemy", smallEnemyFactory);
 
-	descendingEnemyFactory = new FG::DescendingEnemyFactory(spriteManager);
-	factoryManager->AddFactory("DescendingEnemy", descendingEnemyFactory);
-
-	//TODO: Fix spawning of spiral enemies, as they take a pointer to a direction
-	/*spiralEnemyFactory = new FG::SpiralEnemyFactory(spriteManager);
-	factoryManager->AddFactory("SpiralEnemyFactory", spiralEnemyFactory);*/
+	bigMommaFactory = new FG::BigMommaFactory(spriteManager);
+	factoryManager->AddFactory("BigMomma", bigMommaFactory);
 }
 
 void GameApplication::CreateBackground()
@@ -253,62 +249,20 @@ void GameApplication::CreatePlayer()
 	player->LifesLeft(3);
 }
 
-void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
+void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency, int spawnAmount)
 {
 	int i;
 	int n = 3;
-
-	/*There is presumably a better way to handle these positions, with less duplication.
-	However, in my attempts to refactor them, the original position and diff values (origpos & origdiff)
-	are modified by any future changes to the position or diff variables. Unclear why.*/
-	FG::Vector2D position;
-	position.x = 20.0f;
-	position.y = 200.0f;
-	FG::Vector2D origpos = position;
-	FG::Vector2D diff = position;
-	FG::Vector2D origdiff = diff;
-	origpos.x = position.x;
-	origpos.y = position.y;
-	diff.x = 40.0f;
-	origdiff.x = diff.x;
-	
-	if (enemyTypes[0] == "FollowingEnemy" || enemyTypes[0] == "SmallEnemy")
-	{
-		for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
-		{
-			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-			position.x += diff.x;
-		}
-	}
-	else
-	{
-		for (size_t i = 0; i < spawnAmount; i++)
-		{
-			if (i % 2 != 0) // ODD numbers
-			{
-				position.x = origpos.x + diff.x;
-				diff.x += origdiff.x;
-			}
-			else //EVEN numbers. First number is even (thus, first spawned enemy enters this)
-			{
-				if (i > 0)
-				{
-					position.x = origpos.x - diff.x;
-					position.y += 35.0f; // Flip this to make them spawn in V-pattern
-				}
-				else //First enemy spawn pos is unchanged
-				{
-					position.x -= diff.x;
-				}
-			}
-			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-		}
-	}
-
-	std::string temp = enemyTypes[0]; //Shuffles all enemy types around so the next enemy type spawns.
+	std::string temp = enemyTypes[0];
 	for (i = 0; i < n - 1; i++)
 	{
 		enemyTypes[i] = enemyTypes[i + 1];
 	}
 	enemyTypes[n - 1] = temp;
+	FG::Vector2D position = {};
+	position.x = 500.0f;
+	position.y = 250.0f;
+	FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
+	std::cout << "spawning from list:" + enemyTypes[0] << std::endl;
+
 }

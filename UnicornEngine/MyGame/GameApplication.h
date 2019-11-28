@@ -17,6 +17,7 @@ namespace FG
 	class SmallEnemyFactory;
 	class DescendingEnemyFactory;
 	class SpiralEnemyFactory;
+	class BigMommaFactory;
 	class FactoryManager;
 }
 
@@ -58,6 +59,7 @@ private:
 	FG::SmallEnemyFactory* smallEnemyFactory = nullptr;
 	FG::DescendingEnemyFactory* descendingEnemyFactory = nullptr;
 	FG::SpiralEnemyFactory* spiralEnemyFactory = nullptr;
+	FG::BigMommaFactory* bigMommaFactory = nullptr;
 
 	FG::Time time;
 
