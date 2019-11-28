@@ -29,6 +29,11 @@ void LaserBeam::Update(float deltaTime)
 		Active = false;
 	}
 
+	if (owner->Active == false)
+	{
+		Active = false;
+	}
+
 	FG::Vector2D ownerPosition = owner->GetPosition();
 
 	position = FG::Vector2D(ownerPosition.x - 4, ownerPosition.y + 64.0f);
