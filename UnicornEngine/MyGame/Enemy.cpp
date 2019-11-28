@@ -40,10 +40,8 @@ float Enemy::GetCurrentShotTime()
 
 Enemy::Enemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 {
-	std::cout << "(Enemy: Enemy) My position is: ";
-	std::cout << position.x;
-	std::cout << " + ";
-	std::cout << position.y << std::endl;
+	position.x = pos.x;
+	position.y = pos.y;
 
 	Active = true;
 	spriteManager = spriteManagerRef;

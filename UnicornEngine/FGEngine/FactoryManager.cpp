@@ -33,6 +33,6 @@ FG::Entity* FG::FactoryManager::RunFactory(const std::string& Namae, Vector2D po
 	}
 	else
 	{
-		return it->second->CreateEntity();
+		return it->second->CreateEntity(position);
 	}
 }

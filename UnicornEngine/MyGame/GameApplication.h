@@ -42,7 +42,7 @@ private:
 	void CreateFactories();
 	void CreateBackground();
 	void CreatePlayer();
-	void SpawnWave(std::string enemyTypes[], float spawnFrequency);
+	void SpawnWave(std::string enemyTypes[], float spawnFrequency, int spawnAmount);
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;

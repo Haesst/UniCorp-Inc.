@@ -17,9 +17,8 @@ namespace FG
 		~EnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
-		Vector2D position;
 
-		virtual Entity* CreateEntity() { return new Enemy(spriteManager, position); }
+		virtual Entity* CreateEntity(Vector2D pos) { return new Enemy(spriteManager, pos); }
 	};
 
 	class FollowingEnemyFactory : public AFactory
@@ -30,9 +29,8 @@ namespace FG
 		~FollowingEnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
-		Vector2D position;
 
-		virtual Entity* CreateEntity() { return new FollowingEnemy(spriteManager, position); }
+		virtual Entity* CreateEntity(Vector2D pos) { return new FollowingEnemy(spriteManager, pos); }
 	};
 
 	class SmallEnemyFactory : public AFactory
@@ -43,8 +41,7 @@ namespace FG
 		~SmallEnemyFactory() {}
 
 		SpriteManager* spriteManager = nullptr;
-		Vector2D position;
-
-		virtual Entity* CreateEntity() { return new SmallEnemy(spriteManager, position); }
+		
+		virtual Entity* CreateEntity(Vector2D pos) { return new SmallEnemy(spriteManager, pos); }
 	};
 }

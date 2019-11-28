@@ -76,30 +76,33 @@ bool GameApplication::Initialize()
 
 void GameApplication::Run()
 {
-	float timeBetweenSpawn = 3.0f;
-	float timeBetweenSpawn2 = 5.0f;
-	float timeBetweenSpawn3 = 7.0f;
+	float elapsedTime = 0.0;
+
 	float currentTime = 3.0f;
-	float currentTime2 = 5.0f;
-	float currentTime3 = 7.0f;
+	float timeBetweenSpawn = 3.0f;
+	int spawnAmount = 2;
 
 	std::string enemyTypes[3] = { "Enemy", "SmallEnemy", "FollowingEnemy" };
 
 	bool quit = false;
 	while (!quit)
 	{
+		elapsedTime += time.DeltaTime();
 		currentTime -= time.DeltaTime();
-		currentTime2 -= time.DeltaTime();
-		currentTime3 -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
 		inputManager->Update(quit);
 
-
+		if (elapsedTime >= 10.0f)
+		{
+			//std::cout << "More than 10 sec has passed! Increasing spawn amount!" << std::endl;
+			//std::cout << "Elapsed time is: "; std::cout << elapsedTime << std::endl;
+			spawnAmount = 5;
+		}
 		if (currentTime <= 0.0f)
 		{
-			SpawnWave(enemyTypes, timeBetweenSpawn);
+			SpawnWave(enemyTypes, timeBetweenSpawn, spawnAmount);
 			currentTime = timeBetweenSpawn;
 		}
 
@@ -242,8 +245,8 @@ void GameApplication::CreatePlayer()
 	player->LifesLeft(3);
 }
 
-void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency)
-{ //Not working as intended! Enemies still spawn in pos 0,0 :(
+void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency, int spawnAmount)
+{
 	int i;
 	int n = 3;
 	std::string temp = enemyTypes[0];
@@ -253,7 +256,7 @@ void GameApplication::SpawnWave(std::string enemyTypes[], float spawnFrequency)
 	}
 	enemyTypes[n - 1] = temp;
 	FG::Vector2D position = {};
-	position.x = 100.0f;
+	position.x = 500.0f;
 	position.y = 250.0f;
 	FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
 	std::cout << "spawning from list:" + enemyTypes[0] << std::endl;

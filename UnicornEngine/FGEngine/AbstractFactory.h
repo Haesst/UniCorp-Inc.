@@ -10,6 +10,6 @@ namespace FG
 		AFactory() {}
 		virtual ~AFactory() {}
 
-		virtual Entity* CreateEntity() = 0;
+		virtual Entity* CreateEntity(Vector2D pos) = 0;
 	};
 }

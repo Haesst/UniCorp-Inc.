@@ -20,14 +20,15 @@ void SmallEnemy::onCollision(Tag tagau)
 	}
 }
 
-SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D position, bool startingLeft/* = true*/)
+SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos, bool startingLeft/* = true*/)
 {
+	position.x = pos.x;
+	position.y = pos.y;
 	score = 15;
 	health = 1;
 	Active = true;
-	std::cout << "Spawning me" << std::endl;
 
-	if (startingLeft)
+	if (startingLeft) //TODO: Remove position.x here. Or maybe modify it in another manner?
 	{
 		position.x = 10.0f;
 		goingRight = true;
