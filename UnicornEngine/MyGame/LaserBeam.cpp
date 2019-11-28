@@ -37,7 +37,6 @@ void LaserBeam::Update(float deltaTime)
 	FG::Vector2D ownerPosition = owner->GetPosition();
 
 	position = FG::Vector2D(ownerPosition.x - 4, ownerPosition.y + 64.0f);
-
 	rect = { (int)position.x, (int)position.y, 64, 900 };
 
 	myCollider->square.x = rect.x;
@@ -54,6 +53,6 @@ void LaserBeam::onCollision(Tag tagau)
 {
 	if (tagau == Playerau)
 	{
-		Active = false;
+		delete myCollider;
 	}
 }
