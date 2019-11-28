@@ -23,6 +23,9 @@ namespace FG
 
 	class PowerupFactory;
 	class PowerupLifeFactory;
+	class PowerupSpreadFactory;
+	class PowerupMultiSpreadFactory;
+	class PowerupRingshotFactory;
 }
 
 class Player; //Forward declaration : there is a class but you don't have to know what it does yet
@@ -50,6 +53,7 @@ private:
 	void CreateBackground();
 	void CreatePlayer();
 	void SpawnWave(std::string enemyTypes[], int spawnAmount);
+	void SpawnPowerup(std::string enemyTypes[]);
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
@@ -66,6 +70,10 @@ private:
 	FG::BigMommaFactory* bigMommaFactory = nullptr;
 
 	FG::PowerupFactory* powerupFactory = nullptr;
+	FG::PowerupLifeFactory* powerupLifeFactory = nullptr;
+	FG::PowerupSpreadFactory* powerupSpreadFactory = nullptr;
+	FG::PowerupMultiSpreadFactory* powerupMultiSpreadFactory = nullptr;
+	FG::PowerupRingshotFactory* powerupRingshotFactory = nullptr;
 
 	FG::Time time;
 

@@ -86,12 +86,14 @@ void GameApplication::Run()
 	int spawnAmount = 10;
 
 	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
+	std::string powerupTypes[4] = { "PowerupLife", "PowerupMultiSpread", "PowerupRingshot", "PowerupSpread"};
 
 	bool quit = false;
 	while (!quit)
 	{
 		elapsedTime += time.DeltaTime();
 		currentTime -= time.DeltaTime();
+		timeForPowerup -= time.DeltaTime();
 		// Start the timer
 		time.StartFrame();
 		// Update input
@@ -108,10 +110,11 @@ void GameApplication::Run()
 			SpawnWave(enemyTypes, spawnAmount);
 			currentTime = timeBetweenSpawn;
 		}
+
 		if (timeForPowerup <= 0.0f)
 		{
-			//TODO: continue here after pushing
-			//Spawn powerup
+			SpawnPowerup(powerupTypes);
+			timeForPowerup = timeBetweenPowerups;
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -240,6 +243,18 @@ void GameApplication::CreateFactories()
 
 	powerupFactory = new FG::PowerupFactory(spriteManager);
 	factoryManager->AddFactory("Powerup", powerupFactory);
+
+	powerupLifeFactory = new FG::PowerupLifeFactory(spriteManager);
+	factoryManager->AddFactory("PowerupLife", powerupLifeFactory);
+
+	powerupSpreadFactory = new FG::PowerupSpreadFactory(spriteManager);
+	factoryManager->AddFactory("PowerupSpread", powerupSpreadFactory);
+
+	powerupMultiSpreadFactory = new FG::PowerupMultiSpreadFactory(spriteManager);
+	factoryManager->AddFactory("PowerupMultiSpread", powerupMultiSpreadFactory);
+
+	powerupRingshotFactory = new FG::PowerupRingshotFactory(spriteManager);
+	factoryManager->AddFactory("PowerupRingshot", powerupRingshotFactory);
 }
 
 void GameApplication::CreateBackground()
@@ -327,4 +342,24 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 		enemyTypes[i] = enemyTypes[i + 1];
 	}
 	enemyTypes[n - 1] = temp;
+}
+
+void GameApplication::SpawnPowerup(std::string powerupTypes[])
+{
+	FG::Vector2D position;
+	position.x = 50, position.y = 50;
+
+	FG::EntityManager::Instance()->AddEntity(powerupTypes[0], position);
+
+	std::cout << "Spawned a: "; std::cout << powerupTypes[0] << std::endl;
+
+	int i;
+	int n = 4;
+
+	std::string temp = powerupTypes[0]; //Shuffles all powerup types around so the next type spawns.
+	for (i = 0; i < n - 1; i++)
+	{
+		powerupTypes[i] = powerupTypes[i + 1];
+	}
+	powerupTypes[n - 1] = temp;
 }

@@ -2,63 +2,165 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Background.cpp" />
-    <ClCompile Include="BigEnemyBullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyState.cpp" />
-    <ClCompile Include="FollowingEnemy.cpp" />
-    <ClCompile Include="FollowingEnemyState.cpp" />
     <ClCompile Include="GameApplication.cpp" />
-    <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
-    <ClCompile Include="Projectile.cpp" />
-    <ClCompile Include="SmallEnemy.cpp" />
-    <ClCompile Include="SmallEnemyState.cpp" />
     <ClCompile Include="UI.cpp" />
-    <ClCompile Include="SpiralFormation.cpp" />
-    <ClCompile Include="SpiralEnemy.cpp" />
-    <ClCompile Include="DescendingEnemy.cpp" />
-    <ClCompile Include="DescendingEnemyState.cpp" />
     <ClCompile Include="BigEnemyBullet.cpp" />
     <ClCompile Include="Highscore.cpp" />
-    <ClCompile Include="BigMommaEnemy.cpp" />
-    <ClCompile Include="BigMommaState.cpp" />
-    <ClCompile Include="LaserBeam.cpp" />
-    <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="BigEnemyBullet.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="BigMommaEnemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="BigMommaState.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="DescendingEnemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="DescendingEnemyState.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyState.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowingEnemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowingEnemyState.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="LaserBeam.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallEnemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="SmallEnemyState.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="SpiralEnemy.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="SpiralFormation.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Enemy+state</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupLife.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupMultiSpread.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupRingshot.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupSpread.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
-    <ClInclude Include="BigEnemyBullet.h" />
     <ClInclude Include="ConcreteFactories.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyState.h" />
-    <ClInclude Include="FollowingEnemy.h" />
-    <ClInclude Include="FollowingEnemyState.h" />
-    <ClInclude Include="FSMState.h" />
     <ClInclude Include="GameApplication.h" />
-    <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
-    <ClInclude Include="Projectile.h" />
-    <ClInclude Include="SmallEnemy.h" />
-    <ClInclude Include="SmallEnemyState.h" />
     <ClInclude Include="UI.h" />
-    <ClInclude Include="SpiralEnemy.h" />
-    <ClInclude Include="DescendingEnemy.h" />
-    <ClInclude Include="DescendingEnemyState.h" />
-    <ClInclude Include="SpiralFormation.h" />
     <ClInclude Include="BigEnemyBullet.h" />
     <ClInclude Include="Highscore.h" />
-    <ClInclude Include="BigMommaEnemy.h" />
-    <ClInclude Include="BigMommaState.h" />
-    <ClInclude Include="LaserBeam.h" />
-    <ClInclude Include="Powerup.h" />
+    <ClInclude Include="BigEnemyBullet.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="BigMommaEnemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="BigMommaState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="DescendingEnemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="DescendingEnemyState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowingEnemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowingEnemyState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteStateMachine.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="LaserBeam.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallEnemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="SmallEnemyState.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="SpiralEnemy.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="SpiralFormation.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Enemy+state</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupLife.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupMultiSpread.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupRingshot.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupSpread.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="log.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Enemy+state">
+      <UniqueIdentifier>{79dbc437-2fe6-49fb-be22-9d89df5fe1ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Powerups">
+      <UniqueIdentifier>{46d71565-15bd-4bc4-9ea6-bb898c7ab305}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

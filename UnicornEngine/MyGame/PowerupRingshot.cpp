@@ -1,4 +1,4 @@
-#include "Powerup.h"
+#include "PowerupRingshot.h"
 #include "Config.h"
 #include "SoundManager.h"
 #include "Player.h"
@@ -10,11 +10,11 @@
 #include <iostream>
 #include <Vector2D.h>
 
-Powerup::Powerup() {}
+PowerupRingshot::PowerupRingshot() {}
 
-Powerup::~Powerup() {}
+PowerupRingshot::~PowerupRingshot() {}
 
-void Powerup::onCollision(Tag tagau)
+void PowerupRingshot::onCollision(Tag tagau)
 {
 	switch (tagau)
 	{
@@ -27,20 +27,21 @@ void Powerup::onCollision(Tag tagau)
 	}
 }
 
-void Powerup::PowerupEffect()
+void PowerupRingshot::PowerupEffect()
 {
-	std::cout << "POWERUP: This powerup has a dummy effect." << std::endl;
-	//Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
-	//player->AddToScore(score); Maybe add score later on.
-	//UI::Instance()->UpdateScore();
+	std::cout << "RINGSHOT!" << std::endl;
+	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
+	player->activePowerup = true;
+	player->currentPowerup = "Ringshot";
+	player->powerupDuration = 10.0f;
 
 	//TODO: Find appropriate powerup sound.
 	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
-	
+
 	Active = false;
 }
 
-Powerup::Powerup(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
+PowerupRingshot::PowerupRingshot(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 {
 	position.x = pos.x;
 	position.y = pos.y;
@@ -48,7 +49,7 @@ Powerup::Powerup(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 	Active = true;
 	spriteManager = spriteManagerRef;
 
-	sprite = spriteManager->CreateSprite("../TestingAssets/PowerUpBase.png", 1, 1, 32, 32);
+	sprite = spriteManager->CreateSprite("../TestingAssets/PowerUpRingshot.png", 1, 1, 32, 32);
 	rect = { 0,0,32,32 };
 	myCollider->square.w = rect.w;
 	myCollider->square.h = rect.h;
@@ -62,7 +63,7 @@ Powerup::Powerup(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 	myTagau = Tag::Powerupau;
 }
 
-void Powerup::Update(float deltaTime)
+void PowerupRingshot::Update(float deltaTime)
 {
 	rect = { (int)position.x, (int)position.y, 32, 32 };
 	myCollider->square.x = rect.x;
@@ -71,7 +72,7 @@ void Powerup::Update(float deltaTime)
 	UpdateCollider();
 }
 
-void Powerup::Render(FG::Camera* const camera)
+void PowerupRingshot::Render(FG::Camera* const camera)
 {
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);

@@ -10,6 +10,10 @@
 #include "BigMommaEnemy.h"
 
 #include "Powerup.h"
+#include "PowerupLife.h"
+#include "PowerupSpread.h"
+#include "PowerupMultiSpread.h"
+#include "PowerupRingshot.h"
 
 namespace FG
 {
@@ -85,6 +89,7 @@ namespace FG
 	};
 
 
+
 	class PowerupFactory : public AFactory //inherits from AFactory
 	{
 	public:
@@ -97,4 +102,55 @@ namespace FG
 		virtual Entity* CreateEntity(Vector2D pos) { return new Powerup(spriteManager, pos); }
 	};
 
+
+	class PowerupLifeFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupLifeFactory() {}
+		PowerupLifeFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupLifeFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupLife(spriteManager, pos); }
+	};
+
+
+	class PowerupSpreadFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupSpreadFactory() {}
+		PowerupSpreadFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupSpreadFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupSpread(spriteManager, pos); }
+	};
+
+
+	class PowerupMultiSpreadFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupMultiSpreadFactory() {}
+		PowerupMultiSpreadFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupMultiSpreadFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupMultiSpread(spriteManager, pos); }
+	};
+
+
+	class PowerupRingshotFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupRingshotFactory() {}
+		PowerupRingshotFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupRingshotFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupRingshot(spriteManager, pos); }
+	};
 }

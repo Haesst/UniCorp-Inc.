@@ -31,6 +31,14 @@ void Player::Update(float deltaTime)
 {
 	MovePlayer(deltaTime);
 
+	if (activePowerup == true && powerupDuration > 0.0f) { powerupDuration -= deltaTime; }
+	if (activePowerup == true && powerupDuration <= 0.0f)
+	{
+		activePowerup = false;
+		currentPowerup = "";
+		std::cout << "Your powerup has expired..." << std::endl;
+	}
+
 	if (currentShotTimer > 0.0f)
 	{
 		currentShotTimer -= deltaTime;
@@ -38,11 +46,53 @@ void Player::Update(float deltaTime)
 
 	if (inputManager->IsKeyDown(SDL_SCANCODE_SPACE) && currentShotTimer <= 0.0f)
 	{
-		Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-		projectile->Active = true;
-		FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
-		SoundManager::Instance()->PlaySound("PlayerShot");
-		currentShotTimer = timeBetweenShots;
+		if (activePowerup == true)
+		{
+			if (currentPowerup == "Spread")
+			{
+				//todo: check which powerup is active
+				Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile2 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile3 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 30.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				projectile->Active = true, projectile2->Active = true, projectile3->Active = true;
+				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile2, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile3, "Projectile");
+			}
+			else if (currentPowerup == "Multispread" || currentPowerup == "Ringshot")
+			{
+				Projectile* projectile = new Projectile(FG::Vector2D(-1, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile2 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile3 = new Projectile(FG::Vector2D(1, -1), FG::Vector2D(position.x + 30.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile4 = new Projectile(FG::Vector2D(-1, 1), FG::Vector2D(position.x + 15.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile5 = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile6 = new Projectile(FG::Vector2D(1, 1), FG::Vector2D(position.x + 30.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				projectile->Active = true, projectile2->Active = true, projectile3->Active = true;
+				projectile4->Active = true, projectile5->Active = true, projectile6->Active = true;
+				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile2, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile3, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile4, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile5, "Projectile");
+				FG::EntityManager::Instance()->AddEntity(projectile6, "Projectile");
+			} //todo: Ringshot needs it's own effect.
+			/*else if (currentPowerup == "Ringshot")
+			{
+				Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				projectile->Active = true;
+				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+			}*/
+			SoundManager::Instance()->PlaySound("PlayerShot");
+			currentShotTimer = timeBetweenShots;
+		}
+		else
+		{
+			Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+			projectile->Active = true;
+			FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+			SoundManager::Instance()->PlaySound("PlayerShot");
+			currentShotTimer = timeBetweenShots;
+		}
 	}
 
 	FG::Vector2D temppos = { 0, 0 };

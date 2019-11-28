@@ -2,6 +2,7 @@
 
 #include <Entity.h>
 #include <Vector2D.h>
+#include <string>
 
 namespace FG
 {
@@ -22,6 +23,9 @@ public:
 
 	int LifesLeft() { return lifes; }
 	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
+	bool activePowerup = false;
+	std::string currentPowerup = "";
+	float powerupDuration = 0.0f;
 
 	int GetScore() { return score; }
 	void AddToScore(int score);

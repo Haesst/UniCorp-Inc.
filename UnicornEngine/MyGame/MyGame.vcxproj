@@ -109,6 +109,10 @@
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="LaserBeam.cpp" />
     <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="PowerupLife.cpp" />
+    <ClCompile Include="PowerupMultiSpread.cpp" />
+    <ClCompile Include="PowerupRingshot.cpp" />
+    <ClCompile Include="PowerupSpread.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -137,6 +141,10 @@
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="LaserBeam.h" />
     <ClInclude Include="Powerup.h" />
+    <ClInclude Include="PowerupLife.h" />
+    <ClInclude Include="PowerupMultiSpread.h" />
+    <ClInclude Include="PowerupRingshot.h" />
+    <ClInclude Include="PowerupSpread.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
