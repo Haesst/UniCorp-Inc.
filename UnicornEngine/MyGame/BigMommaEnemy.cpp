@@ -28,7 +28,7 @@ BigMommaEnemy::BigMommaEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D p
 	spriteManager = spriteManagerRef;
 	score = 50;
 	health = 10;
-	timeBetweenShots = 4.0f;
+	timeBetweenShots = 2.0f;
 
 	sprite = spriteManager->CreateSprite("../TestingAssets/BigMomma.png", 0, 0, 60, 64);
 
@@ -73,7 +73,7 @@ void BigMommaEnemy::Shoot()
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
 	SoundManager::Instance()->PlaySound("EnemyShot");
-	currentShotTime = timeBetweenShots;
+	currentShotTime = timeBetweenShots + laserTime;
 }
 
 float BigMommaEnemy::GetCurrentShotTime()
