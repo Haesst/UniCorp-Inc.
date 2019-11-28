@@ -12,13 +12,17 @@ namespace FG
 	class Camera;
 	class SpriteManager;
 	class CollisionManager;
+
+	class FactoryManager;
 	class EnemyFactory;
 	class FollowingEnemyFactory;
 	class SmallEnemyFactory;
 	class DescendingEnemyFactory;
 	class SpiralEnemyFactory;
 	class BigMommaFactory;
-	class FactoryManager;
+
+	class PowerupFactory;
+	class PowerupLifeFactory;
 }
 
 class Player; //Forward declaration : there is a class but you don't have to know what it does yet
@@ -60,6 +64,8 @@ private:
 	FG::DescendingEnemyFactory* descendingEnemyFactory = nullptr;
 	FG::SpiralEnemyFactory* spiralEnemyFactory = nullptr;
 	FG::BigMommaFactory* bigMommaFactory = nullptr;
+
+	FG::PowerupFactory* powerupFactory = nullptr;
 
 	FG::Time time;
 

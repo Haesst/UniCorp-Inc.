@@ -80,8 +80,6 @@ namespace FG
 			it = entities.find(Tag);
 		}
 		it->second.push_back(factoryManager->RunFactory(Tag, position));
-
-		std::cout << Tag << " list contains #" << it->second.size() << " items." << std::endl;
 	}
 
 	void EntityManager::CheckEntitiesCollision()

@@ -70,7 +70,7 @@ bool GameApplication::Initialize()
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
 
-	FG::EntityManager::Instance()->AddEntity("BigMomma", FG::Vector2D(50, 50));
+	//FG::EntityManager::Instance()->AddEntity("BigMomma", FG::Vector2D(50, 50));
 
 	return true;
 }
@@ -80,10 +80,12 @@ void GameApplication::Run()
 	float elapsedTime = 0.0;
 
 	float currentTime = 3.0f;
-	float timeBetweenSpawn = 3.0f;
-	int spawnAmount = 2;
+	float timeForPowerup = 3.0f;
+	float timeBetweenPowerups = 5.0f;
+	float timeBetweenSpawn = 8.0f;
+	int spawnAmount = 10;
 
-	std::string enemyTypes[3] = { "Enemy", "SmallEnemy", "FollowingEnemy" };
+	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
 
 	bool quit = false;
 	while (!quit)
@@ -105,6 +107,11 @@ void GameApplication::Run()
 		{
 			SpawnWave(enemyTypes, spawnAmount);
 			currentTime = timeBetweenSpawn;
+		}
+		if (timeForPowerup <= 0.0f)
+		{
+			//TODO: continue here after pushing
+			//Spawn powerup
 		}
 
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
@@ -230,6 +237,9 @@ void GameApplication::CreateFactories()
 	//TODO: Fix spawning of spiral enemies, as they take a pointer to a direction
 	/*spiralEnemyFactory = new FG::SpiralEnemyFactory(spriteManager);
 	factoryManager->AddFactory("SpiralEnemyFactory", spiralEnemyFactory);*/
+
+	powerupFactory = new FG::PowerupFactory(spriteManager);
+	factoryManager->AddFactory("Powerup", powerupFactory);
 }
 
 void GameApplication::CreateBackground()
@@ -257,12 +267,13 @@ void GameApplication::CreatePlayer()
 }
 
 void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
-{/*There is presumably a better way to handle these positions, with less duplication.
+{
+	/*There is presumably a better way to handle these positions, with less duplication.
 	However, in my attempts to refactor them, the original position and diff values (origpos & origdiff)
 	are modified by any future changes to the position or diff variables. Unclear why.*/
 	FG::Vector2D position;
 	position.x = 20.0f;
-	position.y = 200.0f;
+	position.y = 20.0f;
 	FG::Vector2D origpos = position;
 	FG::Vector2D diff = position;
 	FG::Vector2D origdiff = diff;
@@ -270,6 +281,10 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 	origpos.y = position.y;
 	diff.x = 40.0f;
 	origdiff.x = diff.x;
+	if (enemyTypes[0] == "BigMomma")
+	{
+		spawnAmount = 1;
+	}
 
 	if (enemyTypes[0] == "FollowingEnemy" || enemyTypes[0] == "SmallEnemy")
 	{
@@ -303,6 +318,13 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
 		}
 	}
+	int i;
+	int n = 4;
 
 	std::string temp = enemyTypes[0]; //Shuffles all enemy types around so the next enemy type spawns.
+	for (i = 0; i < n - 1; i++)
+	{
+		enemyTypes[i] = enemyTypes[i + 1];
+	}
+	enemyTypes[n - 1] = temp;
 }

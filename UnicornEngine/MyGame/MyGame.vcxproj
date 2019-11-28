@@ -108,6 +108,7 @@
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="LaserBeam.cpp" />
+    <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="LaserBeam.h" />
+    <ClInclude Include="Powerup.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />

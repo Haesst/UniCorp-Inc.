@@ -9,6 +9,8 @@
 #include "DescendingEnemy.h"
 #include "BigMommaEnemy.h"
 
+#include "Powerup.h"
+
 namespace FG
 {
 	class EnemyFactory : public AFactory //inherits from AFactory
@@ -81,4 +83,18 @@ namespace FG
 
 		virtual Entity* CreateEntity(Vector2D pos) { return new BigMommaEnemy(spriteManager, pos); }
 	};
+
+
+	class PowerupFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupFactory() {}
+		PowerupFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new Powerup(spriteManager, pos); }
+	};
+
 }
