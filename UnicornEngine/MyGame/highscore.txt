@@ -12,9 +12,9 @@ eliah
 foxtrot
 2000
 gamma
+1300
+d
 1075
 BORK
 1000
 hophop
-789
-irma
