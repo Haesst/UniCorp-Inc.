@@ -85,7 +85,7 @@ void GameApplication::Run()
 	float timeBetweenSpawn = 8.0f;
 	int spawnAmount = 10;
 
-	std::string enemyTypes[4] = { "FollowingEnemy", "Enemy", "SmallEnemy",  "BigMomma" };
+	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
 
 	bool quit = false;
 	while (!quit)
