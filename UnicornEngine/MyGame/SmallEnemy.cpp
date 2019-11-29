@@ -104,7 +104,7 @@ void SmallEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "BigEnemyBullet");
-	SoundManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("BigEnemyBullet");
 	currentShotTime = timeBetweenShots;
 	shotsToFire--;
 }

@@ -37,7 +37,7 @@ void PowerupMultiSpread::PowerupEffect()
 	player->AddToScore(score);
 
 	//TODO: Find appropriate powerup sound.
-	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
+	SoundManager::Instance()->PlaySound("Powerup"); 
 
 	Active = false;
 }
