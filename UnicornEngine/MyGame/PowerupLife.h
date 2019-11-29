@@ -25,5 +25,6 @@ private:
 	void MovePowerup(float deltaTime);
 	virtual void onCollision(Tag tagau) override;
 	FG::SpriteManager* spriteManager;
+	int score = 15;
 };
 

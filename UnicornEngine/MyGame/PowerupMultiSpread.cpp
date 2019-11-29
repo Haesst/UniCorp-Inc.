@@ -32,6 +32,7 @@ void PowerupMultiSpread::PowerupEffect()
 	player->activePowerup = true;
 	player->currentPowerup = "Multispread";
 	player->powerupDuration = 10.0f;
+	player->AddToScore(score);
 
 	//TODO: Find appropriate powerup sound.
 	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 

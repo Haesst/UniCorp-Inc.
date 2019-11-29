@@ -62,6 +62,7 @@ void SoundManager::AddSound(const char* path, const char* name)
 
 	if (soundEffects.find(name) == soundEffects.end() && soundFile != nullptr)
 	{
+		Mix_VolumeChunk(soundFile, MIX_MAX_VOLUME * 0.5);
 		soundEffects[name] = soundFile;
 	}
 }

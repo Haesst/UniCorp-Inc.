@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "PlayerState.h"
 #include "Projectile.h"
+#include "UI.h"
 
 #include <SpriteManager.h>
 #include <InputManager.h>
@@ -130,6 +131,7 @@ void Player::Render(FG::Camera* const camera)
 void Player::AddToScore(int score)
 {
 	this->score += score;
+	UI::Instance()->UpdateScore();
 }
 
 void Player::DefeatedBoss()
