@@ -86,7 +86,7 @@ void GameApplication::Run()
 	int spawnAmount = 10;
 
 	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
-	std::string powerupTypes[4] = { "PowerupLife", "PowerupMultiSpread", "PowerupRingshot", "PowerupSpread"};
+	std::string powerupTypes[4] = { "PowerupMultiSpread", "PowerupLife", "PowerupRingshot", "PowerupSpread"};
 
 	bool quit = false;
 	while (!quit)
