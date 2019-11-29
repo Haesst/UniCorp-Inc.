@@ -85,7 +85,6 @@ void GameApplication::Run()
 	float timeBetweenSpawn = 8.0f;
 	int spawnAmount = 10;
 	int defeatedBosses = 0;
-	//DescendingEnemy
 	std::string enemyTypes[5] = { "DescendingEnemy", "SmallEnemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
 	std::string powerupTypes[4] = { "PowerupMultiSpread", "PowerupLife", "PowerupRingshot", "PowerupSpread"};
 
@@ -322,7 +321,7 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 }
 
 void GameApplication::SpawnPowerup(std::string powerupTypes[])
-{
+{ //todo: make the types switch up, maybe add more effects
 	FG::Vector2D position;
 	position.x = rand() % 1000 + 5, position.y = rand() % 150 + 5;
 
@@ -400,7 +399,7 @@ void GameApplication::FormationSmallEnemy(std::string enemyType, int spawnAmount
 
 void GameApplication::FormationBigMomma(std::string enemyType, int spawnAmount)
 {
-	FG::Vector2D defaultPos = { width / 2, -50 };
+	FG::Vector2D defaultPos = { width / 2, -75 };
 	FG::Vector2D leftPos = { defaultPos.x / 2, defaultPos.y};
 	FG::Vector2D rightPos = {defaultPos.x + leftPos.x, defaultPos.y};
 	FG::Vector2D finalPos = { defaultPos.x, defaultPos.y };

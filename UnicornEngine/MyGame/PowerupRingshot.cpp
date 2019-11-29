@@ -18,10 +18,8 @@ void PowerupRingshot::onCollision(Tag tagau)
 {
 	switch (tagau)
 	{
-		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 	case Tag::Playerau:
 		std::cout << "Powerup collided with Player" << std::endl;
-		// Todo: powerup effect
 		PowerupEffect();
 		break;
 	}

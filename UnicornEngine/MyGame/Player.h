@@ -32,7 +32,7 @@ public:
 	void AddToScore(int score);
 	void DefeatedBoss();
 	void ResetStats() { score = 0; defeatedBosses = 0; }
-	int defeatedBosses = 0; //todo do not tie to death of big momma
+	int defeatedBosses = 0;
 
 private:
 	Player() {}

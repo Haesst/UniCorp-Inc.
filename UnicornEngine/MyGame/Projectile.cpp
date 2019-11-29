@@ -49,9 +49,7 @@ Projectile::~Projectile()
 
 void Projectile::Update(float deltaTime)
 {
-	// Todo: Change lifetime to instead destroy them when they hit the top
-	lifetime -= deltaTime;
-	if (lifetime <= 0.0f)
+	if (position.y <= 0)
 	{
 		Active = false;
 	}

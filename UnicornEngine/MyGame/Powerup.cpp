@@ -18,10 +18,8 @@ void Powerup::onCollision(Tag tagau)
 {
 	switch (tagau)
 	{
-		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 	case Tag::Playerau:
 		std::cout << "Powerup collided with Player" << std::endl;
-		// Todo: powerup effect
 		PowerupEffect();
 		break;
 	}
@@ -30,13 +28,6 @@ void Powerup::onCollision(Tag tagau)
 void Powerup::PowerupEffect()
 {
 	std::cout << "POWERUP: This powerup has a dummy effect." << std::endl;
-	//Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
-	//player->AddToScore(score); Maybe add score later on.
-	//UI::Instance()->UpdateScore();
-
-	//TODO: Find appropriate powerup sound.
-	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
-	
 	Active = false;
 }
 
