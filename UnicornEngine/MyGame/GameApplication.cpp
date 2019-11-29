@@ -86,7 +86,7 @@ void GameApplication::Run()
 	int spawnAmount = 10;
 
 	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
-	std::string powerupTypes[4] = { "PowerupLife", "PowerupMultiSpread", "PowerupRingshot", "PowerupSpread"};
+	std::string powerupTypes[4] = { "PowerupMultiSpread", "PowerupLife", "PowerupRingshot", "PowerupSpread"};
 
 	bool quit = false;
 	while (!quit)
@@ -348,11 +348,9 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 void GameApplication::SpawnPowerup(std::string powerupTypes[])
 {
 	FG::Vector2D position;
-	position.x = 50, position.y = 50;
+	position.x = rand() % 1000 + 5, position.y = rand() % 150 + 5;
 
 	FG::EntityManager::Instance()->AddEntity(powerupTypes[0], position);
-
-	std::cout << "Spawned a: "; std::cout << powerupTypes[0] << std::endl;
 
 	int i;
 	int n = 4;

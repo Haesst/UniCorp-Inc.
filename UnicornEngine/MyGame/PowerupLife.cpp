@@ -66,6 +66,7 @@ PowerupLife::PowerupLife(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos)
 
 void PowerupLife::Update(float deltaTime)
 {
+	SetPosition(FG::Vector2D(position.x, position.y + 4));
 	rect = { (int)position.x, (int)position.y, 32, 32 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
