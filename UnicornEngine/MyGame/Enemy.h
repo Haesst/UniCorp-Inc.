@@ -38,9 +38,11 @@ private:
 	virtual void onCollision(Tag tagau) override;
 protected:
 	virtual void EnemyDies();
+	void CheckIfVisible();
 
 protected:
 	FG::SpriteManager* spriteManager;
+	SDL_Window* window = nullptr;
 
 	float timeBetweenShots = 1.6f;
 	float currentShotTime = timeBetweenShots;

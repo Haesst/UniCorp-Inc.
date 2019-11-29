@@ -7,6 +7,7 @@
 
 #include <SpriteManager.h>
 #include <EntityManager.h>
+#include <Camera.h>
 
 #include <iostream>
 
@@ -64,6 +65,8 @@ SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos, bo
 
 void SmallEnemy::Update(float deltaTime)
 {
+	CheckIfVisible();
+
 	if (currentShotTime > 0)
 	{
 		currentShotTime -= deltaTime;
@@ -79,6 +82,11 @@ void SmallEnemy::Update(float deltaTime)
 
 void SmallEnemy::Render(FG::Camera* const camera)
 {
+	if (window == nullptr)
+	{
+		window = camera->GetWindow()->GetInternalWindow();
+	}
+
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
 }

@@ -31,7 +31,7 @@ void PowerupLife::PowerupEffect()
 {
 	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
 	int temp = player->LifesLeft();
-	if (temp != 3)
+	if (temp != 5)
 	{
 		temp += 1;
 		player->LifesLeft(temp);
