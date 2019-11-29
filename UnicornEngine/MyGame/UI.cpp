@@ -137,3 +137,20 @@ void UI::LowerHighscoreWindow(SDL_Rect highscoreRect)
 {
 	spriteManager->Draw(highscoreWindow, highscoreRect);
 }
+
+void UI::DrawHighscores(std::string line, int w, int h)
+{
+	SDL_FreeSurface(highscoreSurface);
+	SDL_DestroyTexture(highscoreTexture);
+
+	std::string text = line;
+	highscoreSurface = TTF_RenderText_Solid(scoreFont, text.c_str(), { 255,255,255,255 });
+	highscoreTexture = SDL_CreateTextureFromSurface(renderer, highscoreSurface);
+
+	int width = 50;
+	int height = 50;
+	highscoreTextRect = { w, h, 200, 50};
+
+	highscoreSprite = new FG::Sprite(highscoreTexture, 1, 1, 100, 50);
+	spriteManager->Draw(highscoreSprite, highscoreTextRect);
+}

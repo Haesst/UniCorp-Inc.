@@ -78,7 +78,6 @@ bool GameApplication::Initialize()
 void GameApplication::Run()
 {
 	float elapsedTime = 0.0;
-
 	float currentTime = 3.0f;
 	float timeForPowerup = 3.0f;
 	float timeBetweenPowerups = 5.0f;
@@ -130,12 +129,13 @@ void GameApplication::Run()
 
 		if (player->LifesLeft() <= 0)
 		{
+			//Clearing the screen
 			FG::EntityManager::Instance()->ClearEntities();
-
+			//Displaying the game over window (position at -900y so hidden by default)
 			camera->StartRenderFrame();
 			SDL_Rect hsrect = UI::Instance()->DrawHighscoreWindow();
 			camera->EndRenderFrame();
-
+			//Lowers the window gently into view
 			while (hsrect.y < 0)
 			{
 				hsrect.y += 10;
@@ -143,7 +143,29 @@ void GameApplication::Run()
 				UI::Instance()->LowerHighscoreWindow(hsrect);
 				camera->EndRenderFrame();
 			}
-
+			//Fetches the highscores
+			Highscore::arrayWrapper wrapper;
+			wrapper = highscoreManager->DisplayScores(wrapper);
+			//Displays all the scores, one after the other
+			int temp = 0;
+			int w = 100;
+			int h = 50;
+			for (auto& text : wrapper.list) {
+				if (temp % 2 == 0) //every OTHER, excluding first
+				{
+					w = 50;
+					h += 75;
+				}
+				else
+				{
+					w = 350;
+				}
+				UI::Instance()->DrawHighscores(text.value, w, h);
+				temp++;
+			}
+			camera->EndRenderFrame();
+			//Waits for input to see if score was good enough
+			//Todo: check if player scored before asking for name.
 			std::string x;
 			std::cout << "You have been killed! Game over." << std::endl;
 			std::cout << "Enter your name to see if you got a highscore!" << std::endl;

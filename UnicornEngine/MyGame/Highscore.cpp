@@ -4,6 +4,25 @@
 
 #include <EntityManager.h>
 
+Highscore::arrayWrapper Highscore::DisplayScores(Highscore::arrayWrapper wrapper)
+{
+	std::ifstream file("highscore.txt");
+	int currentLine = 0;
+	std::string line;
+	std::string score;
+	std::string name;
+
+	if (file.is_open())
+	{
+		while (getline(file, line))
+		{
+			wrapper.list[currentLine].value = line;
+			currentLine++;
+		}
+		file.close();
+	}
+	return wrapper;
+}
 
 void Highscore::AddToFile(Player* player, std::string name)
 {

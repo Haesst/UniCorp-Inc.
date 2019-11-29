@@ -13,14 +13,19 @@ class Player;
 
 class UI
 {
+public:
+	SDL_Rect highscoreTextRect;
+	SDL_Surface* highscoreSurface = nullptr;
+	SDL_Texture* highscoreTexture = nullptr;
+	FG::Sprite* highscoreSprite = nullptr;
 private:
 	FG::SpriteManager* spriteManager;
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 
 	SDL_Rect playerScoreRect;
-	SDL_Surface* playerScoreSurface = nullptr;
 	TTF_Font* scoreFont = nullptr;
+	SDL_Surface* playerScoreSurface = nullptr;
 	SDL_Texture* scoreTexture = nullptr;
 	FG::Sprite* playerScoreSprite = nullptr;
 
@@ -36,8 +41,6 @@ private:
 	FG::Sprite* highscoreWindow = nullptr;
 
 	Player* player;
-
-
 public:
 	UI();
 	~UI();
@@ -49,8 +52,10 @@ public:
 	void Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SDL_Window* window);
 	void UpdateScore();
 	void ResetUI();
+
 	SDL_Rect DrawHighscoreWindow();
 	void LowerHighscoreWindow(SDL_Rect highscoreRect);
+	void DrawHighscores(std::string line, int w, int h);
 
 private:
 	void DrawPortrait();
