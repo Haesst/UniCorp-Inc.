@@ -17,6 +17,7 @@
 Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteManager* spriteManagerRef) : inputManager(inputManager), camera(camera), spriteManager (spriteManagerRef)
 {
 	score = 0;
+	defeatedBosses = 0;
 	playerState = new PlayerState();
 	playerState->Configure(this);
 	playerState->ChangeState(new PlayerState::Idle());
@@ -133,6 +134,12 @@ void Player::AddToScore(int score)
 	this->score += score;
 	UI::Instance()->UpdateScore();
 }
+
+void Player::DefeatedBoss()
+{
+	this->defeatedBosses += 1;
+}
+
 
 void Player::MovePlayer(float deltaTime)
 {

@@ -23,13 +23,16 @@ public:
 
 	int LifesLeft() { return lifes; }
 	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
+
 	bool activePowerup = false;
 	std::string currentPowerup = "";
 	float powerupDuration = 0.0f;
 
 	int GetScore() { return score; }
 	void AddToScore(int score);
-	void ResetScore() { score = 0; }
+	void DefeatedBoss();
+	void ResetStats() { score = 0; defeatedBosses = 0; }
+	int defeatedBosses = 0; //todo do not tie to death of big momma
 
 private:
 	Player() {}

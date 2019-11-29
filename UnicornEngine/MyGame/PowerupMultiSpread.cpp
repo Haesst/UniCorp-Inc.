@@ -66,7 +66,7 @@ PowerupMultiSpread::PowerupMultiSpread(FG::SpriteManager* spriteManagerRef, FG::
 
 void PowerupMultiSpread::Update(float deltaTime)
 {
-	SetPosition(FG::Vector2D(position.x, position.y + 4));
+	SetPosition(FG::Vector2D(position.x, position.y + 3));
 	rect = { (int)position.x, (int)position.y, 32, 32 };
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;

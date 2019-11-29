@@ -84,8 +84,9 @@ void GameApplication::Run()
 	float timeBetweenPowerups = 5.0f;
 	float timeBetweenSpawn = 8.0f;
 	int spawnAmount = 10;
-
-	std::string enemyTypes[4] = { "Enemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
+	int defeatedBosses = 0;
+	//DescendingEnemy
+	std::string enemyTypes[5] = { "DescendingEnemy", "SmallEnemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
 	std::string powerupTypes[4] = { "PowerupMultiSpread", "PowerupLife", "PowerupRingshot", "PowerupSpread"};
 
 	bool quit = false;
@@ -99,12 +100,9 @@ void GameApplication::Run()
 		// Update input
 		inputManager->Update(quit);
 
-		if (elapsedTime >= 10.0f)
-		{
-			//std::cout << "More than 10 sec has passed! Increasing spawn amount!" << std::endl;
-			//std::cout << "Elapsed time is: "; std::cout << elapsedTime << std::endl;
-			spawnAmount = 5;
-		}
+
+		spawnAmount = 10 + (4 * player->defeatedBosses);
+
 		if (currentTime <= 0.0f)
 		{
 			SpawnWave(enemyTypes, spawnAmount);
@@ -275,7 +273,7 @@ void GameApplication::CreatePlayer()
 		delete player;
 	}
 	player = new Player(inputManager, camera, spriteManager);
-	player->ResetScore();
+	player->ResetStats();
 	player->SetPosition(FG::Vector2D(280, 800));
 	player->Active = true;
 	FG::EntityManager::Instance()->AddEntity(player, "Player");
@@ -287,57 +285,35 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 	/*There is presumably a better way to handle these positions, with less duplication.
 	However, in my attempts to refactor them, the original position and diff values (origpos & origdiff)
 	are modified by any future changes to the position or diff variables. Unclear why.*/
-	FG::Vector2D position;
-	position.x = 20.0f;
-	position.y = 20.0f;
-	FG::Vector2D origpos = position;
-	FG::Vector2D diff = position;
-	FG::Vector2D origdiff = diff;
-	origpos.x = position.x;
-	origpos.y = position.y;
-	diff.x = 40.0f;
-	origdiff.x = diff.x;
-	if (enemyTypes[0] == "BigMomma")
+	std::string enemySpawning = enemyTypes[0];
+
+	if (enemySpawning == "BigMomma")
 	{
-		spawnAmount = 1;
+		spawnAmount = player->defeatedBosses + 1;
+		FormationBigMomma(enemySpawning, spawnAmount);
+	}
+	else if (enemySpawning == "DescendingEnemy")
+	{
+		FormationV(enemySpawning, spawnAmount);
+	}
+	else if (enemySpawning == "FollowingEnemy")
+	{
+		FormationLine(enemySpawning, spawnAmount);
+	}
+	else if (enemySpawning == "SmallEnemy")
+	{
+		FormationSmallEnemy(enemySpawning, spawnAmount);
+	}
+	else //Just in case of unexpected enemy: Spawn in a line.
+	{
+		FormationLine(enemySpawning, spawnAmount);
 	}
 
-	if (enemyTypes[0] == "FollowingEnemy" || enemyTypes[0] == "SmallEnemy")
-	{
-		for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
-		{
-			position.x += diff.x + 15;
-			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-		}
-	}
-	else
-	{
-		for (size_t i = 0; i < spawnAmount; i++)
-		{
-			if (i % 2 != 0) // ODD numbers
-			{
-				position.x = origpos.x + diff.x;
-				diff.x += origdiff.x;
-			}
-			else //EVEN numbers. First number is even (thus, first spawned enemy enters this)
-			{
-				if (i > 0)
-				{
-					position.x = origpos.x - diff.x;
-					position.y += 35.0f; // Flip this to make them spawn in V-pattern
-				}
-				else //First enemy spawn pos is unchanged
-				{
-					position.x -= diff.x;
-				}
-			}
-			FG::EntityManager::Instance()->AddEntity(enemyTypes[0], position);
-		}
-	}
+	//Finally, shuffle around enemy types so the next one in the list spawns.
 	int i;
-	int n = 4;
+	int n = 5;
 
-	std::string temp = enemyTypes[0]; //Shuffles all enemy types around so the next enemy type spawns.
+	std::string temp = enemyTypes[0];
 	for (i = 0; i < n - 1; i++)
 	{
 		enemyTypes[i] = enemyTypes[i + 1];
@@ -352,13 +328,112 @@ void GameApplication::SpawnPowerup(std::string powerupTypes[])
 
 	FG::EntityManager::Instance()->AddEntity(powerupTypes[0], position);
 
+	//Shuffles all powerup types around so the next type spawns.
 	int i;
 	int n = 4;
 
-	std::string temp = powerupTypes[0]; //Shuffles all powerup types around so the next type spawns.
+	std::string temp = powerupTypes[0];
 	for (i = 0; i < n - 1; i++)
 	{
 		powerupTypes[i] = powerupTypes[i + 1];
 	}
 	powerupTypes[n - 1] = temp;
+}
+
+void GameApplication::FormationV(std::string enemyType, int spawnAmount)
+{
+	FG::Vector2D leftPos = { width/2, 50};
+	FG::Vector2D rightPos = { width/2, 50};
+	FG::Vector2D diff = {30, 30};
+	for (size_t i = 0; i < spawnAmount; i++)
+	{
+		if (i % 2 != 0) // ODD numbers
+		{
+			FG::EntityManager::Instance()->AddEntity(enemyType, rightPos);
+			rightPos.x += diff.x;
+			rightPos.y -= diff.y;
+		}
+		else //EVEN numbers. First number is even (thus, first spawned enemy enters this)
+		{
+			FG::EntityManager::Instance()->AddEntity(enemyType, leftPos);
+			leftPos.x -= diff.x;
+			leftPos.y -= diff.y;
+		}
+	}
+}
+
+void GameApplication::FormationLine(std::string enemyType, int spawnAmount)
+{
+	FG::Vector2D position = {0, 0};
+	FG::Vector2D diff = {20, 20};
+	for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
+	{
+		FG::EntityManager::Instance()->AddEntity(enemyType, position);
+		position.x += diff.x;
+	}
+}
+
+void GameApplication::FormationSmallEnemy(std::string enemyType, int spawnAmount)
+{
+	FG::Vector2D leftPos = {0, 50};
+	FG::Vector2D rightPos = {width, 50};
+	FG::Vector2D diff = {40, 40};
+	for (size_t i = 0; i < spawnAmount; i++)
+	{
+		if (i % 2 != 0) // ODD numbers
+		{
+			FG::EntityManager::Instance()->AddEntity(enemyType, rightPos);
+			rightPos.x += diff.x;
+			rightPos.y -= diff.y;
+		}
+		else //EVEN numbers. First number is even (thus, first spawned enemy enters this)
+		{
+			if (i > 0)
+			{
+				leftPos.x -= diff.x;
+				leftPos.y -= diff.y;
+			}
+			FG::EntityManager::Instance()->AddEntity(enemyType, leftPos);
+		}
+	}
+}
+
+void GameApplication::FormationBigMomma(std::string enemyType, int spawnAmount)
+{
+	FG::Vector2D defaultPos = { width / 2, -50 };
+	FG::Vector2D leftPos = { defaultPos.x / 2, defaultPos.y};
+	FG::Vector2D rightPos = {defaultPos.x + leftPos.x, defaultPos.y};
+	FG::Vector2D finalPos = { defaultPos.x, defaultPos.y };
+
+	for (size_t i = 0; i < spawnAmount; i++)
+	{
+		if (i == 0 || i == 6 || i == 11) //central row
+		{ FG::EntityManager::Instance()->AddEntity(enemyType, defaultPos); }
+		else if (i == 1) //left row. The second big momma does not increase Y-pos.
+		{ FG::EntityManager::Instance()->AddEntity(enemyType, leftPos); }
+		else if (i == 2 || i == 7 || i == 12) //right-most row
+		{ FG::EntityManager::Instance()->AddEntity(enemyType, rightPos); }
+		else if (i == 3 || i == 8) //middle left row
+		{
+			defaultPos.y -= 75, leftPos.y -= 75, rightPos.y -= 75, finalPos.y -= 75;
+			finalPos.x = leftPos.x + (leftPos.x / 2);
+			FG::EntityManager::Instance()->AddEntity(enemyType, finalPos);
+		}
+		else if (i == 4 || i == 9) //middle right row
+		{
+			finalPos.x = defaultPos.x + (leftPos.x / 2);
+			FG::EntityManager::Instance()->AddEntity(enemyType, finalPos);
+		}
+		else if (i == 5 || i == 10) //leftmost row, exclusing the first wave of bigmommas
+		{
+			defaultPos.y -= 75, leftPos.y -= 75, rightPos.y -= 75, finalPos.y -= 75;
+			FG::EntityManager::Instance()->AddEntity(enemyType, leftPos);
+		}
+		else //Only if the player has 14+ big mommas do you end up here.
+		{
+			std::cout << "Ended in else for bigmomma, not good!" << std::endl;
+			FG::EntityManager::Instance()->AddEntity(enemyType, defaultPos);
+		}
+	}
+	player->DefeatedBoss();
 }
