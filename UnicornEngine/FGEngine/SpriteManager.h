@@ -21,6 +21,8 @@ namespace FG
 		void Clear();
 		void Present();
 		void Draw(Sprite* sprite, SDL_Rect rect);
+		void Draw(Sprite* sprite, SDL_Rect rect, SDL_Color colorModifier);
+		void Draw(Sprite* sprite, SDL_Rect rect, SDL_Color colorModifier, float alpha);
 		void DebugDraw(SDL_Rect debugrect);
 
 		SDL_Window* window = nullptr;

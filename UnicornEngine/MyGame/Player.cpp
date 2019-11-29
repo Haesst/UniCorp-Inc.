@@ -31,6 +31,28 @@ Player::Player(FG::InputManager* inputManager, FG::Camera* camera, FG::SpriteMan
 
 void Player::Update(float deltaTime)
 {
+	if (immortalCounter > 0.0f)
+	{
+		immortalCounter -= deltaTime;
+	}
+
+	if (immortal)
+	{
+		if (immortalFlashCounter < 1.1f)
+		{
+			immortalFlashCounter += deltaTime;
+		}
+		else if (immortalFlashCounter > 0.9f)
+		{
+			immortalFlashCounter -= deltaTime;
+		}
+	}
+
+	if (immortal && immortalCounter <= 0.0f)
+	{
+		immortal = false;
+	}
+
 	MovePlayer(deltaTime);
 
 	if (activePowerup == true && powerupDuration > 0.0f) { powerupDuration -= deltaTime; }
@@ -124,7 +146,24 @@ void Player::Render(FG::Camera* const camera)
 	SDL_RenderFillRect(camera->GetInternalRenderer(), &finalRect);
 
 	SDL_SetRenderDrawColor(camera->GetInternalRenderer(), oldDrawColor.r, oldDrawColor.g, oldDrawColor.b, oldDrawColor.a);*/
-	spriteManager->Draw(sprite, rect);
+	
+	if (immortal)
+	{
+		if (immortalFlashCounter < 1.0f)
+		{
+			std::cout << "flash alpha" << std::endl;
+			spriteManager->Draw(sprite, rect, { 255,255,255 }, 100);
+		} 
+		else
+		{
+			std::cout << "flash red" << std::endl;
+			spriteManager->Draw(sprite, rect, { 255,0,0 }, 255);
+		}
+	}
+	else
+	{
+		spriteManager->Draw(sprite, rect, { 255,255,255 }, 255);
+	}
 	spriteManager->DebugDraw(myCollider->square);
 }
 
@@ -201,7 +240,12 @@ void Player::onCollision(Tag tagau)
 		switch (tagau)
 		{
 		case EnemyBulletau:
-			lifes--;
-			SoundManager::Instance()->PlaySound("PlayerDamage");
+			if (!immortal)
+			{
+				lifes--;
+				SoundManager::Instance()->PlaySound("PlayerDamage");
+				immortal = true;
+				immortalCounter = immortalTime;
+			}
 		}
 }

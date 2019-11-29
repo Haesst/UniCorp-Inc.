@@ -25,6 +25,10 @@ public:
 	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
 
 	bool activePowerup = false;
+	bool immortal = false;
+	float immortalCounter = 0;
+	float immortalTime = 1.6f;
+	float immortalFlashCounter = 0.4f;
 	std::string currentPowerup = "";
 	float powerupDuration = 0.0f;
 

@@ -18,7 +18,7 @@ public:
 	void PlayMusic(const char* name);
 	void AddMusic(const char* path, const char* name);
 	void PlaySound(const char* name);
-	void AddSound(const char* path, const char* name);
+	void AddSound(const char* path, const char* name, float volumeModifier = 0.5f);
 private:
 	SoundManager();
 };

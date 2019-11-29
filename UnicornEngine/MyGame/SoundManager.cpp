@@ -56,13 +56,13 @@ void SoundManager::PlaySound(const char* name)
 	}
 }
 
-void SoundManager::AddSound(const char* path, const char* name)
+void SoundManager::AddSound(const char* path, const char* name, float volumeModifier/* = 0.5 */)
 {
 	Mix_Chunk* soundFile = Mix_LoadWAV(path);
 
 	if (soundEffects.find(name) == soundEffects.end() && soundFile != nullptr)
 	{
-		Mix_VolumeChunk(soundFile, MIX_MAX_VOLUME * 0.5);
+		Mix_VolumeChunk(soundFile, MIX_MAX_VOLUME * volumeModifier);
 		soundEffects[name] = soundFile;
 	}
 }
