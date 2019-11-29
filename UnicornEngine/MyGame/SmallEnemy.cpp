@@ -28,6 +28,11 @@ SmallEnemy::SmallEnemy(FG::SpriteManager* spriteManagerRef, FG::Vector2D pos, bo
 	health = 1;
 	Active = true;
 
+	if (position.x > 0)
+	{
+		startingLeft = false;
+	}
+
 	if (startingLeft)
 	{
 		goingRight = true;

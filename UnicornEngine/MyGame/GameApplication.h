@@ -54,6 +54,11 @@ private:
 	void CreatePlayer();
 	void SpawnWave(std::string enemyTypes[], int spawnAmount);
 	void SpawnPowerup(std::string enemyTypes[]);
+	void FormationV(std::string enemyType, int spawnAmount);
+	void FormationLine(std::string enemyType, int spawnAmount);
+	void FormationSmallEnemy(std::string enemyType, int spawnAmount);
+	void FormationBigMomma(std::string enemyType, int spawnAmount);
+
 private:
 	FG::Window* window = nullptr;
 	FG::InputManager* inputManager = nullptr;
