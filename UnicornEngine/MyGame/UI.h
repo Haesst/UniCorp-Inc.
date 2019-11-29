@@ -32,6 +32,9 @@ private:
 	SDL_Rect heartRect;
 	FG::Sprite* heart = nullptr;
 
+	SDL_Rect highscoreRect;
+	FG::Sprite* highscoreWindow = nullptr;
+
 	Player* player;
 
 
@@ -46,6 +49,8 @@ public:
 	void Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SDL_Window* window);
 	void UpdateScore();
 	void ResetUI();
+	SDL_Rect DrawHighscoreWindow();
+	void LowerHighscoreWindow(SDL_Rect highscoreRect);
 
 private:
 	void DrawPortrait();

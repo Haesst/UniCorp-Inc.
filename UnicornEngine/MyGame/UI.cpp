@@ -48,10 +48,11 @@ void UI::Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SD
 	pilotPortraitStage2 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage2.png", 1, 1, 38, 40);
 	pilotPortraitStage3 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage3.png", 1, 1, 38, 40);
 	heart = spriteManager->CreateSprite("../TestingAssets/Heart.png", 1, 1, 32, 32);
-
+	highscoreWindow = spriteManager->CreateSprite("../TestingAssets/Window.png", 1, 1, 940, 1400);
 	pilotPortraitRect = { 0, 800, 76, 80 };
 	heartRect = { 70, 800, 32, 32 };
 	playerScoreRect = { 400, 800, 200, 20 };
+	highscoreRect = { 0, -900, 640, 900};
 
 	scoreFont = TTF_OpenFont("../TestingAssets/MinecraftCHMC.ttf", 28);
 	this->renderer = renderer;
@@ -124,4 +125,15 @@ void UI::DrawScore()
 	//SDL_FreeSurface(playerScoreSurface);
 	spriteManager->Draw(playerScoreSprite, playerScoreRect);
 	//delete playerScoreSprite;
+}
+
+SDL_Rect UI::DrawHighscoreWindow()
+{
+	spriteManager->Draw(highscoreWindow, highscoreRect);
+	return highscoreRect;
+}
+
+void UI::LowerHighscoreWindow(SDL_Rect highscoreRect)
+{
+	spriteManager->Draw(highscoreWindow, highscoreRect);
 }
