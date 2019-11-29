@@ -210,7 +210,7 @@ void GameApplication::CreateEnemies()
 void GameApplication::InitializeSounds()
 {
 	SoundManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
-	SoundManager::Instance()->AddSound("../TestingAssets/PlayerDamage.wav", "PlayerDamage");
+	SoundManager::Instance()->AddSound("../TestingAssets/PlayerDamage.wav", "PlayerDamage", 1.0f);
 	SoundManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
 	SoundManager::Instance()->AddSound("../TestingAssets/LaserBeam.wav", "LaserBeam");
 	SoundManager::Instance()->AddSound("../TestingAssets/BigEnemyBullet.wav", "BigEnemyBullet");
