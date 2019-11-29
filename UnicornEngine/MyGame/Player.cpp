@@ -61,12 +61,12 @@ void Player::Update(float deltaTime)
 			}
 			else if (currentPowerup == "Multispread" || currentPowerup == "Ringshot")
 			{
-				Projectile* projectile = new Projectile(FG::Vector2D(-1, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-				Projectile* projectile2 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-				Projectile* projectile3 = new Projectile(FG::Vector2D(1, -1), FG::Vector2D(position.x + 30.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-				Projectile* projectile4 = new Projectile(FG::Vector2D(-1, 1), FG::Vector2D(position.x + 15.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-				Projectile* projectile5 = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
-				Projectile* projectile6 = new Projectile(FG::Vector2D(1, 1), FG::Vector2D(position.x + 30.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				Projectile* projectile = new Projectile(FG::Vector2D(-1, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
+				Projectile* projectile2 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
+				Projectile* projectile3 = new Projectile(FG::Vector2D(1, -1), FG::Vector2D(position.x + 30.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
+				Projectile* projectile4 = new Projectile(FG::Vector2D(-1, 1), FG::Vector2D(position.x + 15.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
+				Projectile* projectile5 = new Projectile(FG::Vector2D(0, 1), FG::Vector2D(position.x, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
+				Projectile* projectile6 = new Projectile(FG::Vector2D(1, 1), FG::Vector2D(position.x + 30.0f, position.y + 60.0f), spriteManager, Projectile::BulletType::PlayerBigBullet);
 				projectile->Active = true, projectile2->Active = true, projectile3->Active = true;
 				projectile4->Active = true, projectile5->Active = true, projectile6->Active = true;
 				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");

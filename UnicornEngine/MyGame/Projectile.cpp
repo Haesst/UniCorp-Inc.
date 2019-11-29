@@ -7,11 +7,16 @@
 #include <iostream>
 
 Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::SpriteManager* spriteManager, BulletType bulletType, float speed /* = 350.0f */)
-	: direction(direction), spriteManager(spriteManager), speed(speed)
+	: direction(direction), spriteManager(spriteManager), speed(speed), bulletType(bulletType)
 {
 	if (bulletType == BulletType::PlayerBullet)
 	{
 		sprite = spriteManager->CreateSprite("../TestingAssets/bullet.png", 1, 1, 6, 36);
+		myTagau = PlayerBulletau;
+	}
+	else if (bulletType == BulletType::PlayerBigBullet)
+	{
+		sprite = spriteManager->CreateSprite("../TestingAssets/PowerUpBullet.png", 1, 1, 32, 32);
 		myTagau = PlayerBulletau;
 	}
 	else
@@ -22,7 +27,15 @@ Projectile::Projectile(FG::Vector2D direction, FG::Vector2D position, FG::Sprite
 
 	this->position = position;
 
-	rect = { (int)position.x,(int)position.y, 6, 36 };
+	if (bulletType == BulletType::PlayerBigBullet)
+	{
+		rect = { (int)position.x, (int)position.y, 16, 16 };
+	}
+	else
+	{
+		rect = { (int)position.x,(int)position.y, 6, 36 };
+	}
+
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	myCollider->square.w = rect.w;
@@ -45,7 +58,15 @@ void Projectile::Update(float deltaTime)
 
 	position += direction * speed * deltaTime;
 
-	rect = { (int)position.x, (int)position.y, 3, 36 };
+	if (bulletType == BulletType::PlayerBigBullet)
+	{
+		rect = { (int)position.x, (int)position.y, 16, 16 };
+	}
+	else
+	{
+		rect = { (int)position.x,(int)position.y, 6, 36 };
+	}
+
 	myCollider->square.x = rect.x;
 	myCollider->square.y = rect.y;
 	UpdateCollider();
