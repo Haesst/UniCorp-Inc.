@@ -19,7 +19,8 @@ void BigMommaState::AttackPlayer::Execute(BigMommaEnemy* entity)
 	float differenceX = position.x - playerPosition.x;
 
 	float xDirection = 0.0f;
-	float yDirection = 0.0f;
+	float yDirection = 0.0f; 
+
 	if (position.x < playerPosition.x && (differenceX > 5.0f || differenceX < -5.0f))
 	{
 		xDirection = 0.4f;
@@ -29,7 +30,11 @@ void BigMommaState::AttackPlayer::Execute(BigMommaEnemy* entity)
 		xDirection = -0.4f;
 	}
 
-	if (position.y > 10.0f && position.y < (playerPosition.y - 200.0f))
+	if (position.y < 5)
+	{
+		yDirection = 3.0f;
+	}
+	else if (position.y < 300.0f && position.y < (playerPosition.y - 200.0f))
 	{
 		yDirection = 0.4f;
 	}
@@ -40,7 +45,7 @@ void BigMommaState::AttackPlayer::Execute(BigMommaEnemy* entity)
 
 	entity->SetPosition(FG::Vector2D(position.x + xDirection, position.y + yDirection));
 
-	if (entity->GetCurrentShotTime() <= 0.0f)
+	if (entity->GetCurrentShotTime() <= 0.0f && position.y > 0)
 	{
 		std::cout << entity->GetCurrentShotTime() << std::endl;
 		entity->Shoot();

@@ -29,7 +29,7 @@ void FollowingEnemyState::AttackPlayer::Execute(FollowingEnemy* entity)
 		xDirection = -1.0f;
 	}
 
-	if (position.y > 10.0f && position.y < (playerPosition.y - 200.0f))
+	if (position.y < 300.0f && position.y < (playerPosition.y - 200.0f))
 	{
 		yDirection = 1.0f;
 	}

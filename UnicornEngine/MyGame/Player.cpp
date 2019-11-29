@@ -52,7 +52,6 @@ void Player::Update(float deltaTime)
 		{
 			if (currentPowerup == "Spread")
 			{
-				//todo: check which powerup is active
 				Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
 				Projectile* projectile2 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
 				Projectile* projectile3 = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 30.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
