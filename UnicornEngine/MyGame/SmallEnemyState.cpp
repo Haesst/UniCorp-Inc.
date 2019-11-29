@@ -46,7 +46,7 @@ void SmallEnemyState::AttackPlayer::Execute(SmallEnemy* entity)
 	}
 
 	float xDistance = position.x - playerPosition.x;
-	if (xDistance < 5.0f && xDistance > -5.0f && position.y < 0)
+	if (xDistance < 30.0f && xDistance > -30.0f)
 	{
 		if (entity->GetCurrentShotTime() <= 0.0f && entity->ShotsToFire() > 0)
 		{

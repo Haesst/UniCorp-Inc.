@@ -13,7 +13,7 @@ private:
 	int shotsToFire = 3;
 
 	float rechargeShots = 1.6f;
-	float timeBetweenShots = 0.1f;
+	float timeBetweenShots = 0.2f;
 	float currentShotTime = 0.0f;
 
 	bool fired = false;

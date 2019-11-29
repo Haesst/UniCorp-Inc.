@@ -10,11 +10,11 @@ dexter
 eliah
 2500
 foxtrot
+2130
+Jocke
 2000
 gamma
 1755
 ger
 1300
 d
-1140
-robin
