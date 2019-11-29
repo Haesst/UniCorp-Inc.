@@ -31,11 +31,16 @@ void PowerupLife::PowerupEffect()
 {
 	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
 	int temp = player->LifesLeft();
-	if (temp != 5)
+	if (temp < 5)
 	{
 		temp += 1;
 		player->LifesLeft(temp);
+		player->AddToScore(score);
 		std::cout << "YOU HAVE GAINED A HEART." << std::endl;
+	}
+	else
+	{
+		player->AddToScore(score * 2);
 	}
 	//TODO: Find appropriate powerup sound.
 	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 

@@ -33,6 +33,7 @@ void PowerupSpread::PowerupEffect()
 	player->activePowerup = true;
 	player->currentPowerup = "Spread";
 	player->powerupDuration = 10.0f;
+	player->AddToScore(score);
 
 	//TODO: Find appropriate powerup sound.
 	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
