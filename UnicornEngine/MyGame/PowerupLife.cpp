@@ -21,7 +21,6 @@ void PowerupLife::onCollision(Tag tagau)
 		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 	case Tag::Playerau:
 		std::cout << "Powerup collided with Player" << std::endl;
-		// Todo: powerup effect
 		PowerupEffect();
 		break;
 	}
@@ -42,7 +41,6 @@ void PowerupLife::PowerupEffect()
 	{
 		player->AddToScore(score * 2);
 	}
-	//TODO: Find appropriate powerup sound.
 	SoundManager::Instance()->PlaySound("LifePickup"); 
 	Active = false;
 }

@@ -33,8 +33,6 @@ void PowerupMultiSpread::PowerupEffect()
 	player->currentPowerup = "Multispread";
 	player->powerupDuration = 10.0f;
 	player->AddToScore(score);
-
-	//TODO: Find appropriate powerup sound.
 	SoundManager::Instance()->PlaySound("Powerup"); 
 
 	Active = false;

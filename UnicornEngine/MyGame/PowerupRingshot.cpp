@@ -32,8 +32,6 @@ void PowerupRingshot::PowerupEffect()
 	player->activePowerup = true;
 	player->currentPowerup = "Ringshot";
 	player->powerupDuration = 10.0f;
-
-	//TODO: Find appropriate powerup sound.
 	SoundManager::Instance()->PlaySound("Powerup"); 
 
 	Active = false;

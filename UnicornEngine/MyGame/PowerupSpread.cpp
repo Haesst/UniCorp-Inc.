@@ -32,8 +32,6 @@ void PowerupSpread::PowerupEffect()
 	player->currentPowerup = "Spread";
 	player->powerupDuration = 10.0f;
 	player->AddToScore(score);
-
-	//TODO: Find appropriate powerup sound.
 	SoundManager::Instance()->PlaySound("PowerupTriple"); 
 
 	Active = false;
