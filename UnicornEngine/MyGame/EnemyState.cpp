@@ -64,7 +64,7 @@ void EnemyState::AttackPlayer::Execute(Enemy* entity)
 		}
 	}
 
-	if (entity->GetCurrentShotTime() <= 0)
+	if (entity->GetCurrentShotTime() <= 0 && curPos.y > 0)
 	{
 		FG::Entity* player = FG::EntityManager::Instance()->GetPlayer();
 

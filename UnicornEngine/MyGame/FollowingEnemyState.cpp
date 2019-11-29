@@ -40,7 +40,9 @@ void FollowingEnemyState::AttackPlayer::Execute(FollowingEnemy* entity)
 
 	entity->SetPosition(FG::Vector2D(position.x + xDirection, position.y + yDirection));
 
-	if (entity->GetCurrentShotTime() <= 0.0f && (differenceX < 5.0f && differenceX > -5.0f))
+	if (entity->GetCurrentShotTime() <= 0.0f &&
+		(differenceX < 5.0f && differenceX > -5.0f) &&
+		position.y > 0)
 	{
 		entity->Shoot();
 	}

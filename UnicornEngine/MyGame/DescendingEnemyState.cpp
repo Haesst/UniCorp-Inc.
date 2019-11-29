@@ -27,7 +27,7 @@ void DescendingEnemyState::AttackPlayer::Execute(DescendingEnemy* entity)
 
 	entity->SetPosition(FG::Vector2D(curPos.x, curPos.y + 1));
 
-	if (entity->GetCurrentShotTime() <= 0)
+	if (entity->GetCurrentShotTime() <= 0 && curPos.y > 0)
 	{
 		FG::Entity* player = FG::EntityManager::Instance()->GetPlayer();
 
