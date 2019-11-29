@@ -130,7 +130,20 @@ void GameApplication::Run()
 
 		if (player->LifesLeft() <= 0)
 		{
-			//Todo: Add Game over screen w. scores here
+			FG::EntityManager::Instance()->ClearEntities();
+
+			camera->StartRenderFrame();
+			SDL_Rect hsrect = UI::Instance()->DrawHighscoreWindow();
+			camera->EndRenderFrame();
+
+			while (hsrect.y < 0)
+			{
+				hsrect.y += 10;
+				camera->StartRenderFrame();
+				UI::Instance()->LowerHighscoreWindow(hsrect);
+				camera->EndRenderFrame();
+			}
+
 			std::string x;
 			std::cout << "You have been killed! Game over." << std::endl;
 			std::cout << "Enter your name to see if you got a highscore!" << std::endl;
