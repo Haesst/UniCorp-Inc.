@@ -34,7 +34,7 @@ void PowerupRingshot::PowerupEffect()
 	player->powerupDuration = 10.0f;
 
 	//TODO: Find appropriate powerup sound.
-	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
+	SoundManager::Instance()->PlaySound("Powerup"); 
 
 	Active = false;
 }

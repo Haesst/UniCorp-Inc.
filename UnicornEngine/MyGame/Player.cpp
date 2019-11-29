@@ -202,5 +202,6 @@ void Player::onCollision(Tag tagau)
 		{
 		case EnemyBulletau:
 			lifes--;
+			SoundManager::Instance()->PlaySound("PlayerDamage");
 		}
 }

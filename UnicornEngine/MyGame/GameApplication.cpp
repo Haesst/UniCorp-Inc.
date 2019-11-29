@@ -210,8 +210,14 @@ void GameApplication::CreateEnemies()
 void GameApplication::InitializeSounds()
 {
 	SoundManager::Instance()->AddSound("../TestingAssets/PlayerShot.wav", "PlayerShot");
+	SoundManager::Instance()->AddSound("../TestingAssets/PlayerDamage.wav", "PlayerDamage");
 	SoundManager::Instance()->AddSound("../TestingAssets/EnemyShot.wav", "EnemyShot");
+	SoundManager::Instance()->AddSound("../TestingAssets/LaserBeam.wav", "LaserBeam");
+	SoundManager::Instance()->AddSound("../TestingAssets/BigEnemyBullet.wav", "BigEnemyBullet");
 	SoundManager::Instance()->AddSound("../TestingAssets/EnemyExplosion.wav", "EnemyExplosion");
+	SoundManager::Instance()->AddSound("../TestingAssets/Powerup.wav", "Powerup");
+	SoundManager::Instance()->AddSound("../TestingAssets/LifePickup.wav", "LifePickup");
+	SoundManager::Instance()->AddSound("../TestingAssets/PowerupTriple.wav", "PowerupTriple");
 
 	SoundManager::Instance()->AddMusic("../TestingAssets/newbattle.wav", "GameMusic");
 	SoundManager::Instance()->PlayMusic("GameMusic");

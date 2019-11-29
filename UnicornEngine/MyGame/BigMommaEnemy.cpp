@@ -75,7 +75,7 @@ void BigMommaEnemy::Shoot()
 
 	bullet->Active = true;
 	FG::EntityManager::Instance()->AddEntity(bullet, "EnemyBullet");
-	SoundManager::Instance()->PlaySound("EnemyShot");
+	SoundManager::Instance()->PlaySound("LaserBeam");
 	currentShotTime = timeBetweenShots + laserTime;
 }
 

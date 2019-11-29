@@ -43,7 +43,7 @@ void PowerupLife::PowerupEffect()
 		player->AddToScore(score * 2);
 	}
 	//TODO: Find appropriate powerup sound.
-	//SoundManager::Instance()->PlaySound("EnemyExplosion"); 
+	SoundManager::Instance()->PlaySound("LifePickup"); 
 	Active = false;
 }
 
