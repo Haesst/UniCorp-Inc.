@@ -9,6 +9,7 @@
 #include <SpriteManager.h>
 #include <EntityManager.h>
 #include <Collider.h>
+#include <Camera.h>
 #include <iostream>
 #include <Vector2D.h>
 
@@ -20,11 +21,11 @@ void DescendingEnemy::onCollision(Tag tagau)
 	{
 		//case Tag::Enemyau: std::cout << "Enemy collided with Enemy" << std::endl ; break;
 	case Tag::Playerau: std::cout << "Enemy collided with Player" << std::endl; break;
-	case Tag::PlayerBulletau: DescendingEnemyDies(); break;
+	case Tag::PlayerBulletau: EnemyDies(); break;
 	}
 }
 
-void DescendingEnemy::DescendingEnemyDies()
+void DescendingEnemy::EnemyDies()
 {
 	Player* player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
 	player->AddToScore(score);
@@ -70,6 +71,8 @@ DescendingEnemy::~DescendingEnemy()
 
 void DescendingEnemy::Update(float deltaTime)
 {
+	CheckIfVisible();
+
 	if (currentShotTime > 0)
 	{
 		currentShotTime -= deltaTime;
@@ -85,6 +88,11 @@ void DescendingEnemy::Update(float deltaTime)
 
 void DescendingEnemy::Render(FG::Camera* const camera)
 {
+	if (window == nullptr)
+	{
+		window = camera->GetWindow()->GetInternalWindow();
+	}
+
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
 }

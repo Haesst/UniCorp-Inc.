@@ -95,18 +95,17 @@ void UI::DrawHearts()
 
 void UI::DrawPortrait()
 {
-
-	switch (player->LifesLeft())
+	if (player->LifesLeft() == 1)
 	{
-	case 3:
-		spriteManager->Draw(pilotPortraitStage1, pilotPortraitRect);
-		break;
-	case 2:
-		spriteManager->Draw(pilotPortraitStage2, pilotPortraitRect);
-		break;
-	case 1:
 		spriteManager->Draw(pilotPortraitStage3, pilotPortraitRect);
-		break;
+	}
+	else if (player->LifesLeft() == 2)
+	{
+		spriteManager->Draw(pilotPortraitStage2, pilotPortraitRect);
+	}
+	else
+	{
+		spriteManager->Draw(pilotPortraitStage1, pilotPortraitRect);
 	}
 }
 

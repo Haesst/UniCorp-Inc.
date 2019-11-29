@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include <Entity.h>
+#include "Enemy.h"
 #include <Vector2D.h>
 #include "FSMState.h"
 
@@ -13,7 +13,7 @@ namespace FG //i have identified that these two classes exist in FG/engine.
 
 class DescendingEnemyState;
 
-class DescendingEnemy : public FG::Entity
+class DescendingEnemy : public Enemy
 {
 public:
 	DescendingEnemy();
@@ -37,15 +37,5 @@ private:
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;
 protected:
-	virtual void DescendingEnemyDies();
-
-protected:
-	FG::SpriteManager* spriteManager;
-
-	float timeBetweenShots = 1.6f;
-	float currentShotTime = timeBetweenShots;
-
-	int health = 1;
-	int score = 10;
-
+	virtual void EnemyDies() override;
 };

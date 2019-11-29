@@ -9,6 +9,7 @@
 #include <SpriteManager.h>
 #include <EntityManager.h>
 #include <Collider.h>
+#include <Camera.h>
 #include <iostream>
 #include <Vector2D.h>
 
@@ -31,6 +32,24 @@ void Enemy::EnemyDies()
 	UI::Instance()->UpdateScore();
 	SoundManager::Instance()->PlaySound("EnemyExplosion");
 	Active = false;
+}
+
+void Enemy::CheckIfVisible()
+{
+	if (window == nullptr)
+	{
+		return;
+	}
+
+	int windowHeight = 0;
+	int windowWidth = 0;
+
+	SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+
+	if (position.x < -200 || position.x > windowWidth + 200 || position.y < -200 || position.y > windowHeight + 200)
+	{
+		Active = false;
+	}
 }
 
 float Enemy::GetCurrentShotTime()
@@ -70,6 +89,8 @@ Enemy::~Enemy()
 
 void Enemy::Update(float deltaTime)
 {
+	CheckIfVisible();
+
 	if (currentShotTime > 0)
 	{
 		currentShotTime -= deltaTime;
@@ -85,6 +106,11 @@ void Enemy::Update(float deltaTime)
 
 void Enemy::Render(FG::Camera* const camera)
 {
+	if (window == nullptr)
+	{
+		window = camera->GetWindow()->GetInternalWindow();
+	}
+
 	spriteManager->Draw(sprite, rect);
 	spriteManager->DebugDraw(myCollider->square);
 }
