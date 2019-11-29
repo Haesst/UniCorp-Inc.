@@ -348,11 +348,9 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 void GameApplication::SpawnPowerup(std::string powerupTypes[])
 {
 	FG::Vector2D position;
-	position.x = 50, position.y = 50;
+	position.x = rand() % 1000 + 5, position.y = rand() % 150 + 5;
 
 	FG::EntityManager::Instance()->AddEntity(powerupTypes[0], position);
-
-	std::cout << "Spawned a: "; std::cout << powerupTypes[0] << std::endl;
 
 	int i;
 	int n = 4;
