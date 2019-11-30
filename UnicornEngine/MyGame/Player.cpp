@@ -169,7 +169,7 @@ void Player::Render(FG::Camera* const camera)
 
 void Player::AddToScore(int score)
 {
-	this->score += score;
+	this->score += (score * (defeatedBosses + 1));
 	UI::Instance()->UpdateScore();
 }
 
