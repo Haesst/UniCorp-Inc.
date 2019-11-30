@@ -197,11 +197,11 @@ FG::Sprite* UI::GetPowerupSprite()
 	{
 		return tripleShotSprite;
 	}
-	else if (currentPowerUp == "playerSpeed")
+	else if (currentPowerUp == "MoveSpeed")
 	{
 		return playerSpeedSprite;
 	}
-	else if (currentPowerUp == "firespeed")
+	else if (currentPowerUp == "AttackSpeed")
 	{
 		return fireSpeedSprite;
 	}

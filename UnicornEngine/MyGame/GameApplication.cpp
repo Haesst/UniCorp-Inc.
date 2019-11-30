@@ -1,5 +1,6 @@
 #include "GameApplication.h"
 #include <iostream>
+#include <chrono>
 
 #include <Logger.h>
 #include <Window.h>
@@ -70,7 +71,9 @@ bool GameApplication::Initialize()
 
 	UI::Instance()->Initialize(spriteManager, camera->GetInternalRenderer(), window->GetInternalWindow());
 
-	//FG::EntityManager::Instance()->AddEntity("BigMomma", FG::Vector2D(50, 50));
+	auto timeNow = std::chrono::system_clock::now();
+
+	srand(std::chrono::duration_cast<std::chrono::seconds>(timeNow.time_since_epoch()).count());
 
 	return true;
 }
