@@ -23,6 +23,8 @@ public:
 
 	int LifesLeft() { return lifes; }
 	int LifesLeft(int lifes) { this->lifes = lifes; return lifes; }
+	std::string GetCurrentPowerup() { return currentPowerup; }
+	float GetPowerupDuration() { return powerupDuration; }
 
 	bool activePowerup = false;
 	bool immortal = false;

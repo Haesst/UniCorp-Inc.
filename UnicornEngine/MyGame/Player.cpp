@@ -153,12 +153,10 @@ void Player::Render(FG::Camera* const camera)
 	{
 		if (flashAlpha)
 		{
-			std::cout << "flash alpha" << std::endl;
 			spriteManager->Draw(sprite, rect, { 255,255,255 }, 100);
 		} 
 		else
 		{
-			std::cout << "flash red" << std::endl;
 			spriteManager->Draw(sprite, rect, { 255,0,0 }, 200);
 		}
 	}

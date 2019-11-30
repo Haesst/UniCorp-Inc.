@@ -20,6 +20,21 @@ UI::~UI()
 
 void UI::Update(float deltaTime)
 {
+	currentPowerUp = player->GetCurrentPowerup();
+
+	if (currentPowerUp != "")
+	{
+		powerUpTimeLeft = player->GetPowerupDuration();
+		if (powerUpTimeLeft <= 1.0f)
+		{
+			flashCounter += deltaTime;
+			if (flashCounter >= timeBetweenFlash)
+			{
+				flashAlpha = !flashAlpha;
+				flashCounter = 0;
+			}
+		}
+	}
 }
 
 void UI::Render(FG::Camera* const camera)
@@ -27,6 +42,7 @@ void UI::Render(FG::Camera* const camera)
 	DrawPortrait();
 	DrawHearts();
 	DrawScore();
+	DrawPowerup();
 }
 
 UI* UI::Instance()
@@ -43,15 +59,29 @@ void UI::Initialize(FG::SpriteManager* spriteManager, SDL_Renderer* renderer, SD
 
 	player = dynamic_cast<Player*>(FG::EntityManager::Instance()->GetPlayer());
 
+	int windowWidth = 0;
+	int windowHeight = 0;
+
+	SDL_GetWindowSize(window, &windowWidth, &windowHeight);
+
 	//sprite = spriteManager->CreateSprite("../TestingAssets/Table.png", 1, 1, 361, 101);
 	pilotPortraitStage1 = spriteManager->CreateSprite("../TestingAssets/UniPilot.png", 1, 1, 38, 40);
 	pilotPortraitStage2 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage2.png", 1, 1, 38, 40);
 	pilotPortraitStage3 = spriteManager->CreateSprite("../TestingAssets/UniPilot_Stage3.png", 1, 1, 38, 40);
 	heart = spriteManager->CreateSprite("../TestingAssets/Heart.png", 1, 1, 32, 32);
 	highscoreWindow = spriteManager->CreateSprite("../TestingAssets/Window.png", 1, 1, 940, 1400);
-	pilotPortraitRect = { 0, 800, 76, 80 };
-	heartRect = { 70, 800, 32, 32 };
-	playerScoreRect = { 400, 800, 200, 20 };
+
+	tripleShotSprite = spriteManager->CreateSprite("../TestingAssets/PowerUpSpread.png", 1,1,32,32);
+	spreadShotSprite = spriteManager->CreateSprite("../TestingAssets/PowerUpMultiSpread.png", 1, 1, 32, 32);
+	ringShotSprite = spriteManager->CreateSprite("../TestingAssets/PowerUpRingshot.png", 1, 1, 32, 32);
+	playerSpeedSprite = spriteManager->CreateSprite("../TestingAssets/PowerUpPlayerSpeed.png", 1,1,32,32);
+	fireSpeedSprite = spriteManager->CreateSprite("../TestingAssets/PowerUpFireSpeed.png", 1,1,32,32);
+
+	pilotPortraitRect = { 0, windowHeight - 100, 76, 80 };
+	heartRect = { 70, windowHeight - 100, 32, 32 };
+	powerupRect = { 80, windowHeight - 60, 32, 32 };
+
+	playerScoreRect = { windowWidth - 100, windowHeight - 100, 200, 20 };
 	highscoreRect = { 0, -900, 640, 900};
 
 	scoreFont = TTF_OpenFont("../TestingAssets/MinecraftCHMC.ttf", 28);
@@ -125,6 +155,58 @@ void UI::DrawScore()
 	//SDL_FreeSurface(playerScoreSurface);
 	spriteManager->Draw(playerScoreSprite, playerScoreRect);
 	//delete playerScoreSprite;
+}
+
+void UI::DrawPowerup()
+{
+	if (currentPowerUp != "")
+	{
+		FG::Sprite* spriteToDraw = GetPowerupSprite();
+		if (spriteToDraw != nullptr)
+		{
+			if (powerUpTimeLeft < 1.0f)
+			{
+				if (flashAlpha)
+				{
+					spriteManager->Draw(spriteToDraw, powerupRect, 0.0f);
+				}
+				else
+				{
+					spriteManager->Draw(spriteToDraw, powerupRect, 255.0f);
+				}
+			}
+			else
+			{
+				spriteManager->Draw(spriteToDraw, powerupRect, 255.0f);
+			}
+		}
+	}
+}
+
+FG::Sprite* UI::GetPowerupSprite()
+{
+	if (currentPowerUp == "Multispread")
+	{
+		return spreadShotSprite;
+	}
+	else if (currentPowerUp == "Ringshot")
+	{
+		return ringShotSprite;
+	}
+	else if (currentPowerUp == "Spread")
+	{
+		return tripleShotSprite;
+	}
+	else if (currentPowerUp == "playerSpeed")
+	{
+		return playerSpeedSprite;
+	}
+	else if (currentPowerUp == "firespeed")
+	{
+		return fireSpeedSprite;
+	}
+
+	return nullptr;
 }
 
 SDL_Rect UI::DrawHighscoreWindow()
