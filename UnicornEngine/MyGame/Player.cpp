@@ -53,11 +53,27 @@ void Player::Update(float deltaTime)
 		immortal = false;
 	}
 
+	if (currentPowerup == "MoveSpeed")
+	{ SetMoveSpeed(500.0f); }
+	else
+	{ SetMoveSpeed(defaultMoveSpeed); }
+	if (currentPowerup == "AttackSpeed")
+	{ SetAttackSpeed(0.15f); }
+	else
+	{ SetAttackSpeed(defaultAttackSpeed); }
 	MovePlayer(deltaTime);
 
 	if (activePowerup == true && powerupDuration > 0.0f) { powerupDuration -= deltaTime; }
 	if (activePowerup == true && powerupDuration <= 0.0f)
 	{
+		if (currentPowerup == "MoveSpeed")
+		{
+			SetMoveSpeed(defaultMoveSpeed);
+		}
+		if (currentPowerup == "MoveSpeed")
+		{
+			SetAttackSpeed(defaultAttackSpeed);
+		}
 		activePowerup = false;
 		currentPowerup = "";
 		std::cout << "Your powerup has expired..." << std::endl;
@@ -105,6 +121,14 @@ void Player::Update(float deltaTime)
 				projectile->Active = true;
 				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
 			}*/
+			else
+			{
+				Projectile* projectile = new Projectile(FG::Vector2D(0, -1), FG::Vector2D(position.x + 15.0f, position.y - 60.0f), spriteManager, Projectile::BulletType::PlayerBullet);
+				projectile->Active = true;
+				FG::EntityManager::Instance()->AddEntity(projectile, "Projectile");
+				SoundManager::Instance()->PlaySound("PlayerShot");
+				currentShotTimer = timeBetweenShots;
+			}
 			SoundManager::Instance()->PlaySound("PlayerShot");
 			currentShotTimer = timeBetweenShots;
 		}

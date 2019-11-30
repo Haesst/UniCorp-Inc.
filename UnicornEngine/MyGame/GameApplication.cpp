@@ -85,8 +85,7 @@ void GameApplication::Run()
 	int spawnAmount = 10;
 	int defeatedBosses = 0;
 	std::string enemyTypes[5] = { "DescendingEnemy", "SmallEnemy", "SmallEnemy", "FollowingEnemy", "BigMomma" };
-	std::string powerupTypes[4] = { "PowerupMultiSpread", "PowerupLife", "PowerupRingshot", "PowerupSpread"};
-
+	std::string powerupTypes[6] = { "PowerupMoveSpeed", "PowerupAttackSpeed", "PowerupRingshot", "PowerupSpread", "PowerupMultiSpread", "PowerupLife" };
 	bool quit = false;
 	while (!quit)
 	{
@@ -294,6 +293,12 @@ void GameApplication::CreateFactories()
 
 	powerupRingshotFactory = new FG::PowerupRingshotFactory(spriteManager);
 	factoryManager->AddFactory("PowerupRingshot", powerupRingshotFactory);
+
+	powerupMoveSpeedFactory = new FG::PowerupMoveSpeedFactory(spriteManager);
+	factoryManager->AddFactory("PowerupMoveSpeed", powerupMoveSpeedFactory);
+
+	powerupAttackSpeedFactory = new FG::PowerupAttackSpeedFactory(spriteManager);
+	factoryManager->AddFactory("PowerupAttackSpeed", powerupAttackSpeedFactory);
 }
 
 void GameApplication::CreateBackground()
@@ -364,13 +369,13 @@ void GameApplication::SpawnWave(std::string enemyTypes[], int spawnAmount)
 void GameApplication::SpawnPowerup(std::string powerupTypes[])
 { //todo: make the types switch up, maybe add more effects
 	FG::Vector2D position;
-	position.x = rand() % 1000 + 5, position.y = rand() % 150 + 5;
+	position.x = rand() % 1000 + 5, position.y = -100;
 
 	FG::EntityManager::Instance()->AddEntity(powerupTypes[0], position);
-
 	//Shuffles all powerup types around so the next type spawns.
 	int i;
-	int n = 4;
+	int n = 6;
+	
 
 	std::string temp = powerupTypes[0];
 	for (i = 0; i < n - 1; i++)
@@ -408,6 +413,10 @@ void GameApplication::FormationLine(std::string enemyType, int spawnAmount)
 	FG::Vector2D diff = {20, 20};
 	for (size_t i = 0; i < spawnAmount; i++) //Spawns everything in a line
 	{
+		if (i == 10 || i == 20 ||i == 30)
+		{
+			position.y -= 30;
+		}
 		FG::EntityManager::Instance()->AddEntity(enemyType, position);
 		position.x += diff.x;
 	}

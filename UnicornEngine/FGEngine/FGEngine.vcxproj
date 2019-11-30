@@ -88,7 +88,7 @@
       <PreprocessorDefinitions>SDL_MAIN_HANDLED;WIN32_LEAN_AND_MEAN;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2_Image\include\;$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)Third Party\SDL2_mixer\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Third Party\SDL2_Image\include\;$(SolutionDir)Third Party\SDL2\include\;$(SolutionDir)Third Party\SDL2_mixer\include\;$(SolutionDir)Third Party\SDL2_ttf\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

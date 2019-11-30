@@ -26,6 +26,8 @@ namespace FG
 	class PowerupSpreadFactory;
 	class PowerupMultiSpreadFactory;
 	class PowerupRingshotFactory;
+	class PowerupMoveSpeedFactory;
+	class PowerupAttackSpeedFactory;
 }
 
 class Player; //Forward declaration : there is a class but you don't have to know what it does yet
@@ -79,6 +81,8 @@ private:
 	FG::PowerupSpreadFactory* powerupSpreadFactory = nullptr;
 	FG::PowerupMultiSpreadFactory* powerupMultiSpreadFactory = nullptr;
 	FG::PowerupRingshotFactory* powerupRingshotFactory = nullptr;
+	FG::PowerupMoveSpeedFactory* powerupMoveSpeedFactory = nullptr;
+	FG::PowerupAttackSpeedFactory* powerupAttackSpeedFactory = nullptr;
 
 	FG::Time time;
 

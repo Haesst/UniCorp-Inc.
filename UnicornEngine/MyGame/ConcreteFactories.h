@@ -14,6 +14,8 @@
 #include "PowerupSpread.h"
 #include "PowerupMultiSpread.h"
 #include "PowerupRingshot.h"
+#include "PowerupMoveSpeed.h"
+#include "PowerupAttackSpeed.h"
 
 namespace FG
 {
@@ -152,5 +154,29 @@ namespace FG
 		SpriteManager* spriteManager = nullptr;
 
 		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupRingshot(spriteManager, pos); }
+	};
+
+	class PowerupMoveSpeedFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupMoveSpeedFactory() {}
+		PowerupMoveSpeedFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupMoveSpeedFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupMoveSpeed(spriteManager, pos); }
+	};
+
+	class PowerupAttackSpeedFactory : public AFactory //inherits from AFactory
+	{
+	public:
+		PowerupAttackSpeedFactory() {}
+		PowerupAttackSpeedFactory(FG::SpriteManager* spriteManagerRef) { spriteManager = spriteManagerRef; }
+		~PowerupAttackSpeedFactory() {}
+
+		SpriteManager* spriteManager = nullptr;
+
+		virtual Entity* CreateEntity(Vector2D pos) { return new PowerupAttackSpeed(spriteManager, pos); }
 	};
 }

@@ -73,6 +73,12 @@
     <ClCompile Include="PowerupSpread.cpp">
       <Filter>Powerups</Filter>
     </ClCompile>
+    <ClCompile Include="PowerupAttackSpeed.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerupMoveSpeed.cpp">
+      <Filter>Powerups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Background.h" />
@@ -149,6 +155,12 @@
       <Filter>Powerups</Filter>
     </ClInclude>
     <ClInclude Include="PowerupSpread.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupAttackSpeed.h">
+      <Filter>Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerupMoveSpeed.h">
       <Filter>Powerups</Filter>
     </ClInclude>
   </ItemGroup>

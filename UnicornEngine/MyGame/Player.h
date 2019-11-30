@@ -33,6 +33,10 @@ public:
 	float powerupDuration = 0.0f;
 
 	int GetScore() { return score; }
+	int GetMoveSpeed() { return movementSpeed; }
+	int SetMoveSpeed(float speed) { this->movementSpeed = speed; return movementSpeed; }
+	int GetAttackSpeed() { return timeBetweenShots; }
+	int SetAttackSpeed(float speed) { this->timeBetweenShots= speed; return timeBetweenShots; }
 	void AddToScore(int score);
 	void DefeatedBoss();
 	void ResetStats() { score = 0; defeatedBosses = 0; }
@@ -54,6 +58,9 @@ private:
 
 	int lifes = 3;
 	int score = 0;
+	float speed = 1.0f;
+	float defaultMoveSpeed = movementSpeed;
+	float defaultAttackSpeed = timeBetweenShots;
 
 	// Inherited via Entity
 	virtual void onCollision(Tag tagau) override;

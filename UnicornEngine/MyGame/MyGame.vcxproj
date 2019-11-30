@@ -109,7 +109,9 @@
     <ClCompile Include="Highscore.cpp" />
     <ClCompile Include="LaserBeam.cpp" />
     <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="PowerupAttackSpeed.cpp" />
     <ClCompile Include="PowerupLife.cpp" />
+    <ClCompile Include="PowerupMoveSpeed.cpp" />
     <ClCompile Include="PowerupMultiSpread.cpp" />
     <ClCompile Include="PowerupRingshot.cpp" />
     <ClCompile Include="PowerupSpread.cpp" />
@@ -141,7 +143,9 @@
     <ClInclude Include="Highscore.h" />
     <ClInclude Include="LaserBeam.h" />
     <ClInclude Include="Powerup.h" />
+    <ClInclude Include="PowerupAttackSpeed.h" />
     <ClInclude Include="PowerupLife.h" />
+    <ClInclude Include="PowerupMoveSpeed.h" />
     <ClInclude Include="PowerupMultiSpread.h" />
     <ClInclude Include="PowerupRingshot.h" />
     <ClInclude Include="PowerupSpread.h" />
