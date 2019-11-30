@@ -28,7 +28,10 @@ public:
 	bool immortal = false;
 	float immortalCounter = 0;
 	float immortalTime = 1.6f;
-	float immortalFlashCounter = 0.4f;
+	float immortalFlashCounter = 0.0f;
+	float timeBetweenFlash = 0.2f;
+	bool flashAlpha = false;
+
 	std::string currentPowerup = "";
 	float powerupDuration = 0.0f;
 

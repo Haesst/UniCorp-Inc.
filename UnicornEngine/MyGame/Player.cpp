@@ -38,19 +38,21 @@ void Player::Update(float deltaTime)
 
 	if (immortal)
 	{
-		if (immortalFlashCounter < 1.1f)
+		if (immortalFlashCounter < timeBetweenFlash)
 		{
 			immortalFlashCounter += deltaTime;
 		}
-		else if (immortalFlashCounter > 0.9f)
+		else
 		{
-			immortalFlashCounter -= deltaTime;
+			flashAlpha = !flashAlpha;
+			immortalFlashCounter = 0.0f;
 		}
 	}
 
 	if (immortal && immortalCounter <= 0.0f)
 	{
 		immortal = false;
+		immortalFlashCounter = 0.0f;
 	}
 
 	MovePlayer(deltaTime);
@@ -149,7 +151,7 @@ void Player::Render(FG::Camera* const camera)
 	
 	if (immortal)
 	{
-		if (immortalFlashCounter < 1.0f)
+		if (flashAlpha)
 		{
 			std::cout << "flash alpha" << std::endl;
 			spriteManager->Draw(sprite, rect, { 255,255,255 }, 100);
@@ -157,7 +159,7 @@ void Player::Render(FG::Camera* const camera)
 		else
 		{
 			std::cout << "flash red" << std::endl;
-			spriteManager->Draw(sprite, rect, { 255,0,0 }, 255);
+			spriteManager->Draw(sprite, rect, { 255,0,0 }, 200);
 		}
 	}
 	else
