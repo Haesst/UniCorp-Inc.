@@ -54,7 +54,9 @@ void FG::SpriteManager::Present()
 
 void FG::SpriteManager::Draw(Sprite* sprite, SDL_Rect rect)
 {
-	SDL_RenderCopy(renderer, sprite->GetTexture(), &sprite->GetSource(), &rect);
+	SDL_Texture* texture = sprite->GetTexture();
+	SDL_SetTextureAlphaMod(texture, 255.0f);
+	SDL_RenderCopy(renderer, texture, &sprite->GetSource(), &rect);
 }
 
 void FG::SpriteManager::Draw(Sprite* sprite, SDL_Rect rect, SDL_Color colorModifier)
@@ -71,6 +73,14 @@ void FG::SpriteManager::Draw(Sprite* sprite, SDL_Rect rect, SDL_Color colorModif
 
 	SDL_Texture* texture = sprite->GetTexture();
 	SDL_SetTextureColorMod(texture, colorModifier.r, colorModifier.g, colorModifier.b);
+	SDL_SetTextureAlphaMod(texture, alpha);
+
+	SDL_RenderCopy(renderer, texture, &sprite->GetSource(), &rect);
+}
+
+void FG::SpriteManager::Draw(Sprite* sprite, SDL_Rect rect, float alpha)
+{
+	SDL_Texture* texture = sprite->GetTexture();
 	SDL_SetTextureAlphaMod(texture, alpha);
 
 	SDL_RenderCopy(renderer, texture, &sprite->GetSource(), &rect);

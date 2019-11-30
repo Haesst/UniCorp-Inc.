@@ -114,6 +114,7 @@ void GameApplication::Run()
 
 		//Update entities
 		FG::EntityManager::Instance()->Update(time.DeltaTime());
+		UI::Instance()->Update(time.DeltaTime());
 		FG::EntityManager::Instance()->CheckEntitiesCollision();
 		// Tell camera to start render frame
 		camera->StartRenderFrame();

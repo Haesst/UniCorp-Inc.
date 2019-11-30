@@ -3,6 +3,7 @@
 #include <Entity.h>
 #include <SpriteManager.h>
 #include <SDL_ttf.h>
+#include <string>
 
 namespace FG
 {
@@ -37,10 +38,22 @@ private:
 	SDL_Rect heartRect;
 	FG::Sprite* heart = nullptr;
 
+	SDL_Rect powerupRect;
+	FG::Sprite* tripleShotSprite = nullptr;
+	FG::Sprite* ringShotSprite = nullptr;
+	FG::Sprite* spreadShotSprite = nullptr;
+	FG::Sprite* playerSpeedSprite = nullptr;
+	FG::Sprite* fireSpeedSprite = nullptr;
+
 	SDL_Rect highscoreRect;
 	FG::Sprite* highscoreWindow = nullptr;
 
 	Player* player;
+	std::string currentPowerUp;
+	float powerUpTimeLeft;
+	float flashCounter;
+	float timeBetweenFlash = 0.1f;
+	bool flashAlpha = false;
 public:
 	UI();
 	~UI();
@@ -61,4 +74,6 @@ private:
 	void DrawPortrait();
 	void DrawHearts();
 	void DrawScore();
+	void DrawPowerup();
+	FG::Sprite* GetPowerupSprite();
 };
