@@ -28,21 +28,21 @@ void Highscore::AddToFile(Player* player, std::string name)
 {
 
 	int newScore = player->GetScore();
-	while (name.length() < 6)
-	{
-		name += "";
-	}
 	std::string newName = name.substr(0, 6);
+	while (newName.length() < 6)
+	{
+		newName += " ";
+	}
 
 	std::ifstream file("highscore.txt");
 	std::ofstream output_file("tempfile.txt");
 
 	std::cout << "New Highscore is: "; std::cout << newScore << std::endl;
 	std::string newScoreString = std::to_string(newScore);
-	while (newScoreString.length() < 6)
+	/*while (newScoreString.length() < 6)
 	{
 		newScoreString += "";
-	}
+	}*/
 
 
 	if (file.is_open())
